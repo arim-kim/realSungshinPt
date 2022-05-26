@@ -37,14 +37,19 @@ app.get("/friend", homeController.friend);
 app.get("/test", homeController.test);
 
 app.post("/", (req, res)=> {
-
+        
         let id = req.body.id; 
         let pw = req.body.pw; 
         console.log(id + " : " + pw); 
+        const sql = 'SELECT * from member WHERE memberid=? and password=?';
+
+        con.query(sql, [id,pw], function(err, results, fields) {
+                if(err) throw err;
+                if(results.length > 0) res.send('you are correct');
+                else res.send('your input is wrong');
+        })
 
         console.log("제출되었습니다");  
-        res.send("제출되었습니다"+ req.body.id); 
-
 });  
 //app.post("/join", homeController.joinCheck);
 app.post("/join", (req, res) => {

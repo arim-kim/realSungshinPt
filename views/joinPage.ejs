@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <title> 성신한 알바 회원가입</title> 
+    <!-- 브라우저 기본 스타일 초기화 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="./css/join.css">
+    <script src="js/join.js"></script>
+</head>
+
+<body>
+
+    <div class = "wrapper">
+        <!-- <div class = "title">
+            <p>회원가입</p>
+        </div>   -->
+
+
+        <form class ="join-form"  action ="/join" method = "post">
+                <div class = "email">
+                        <div class = "emailBox">
+                                <label for = "email">이메일</label>
+                                <input name="email" type="text" placeholder="이메일을 입력해 주세요.">
+                        </div>
+                        <div id="emailError" class="error"></div>
+                </div>
+
+                <div class = "name">
+                        <div class = "nameBox">
+                                <label>이름</label>
+                                <input name="name"  type="text" placeholder="이름을 입력해 주세요.">
+                        </div>
+                        <div id="nameError" class="error"></div>
+                </div>
+
+                <div class = "password">
+                        <div class = "passwordBox">
+                                <label>비밀번호</label>
+                                <input name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+                        </div>
+                        <div id="passwordError" class="error"></div>
+                </div>
+
+                <div class = "passwordCheck">
+                        <div class = "passwordCheckBox">
+                                <label>비밀번호 재확인</label>
+                                <input id="passwordCheck" type="password" placeholder="비밀번호를 재입력해 주세
+요.">
+                        </div>
+                        <div id="passwordCheckError" class="error"></div>
+                </div>
+
+                <div class = "signUp">
+                         <button id="signUpButton" type = "submit" onclick="signUpCheck()">가입하기</button>
+                </div>
+        </form>
+    </div>
+</body>
+</html>

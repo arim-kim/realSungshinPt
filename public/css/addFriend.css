@@ -1,0 +1,103 @@
+/* html {
+    /* background-color: orange;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+} */
+/* body {
+    /* background-color: yellow; 
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid black;
+} */
+
+.title {
+    background-color: skyblue;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 50px;
+}
+.title > p {
+    /* background-color:pink; */
+    padding-top: 40px;
+    width: 80%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+}
+
+.wrapper {
+    /* background-color: palegreen; */
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid skyblue;;
+    padding: 20px;
+}
+
+/* header {
+    /* background-color: antiquewhite;
+    height: 150px;
+    width: 80%;
+    margin: 0 auto;
+}
+header > p {
+    padding-top: 100px;
+    text-align: center;
+} */
+
+label {
+    padding-right: 5px;
+}
+
+.friendEmail {
+    /* background-color:brown; */
+    height: 100px;
+    width: 80%;
+    /* display: flex; */
+    margin: 0 auto;
+}
+.friendEmailBox {
+    /* background-color: cornflowerblue; */
+    padding-top: 45px;
+    height: 25px;
+    width: 80%;
+    text-align: center;
+    margin: auto auto;
+}
+.friendEmail input {
+    background-color: skyblue;
+    width: 60%;
+}
+
+.sendMail {
+    /* background-color:blue; */
+    height: 80px;
+    padding-top: 20px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.sendMailButton {
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+button {
+    background-color: skyblue;
+    cursor: pointer;
+    height: 30px;
+}
+
+.error {
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 40%;
+}

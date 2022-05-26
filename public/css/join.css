@@ -1,0 +1,160 @@
+/* html {
+    background-color:gray;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+} */
+/* body {
+    background-color: beige;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 180px;
+} */
+
+.title {
+    background-color: skyblue;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 50px;
+}
+.title > p {
+    /* background-color:pink; */
+    padding-top: 40px;
+    width: 80%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+}
+
+.wrapper {
+    /* background-color: palegreen; */
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid skyblue;;
+    padding: 20px;
+}
+
+label {
+    padding-right: 5px;
+}
+
+/* .title {
+    background-color: bisque;
+    width: 100%;
+    height: 150px;
+    display: flex;
+}
+.title > p{
+    margin: auto auto;
+    text-align: center;
+    font-weight: 700;
+    font-size: 100;
+} */
+
+/* 입력칸 이름과 그 빈칸을 다 같은 길이로 두고 싶은데 크기가 제각각이에요.. */
+.email {
+    /* background-color: yellow; */
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.emailBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+.email input {
+    background-color: skyblue;
+    width: 40%;
+}
+
+.name {
+    /* background-color:orange; */
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.nameBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 60%;
+    text-align: center;
+    margin: auto auto;
+}
+.name input {
+    background-color: skyblue;
+    width: 40%;
+}
+
+.password {
+    /* background-color:green; */
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.passwordBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 90%;
+    text-align: center;
+    margin: auto auto;
+}
+.password input {
+    background-color: skyblue;
+    width: 40%;
+}
+
+.passwordCheck {
+    /* background-color:skyblue; */
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.passwordCheckBox {
+    /* background-color: bisque; */
+    padding-top: 45px;
+    height: 25px;   
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+.passwordCheck input {
+    background-color: skyblue;
+    width: 40%;
+}
+
+.signUp {
+    padding-top: 30px;
+    height: 80px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+.signUpButton {
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+button {
+    background-color: skyblue;
+    cursor: pointer;
+    height: 30px;
+}
+
+/* 에러를 해당 칸 바로 밑에 띄우고 싶은데 잘 안되네요,, */
+.error {
+    /* background-color: sandybrown; */
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 40%;
+}

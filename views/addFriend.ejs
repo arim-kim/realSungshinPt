@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <title> 성신한 알바</title> 
+    <!-- 브라우저 기본 스타일 초기화 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="./css/addFriend.css">
+    <script src="js/addFriend.js"></script>
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+            <form name = "friend-form" action = "/friend" method = "post">
+                <div class = "friendEmail">
+                        <div class = "friendEmailBox">
+                                <label>친구 이메일 입력</label>
+                                <input id="friendEmail" type="text" placeholder="친구 이메일을 입력해 주세요." maxlength="30">
+                        </div>
+                        <div id="fEmailError" class="error"></div>
+                </div>
+                <div class ="sendMail">
+                        <button id="sendMailButton" onclick="sendMailCheck()">메일 보내기</button>
+                </div>
+            </form>
+    </div>
+
+</body>
+</html>             

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <title> 성신한 알바</title> 
+    <!-- 브라우저 기본 스타일 초기화 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="js/main.js"></script>
+</head>
+
+
+<body>
+    <header>
+        <div class = "loginBar">
+            <div class = "loginBarBox">
+                <div>
+                    <label> 아이디 : <input id="id" type="text"></label>
+                    <label> 비밀번호 : <input id="pw" type="text"></label>
+                </div>
+                <div>
+                    <!-- 회원가입 클릭시 join.html (회원가입 페이지)로 이동 -->
+                    <a href = "join.ejs"><input type="button" value="회원가입"></a>
+                    <input type="button" value="로그인" onclick="login();">
+                </div>
+            </div>
+        </div>
+        <div class = "nameBar">
+            <p>성신한 알바</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class = "addSchedule">
+            <input type="button" id = "btnSchedule" value="채팅">
+        </div>
+        <div class = "addSchedule2">
+            <input type="button" id = "btnSchedule" value="일정추가">
+        </div>
+    </nav>
+    <side> 
+        <p>알람창</p>
+        <div class = alertBox> </div>
+   </side> 
+</body>
+</html>

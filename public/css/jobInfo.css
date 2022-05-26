@@ -1,0 +1,126 @@
+/* html {
+    background-color: orange;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+} */
+
+.title {
+    background-color: skyblue;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 50px;
+}
+.title > p {
+    /* background-color:pink; */
+    padding-top: 40px;
+    width: 80%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+}
+
+.wrapper {
+    /* background-color: palegreen; */
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid skyblue;;
+    padding: 20px;
+}
+
+/* header {
+    /* background-color: antiquewhite;
+    height: 100px;
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+}
+header .title {
+    margin: auto auto;
+    text-align: center;
+} */
+
+label {
+    padding-right: 5px;
+}
+
+.jobName {
+    /* background-color: slateblue; */
+    height: 100px;
+    width: 80%;
+    margin: 0 auto;
+}
+.jobNameBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+.jobName input {
+    background-color: skyblue;
+    width: 50%;
+}
+
+.weekPay {
+    /* background-color:orange; */
+    height: 100px;
+    width: 80%;
+    margin: 0 auto;
+}
+.weekPayBox {
+    height: 25px;
+    width: 100%;
+    padding-top: 45px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.color {
+    /* background-color:green; */
+    height: 100px;
+    width: 80%;
+
+    margin: 0 auto;
+}
+.colorBox {
+    height: 25px;
+    width: 100%;
+    padding-top: 45px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.edit {
+    /* background-color:blue; */
+    padding-top: 20px;
+    height: 70px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.editButton {
+    margin: auto;
+    display: block;
+}
+button {
+    cursor: pointer;
+    height: 30px;
+    background-color: skyblue;
+}
+
+.error {
+    height: 20px;
+    width: 100%;
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 40%;
+}

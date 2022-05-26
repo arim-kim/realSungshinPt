@@ -36,6 +36,16 @@ app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.test);
 
+app.post("/", (req, res)=> {
+
+        let id = req.body.id; 
+        let pw = req.body.pw; 
+        console.log(id + " : " + pw); 
+
+        console.log("제출되었습니다");  
+        res.send("제출되었습니다"+ req.body.id); 
+
+});  
 //app.post("/join", homeController.joinCheck);
 app.post("/join", (req, res) => {
     const sql = "INSERT INTO member SET ?"

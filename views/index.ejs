@@ -1,45 +1,101 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head> 
-    <title> 성신한 알바</title> 
-    <!-- 브라우저 기본 스타일 초기화 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <script src="js/main.js"></script>
-</head>
 
+<head>
+    <!-- 문자 인코딩 설정 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 뷰포트 랜더링 방식 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SungshinHanPT</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <script defer="defer" src="javascript/main.js"></script>
+
+    <!-- 브라우저 기본 스타일을 reset합니다 -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+
+    <!-- font Noto San Kr -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+</head>
 
 <body>
     <header>
-        <div class = "loginBar">
-            <div class = "loginBarBox">
+        <div class="loginBar">
+            <div class="loginBarBox">
                 <div>
-                    <label> 아이디 : <input id="id" type="text"></label>
-                    <label> 비밀번호 : <input id="pw" type="text"></label>
+                        <form class = "login-form" action="/" method="post">
+                            <input type = "text" name = "id" placeholder="id">
+                            <input type = "text" name = "pw" placeholder="password">
+                            <input type = "submit" name = "login">
+                        </form>
                 </div>
-                <div>
+                <div class ="btnBox">
                     <!-- 회원가입 클릭시 join.html (회원가입 페이지)로 이동 -->
-                    <a href = "join.ejs"><input type="button" value="회원가입"></a>
-                    <input type="button" value="로그인" onclick="login();">
+                    <a href="signUp.html">
+                        <input type="button" class = "signUpBtn logBtn" value="signUp"></a>
+                    <input type="button" class = "loginBtn logBtn" value="Log-in" onclick="login();">
                 </div>
             </div>
         </div>
-        <div class = "nameBar">
+        <div class="nameBar">
             <p>성신한 알바</p>
         </div>
     </header>
-
     <nav>
-        <div class = "addSchedule">
-            <input type="button" id = "btnSchedule" value="채팅">
+        <div class="goChat">
+            <input type="button" id="btnChat" value="채팅">
         </div>
-        <div class = "addSchedule2">
-            <input type="button" id = "btnSchedule" value="일정추가">
+        <div class="goAddSchedule">
+            <input type="button" id="btnSchedule" value="일정추가">
         </div>
+        <div class="goEditPt">
+            <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경">
+        </div>
+        <!-- <div class="PTlist">
+            <label><input type="checkbox" name="checkedPT" value="파리바게트">파리바게트</label>
+            <label><input type="checkbox" name="checkedPT" value="뚜레쥬르">뚜레쥬르</label>
+            <label><input type="checkbox" name="checkedPT" value="폼드팡">폼드팡</label>
+
+        </div> -->
+        
+        <label><input type="checkbox" name="checkedPT" value="파리바게트"></label>
+        <label><input type="checkbox" name="checkedPT" value="뚜레쥬르"></label>
+        <label><input type="checkbox" name="checkedPT" value="폼드팡"></label>
+
     </nav>
-    <side> 
+    <side>
         <p>알람창</p>
-        <div class = alertBox> </div>
-   </side> 
+        <div class="alertBox"></div>
+    </side>
+    <div class="calendar">
+        <div class="header">
+            <div class="year-month"></div>
+            <div class="nav">
+                <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                <button class="nav-btn go-today" onclick="goToday()">Today</button>
+                <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+            </div>
+        </div>
+        <div class="main">
+            <div class="days">
+                <div class="day">일</div>
+                <div class="day">월</div>
+                <div class="day">화</div>
+                <div class="day">수</div>
+                <div class="day">목</div>
+                <div class="day">금</div>
+                <div class="day">토</div>
+            </div>
+            <div class="dates"></div>
+        </div>
+    </div>
+
 </body>
+
 </html>

@@ -1,0 +1,84 @@
+header {
+    height: 150px;
+    width: 100%;
+}
+
+header .loginBar {
+    background-color: brown;
+    height: 50px;
+}
+
+header .loginBarBox {
+    background-color: azure;
+    float: right;
+    height: 50px;
+    width: 450px;
+}
+
+header .nameBar {
+    background-color: black;
+    height: 100px;
+}
+
+header .nameBar>p {
+    background-color: aliceblue;
+    width: 300px;
+    height: 100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 일정 추가, 채팅 */
+nav {
+    background-color: rgb(99, 172, 236);
+    height: 80px;
+    width: 100%;
+}
+
+nav .addSchedule {
+    background-color: blueviolet;
+    width: 200px;
+    height: 80px;
+    float: left;
+    margin-left: 100px;
+}
+
+nav .addSchedule2 {
+    background-color: rgb(170, 52, 170);
+    width: 200px;
+    height: 80px;
+    margin-left: 310px;
+}
+
+#btnSchedule {
+    width: 150px;
+    height: 60px;
+    margin-left: 25px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* 알림 */
+aside {
+    background-color: aquamarine;
+    width: 300px;
+    height: 600px;
+    float: left;
+    margin-left: 20px;
+}
+
+aside>p {
+    margin-top: 10px;
+}
+
+aside .alertBox {
+    border: 1px solid;
+    height: 550px;
+    margin-top: 10px;
+}
+
+#schedule {
+    border: solid yellow 1px;
+    /*섹션범위*/
+    margin-top: 50px;
+}

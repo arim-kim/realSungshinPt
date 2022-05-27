@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chetting</title>
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<header>
+    <div class="loginBar">
+        <div class="loginBarBox">
+            <div>
+                <label>아이디 :
+                    <input id="id" type="text">
+                </label>
+                <label>
+                비밀번호 :
+                <input id="pw" type="text"></label>
+            </div>
+        <div>
+        
+            <a href="join.html">
+            <input type="button" value="회원가입"></a>
+            <input type="button" value="로그인" onclick="login();"></div>
+        </div>
+    </div>
+
+    <div class="nameBar">
+        <p>성신한 알바</p>
+    </div>
+
+</header>
+
+<body>
+    <div class="chatwrapper">
+        <div class="user-container">
+            <label for="nickname">대화명</label>
+            <input type="text" id="nickname">
+        </div>
+
+        <div class="display-container">
+            <ul class="chatting-list">
+
+                <li class="sent">
+                   
+                </li>
+
+                <li class="receive">
+                 
+                </li>
+            </ul>
+        </div>
+
+        <div class="input-container">
+            <span>
+            <form action="/chet" method="post">
+            <input type="text" class="chatting-input">
+            <button class="send-button">전송</button>
+            </form>
+            </span>
+        </div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="js/chat.js"></script>
+    <div id="roomList">
+        <div id="roomHeader">채팅방 목록</div>
+        <div id="roomSelect">
+            
+            <div class="roomEI active" data-id="1"><%=coworkerName%></div>
+            <div class="roomEI" data-id="2"><%=coworkerName%></div>
+            <div class="roomEI" data-id="3"><%=coworkerName%></div>
+            <div class="roomEI" data-id="4"><%=coworkerName%></div>
+        </div>
+    </div>
+    <div id="calenderList">
+        <div id="calenderHeader">동료 캘랜더 목록</div>
+        <div id="calenderSelect">
+            <div class="CalenderEI active" data-id="1"><%=coworkerCalender%></div>
+            <div class="CalenderEI" data-id="2"><%=coworkerCalender%></div>
+            <div class="CalenderEI" data-id="3"><%=coworkerCalender%></div>
+            <div class="CalenderEI" data-id="4"><%=coworkerCalender%></div>
+        </div>
+    </div>
+</body>
+</html>

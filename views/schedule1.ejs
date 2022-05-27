@@ -1,0 +1,68 @@
+<section id="schedule" align="center">
+    <form method="post" id="schedule">
+        <h1 align="center">일정 추가</h1>
+        <input type="date" name="date"> <!--캘린더에서 날짜 클릭하면 그대로 불려오게-->
+        <br><br><br>
+        <div class="one" style="float:left;">
+        
+            <h3 align="center">① 기본 정보 입력하기</h3>
+            <hr>
+            <br>
+        
+            <label style="float: left;">
+                근무지
+            </label>
+            <!--이전에 추가한 아르바이트 목록 불러오기(추후 구현 필요)-->
+            <select name="ptname" style="width: 100%;">
+                <option value="" disabled selected>선택</option>
+                <option value="">스타벅스 성신여대점</option> <!--예시1-->
+                <option value="">GS25 성신여대점</option> <!--예시2-->
+            </select>
+        
+            <br><br>
+        
+            <label style="float: left;">
+                시급
+            </label>
+            <br>
+            <input type="number" id="wage" name="wage">원
+            <input type="checkbox" id="minWage" name="minWage" value="9160">최저시급
+        
+            <br><br>
+        
+            <label style="float: left;">
+                일일 근무시간
+            </label>
+            <br>
+            <input type="time" name="start" id="start" style="width: 43%;"> -
+            <input type="time" name="end" id="end" style="width: 43%;">
+        
+            <br><br>
+        
+            <label style="float: left;">
+                대타여부
+            </label>
+            <br>
+            <input type="radio" name="shift" value="1">예
+            <input type="radio" name="shift" value="0">아니오
+
+            <br><br>
+        
+            <label style="float: left;">
+                휴게시간
+            </label>
+            <br>
+            <select name="rest" id="rest" class="form-control" style="width: 100%;">
+                
+            <!--휴게시간 선택-->
+                
+            </select>
+
+            <br><br>
+            <!--다음 버튼 누르면 추가사항(연장/휴일/추가/야간수당) 입력하는 페이지로 이동-->
+            <!--다음 페이지로 넘어가도 현재 페이지에서 입력한 것들은 그대로 유지되게 처리-->
+            <input type="button" value="다음" onclick="location.href='/schedule2';" style="float:right;">
+            <br><br><br><br>
+        </div>
+    </form>
+</section>

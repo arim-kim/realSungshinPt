@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body{
+    display: flex;
+    flex-direction: row;
+}
+header{
+    position: fixed;
+    width: 500px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex: 12;
+}
+header {
+    height: 150px;
+    width: 100%;
+    }
+
+header .loginBar{    
+    background-color: #8700c5;
+    height: 50px;
+    }
+header .loginBarBox {
+background-color: #fff;
+    float: right;
+    height: 100%;
+    width: 40%;
+     }
+header .nameBar{
+    
+    background-color: #ca70ee;
+    height: 100px;
+    
+    }
+    
+header .nameBar >p {
+    
+    background-color: rgb(184, 0, 197);
+    
+    width: 300px;
+    
+    height: 100px;
+    
+    margin: 0 auto;
+    
+    text-align: center;
+
+    }
+
+
+.chatwrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.user-container{
+    background: #a9a9a9;
+    flex: 1; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 0.5rem;
+}
+.user-container label{
+    font-size: 14px;
+    margin-right: 1rem;
+}
+
+
+.display-container{
+    background:#e1b8b8;
+    flex: 12;
+    overflow-y: scroll;
+}
+
+.input-container{
+    flex: 1;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+
+}
+
+.input-container span{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.3rem;
+    width: 100%;
+}
+
+.chatting-input{
+    font-size: 12px;
+    height: 100%;
+    flex:8;
+
+}
+
+.send-button{
+    flex:2;
+    background: #e1b8b8;
+    border: none;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.chatting-list li{
+    width: 90%;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 0.1rem;
+}
+
+
+.profile  .user{
+    font-size: 13px;
+    margin-bottom: 0.3rem;
+    background: white;
+}
+
+.messsage{
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 12px;
+    margin: 0 5px;
+    flex: 7;
+}
+
+.time{
+    font-size: 10px;
+    margin: 0 5px;
+}
+.sent{
+    flex-direction: row-reverse;
+    float:right;
+}
+
+.sent  .message{
+    background:rgb(99, 30, 30);
+    color: white;
+
+}
+
+.receive .message{
+    background: #da8383;
+
+}
+
+#roomList{
+    width: 250px;
+    border: 1px solid #8a149f;
+    border-radius: 5px;
+}
+
+#roomHeader{
+    background-color: #9f3bdd;
+    color: #fff;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.roomEI{
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.roomEI:hover{
+    background: #f0f0f0;
+}
+.roomEI.active{
+    background: #f0f0f0;
+}
+
+
+#calenderList{
+    width: 250px;
+    border: 1px solid #8a149f;
+    border-radius: 5px;
+}
+
+#calenderHeader{
+    background-color: #9471f4;
+    color: #fff;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.CalenderEI{
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.CalenderEI:hover{
+    background: #f0f0f0;
+}
+
+.CalenderEI.active{
+    background: #f0f0f0;
+}
+
+
+

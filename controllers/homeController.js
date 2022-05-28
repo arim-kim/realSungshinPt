@@ -31,3 +31,11 @@ exports.test = (req, res) => {
     };
     test();
 };
+
+exports.schedule1 = (req, res) => {
+    res.render("schedule1");
+};
+
+exports.schedule2 = (req, res) => {
+    res.render("schedule2");
+};

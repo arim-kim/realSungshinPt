@@ -12,7 +12,7 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
-exports.test = (req, res) => {
+exports.index = (req, res) => {
     const mysql = require('mysql2/promise');
     let test = async() => {
             const db = mysql.createPool({
@@ -27,7 +27,7 @@ exports.test = (req, res) => {
 
             let sql = 'SELECT * FROM member';
             let [rows, fields] = await db.query(sql);
-            res.render("test", {mail : rows[0].email});
+            res.render("index", {data : rows[0].memberId});
     };
     test();
 };

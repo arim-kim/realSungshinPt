@@ -30,11 +30,11 @@ con.connect(function(err) {
         console.log('Connected');
 });
 
-app.get("/", homeController.main);
+app.get("/", homeController.index);
 app.get("/join", homeController.join);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
-app.get("/test", homeController.test);
+// app.get("/test", homeController.test);
 
 app.post("/", (req, res)=> {
         

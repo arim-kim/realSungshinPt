@@ -39,3 +39,26 @@ exports.schedule1 = (req, res) => {
 exports.schedule2 = (req, res) => {
     res.render("schedule2");
 };
+
+require('dotenv').config();
+const mysql = require('mysql2/promise');
+
+const db = mysql.createPool({
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PW,
+	port: process.env.DB_PORT,
+	database: process.env.DB_NAME,
+	waitForConnections: true,
+	insecureAuth: true
+});
+
+exports.testEnv = (req, res) => {
+	let exec = async () => {
+		let sql = 'SELECT * FROM member';
+		let [rows, fields] = await db.query(sql);
+		console.log(rows);
+		res.render("test", {mem : rows});
+	};
+	exec();
+};

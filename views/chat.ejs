@@ -12,8 +12,7 @@
 <body>
     <div class="chatwrapper">
         <div class="user-container">
-            <label for="nickname">대화명</label>
-            <input type="text" id="nickname">
+          
         </div>
 
         <div class="display-container">
@@ -31,7 +30,7 @@
 
         <div class="input-container">
             <span>
-            <form action="/chet" method="post">
+            <form action="/chat" method="post">
             <input type="text" class="chatting-input">
             <button class="send-button">전송</button>
             </form>
@@ -45,19 +44,19 @@
         <div id="roomHeader">채팅방 목록</div>
         <div id="roomSelect">
             
-            <div class="roomEI active" data-id="1"><%=coworkerName%></div>
-            <div class="roomEI" data-id="2"><%=coworkerName%></div>
-            <div class="roomEI" data-id="3"><%=coworkerName%></div>
-            <div class="roomEI" data-id="4"><%=coworkerName%></div>
+            <div class="roomEI active" data-id="1"> friend1</div>
+            <div class="roomEI" data-id="2">friend2</div>
+            <div class="roomEI" data-id="3">ffriend3</div>
+            <div class="roomEI" data-id="4">friend4</div>
         </div>
     </div>
     <div id="calenderList">
         <div id="calenderHeader">동료 캘랜더 목록</div>
         <div id="calenderSelect">
-            <div class="CalenderEI active" data-id="1"><%=coworkerCalender%></div>
-            <div class="CalenderEI" data-id="2"><%=coworkerCalender%></div>
-            <div class="CalenderEI" data-id="3"><%=coworkerCalender%></div>
-            <div class="CalenderEI" data-id="4"><%=coworkerCalender%></div>
+            <div class="CalenderEI active" data-id="1">friend1's Calnender</div>
+            <div class="CalenderEI" data-id="2">friend2's Calnender</div>
+            <div class="CalenderEI" data-id="3">friend3's Calnender</div>
+            <div class="CalenderEI" data-id="4">friend4's Calnender</div>
         </div>
     </div>
 </body>

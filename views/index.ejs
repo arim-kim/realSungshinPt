@@ -37,26 +37,34 @@
                 </div>
                 <div class ="btnBox">
                     <!-- 회원가입 클릭시 join.html (회원가입 페이지)로 이동 -->
-                    <a href="signUp.html">
+                    <a href="/join">
                         <input type="button" class = "signUpBtn logBtn" value="signUp"></a>
                     <input type="button" class = "loginBtn logBtn" value="Log-in" onclick="login();">
                 </div>
             </div>
         </div>
+        <a href="/">
         <div class="nameBar">
             <p>성신한 알바</p>
         </div>
+    </a>
     </header>
     <nav>
+        <a href="/chat">
         <div class="goChat">
-            <input type="button" id="btnChat" value="채팅">
+            <input type="button" id="btnChat" value="채팅" onclick="homeControllers.homeControllers.">
         </div>
-        <div class="goAddSchedule">
+        </a>
+        <a href="/addSchedule">       
+            <div class="goAddSchedule">
             <input type="button" id="btnSchedule" value="일정추가">
         </div>
+        </a> 
+        <a href="/job">
         <div class="goEditPt">
             <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경">
         </div>
+        </a>
         <!-- <div class="PTlist">
             <label><input type="checkbox" name="checkedPT" value="파리바게트">파리바게트</label>
             <label><input type="checkbox" name="checkedPT" value="뚜레쥬르">뚜레쥬르</label>

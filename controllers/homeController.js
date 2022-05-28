@@ -6,11 +6,18 @@ exports.join = (req, res) => {
     res.render("joinPage");
 };
 exports.job = (req, res) => {
-    res.render("jobInfo");
+    res.render("jobinfo");
 };
 exports.friend = (req, res) => {
     res.render("addFriend");
 };
+
+exports.chat=(req,res)=>{
+    res.render("chat");
+}
+exports.addSchedule=(req,res)=>{
+    res.render("schedule1");
+}
 
 exports.test = (req, res) => {
     const mysql = require('mysql2/promise');

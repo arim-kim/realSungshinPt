@@ -31,10 +31,15 @@ con.connect(function(err) {
 });
 
 app.get("/", homeController.main);
-app.get("/join", homeController.join);
-app.get("/job", homeController.job);
-app.get("/friend", homeController.friend);
-app.get("/test", homeController.test);
+app.get("/join", homeController.join);  //회원가입페이지?
+app.get("/job", homeController.job);    //jobinfo  아르바이트 추가
+app.get("/friend", homeController.friend);      //addfriend
+app.get("/test", homeController.test);  
+app.get("/chat",homeController.chat);   //chatting
+app.post("/chat", homeController.chat);
+app.get("/addSchedule",homeController.addSchedule) //일정 추가
+//요청이 왔을 때 내부적으로 사용되는 get요청
+
 
 app.post("/", (req, res)=> {
         

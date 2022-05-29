@@ -35,7 +35,7 @@ con.connect(function(err) {
         console.log('DB Connected');
 });
 
-app.get("/", homeController.main);
+app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);

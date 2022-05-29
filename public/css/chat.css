@@ -8,13 +8,6 @@ html{
 }
 
 
-body{
-    display: flex;
-    flex-direction: row;
-    flex: 12;
-}
-
-
 .chatwrapper{
     height: 100%;
     width: 100%;
@@ -69,6 +62,7 @@ body{
     justify-content: flex-start;
     align-items: flex-end;
     margin-top: 0.1rem;
+    
 }
 
 
@@ -107,6 +101,7 @@ body{
 }
 
 #roomList{
+    
     width: 250px;
     border: 1px solid #8a149f;
     border-radius: 5px;

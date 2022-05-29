@@ -5,6 +5,7 @@ const express = require("express"),
         layouts = require("express-ejs-layouts"),
         bodyParser = require("body-parser"),
         mysql = require("mysql");
+        cors=require('cors');
 
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
@@ -17,6 +18,34 @@ extended: true
 })
 );
 app.use(express.static('public'));
+
+
+const socketIO=require("socket.io")
+//const io=socketIO(app);
+const moment=require("moment");
+const Connection = require("mysql/lib/Connection");
+
+//Connection.connect();
+
+//io.on("connection",(socket) => {
+//        socket.on("chatting", (data)=>{  //클라이언트의 요청듣기 chatting변수일치시켜야함 
+//            const {name, msg}=data;
+//             io.emit("chatting",{
+//                 name,
+//                 msg,
+//                 time: moment(new Date()).format("h:ss A")
+//             })
+
+//        Connection.query(
+//                "INSERT INTO message (message) VALUES ('" +data +"')",
+//                function(error, result){
+        
+//                }
+//             )
+//        })
+//     })
+
+
 
 const con = mysql.createConnection({
         host: '34.64.173.255',

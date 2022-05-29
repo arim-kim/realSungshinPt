@@ -12,8 +12,7 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
-/*
-exports.test = (req, res) => {
+exports.index = (req, res) => {
     const mysql = require('mysql2/promise');
     let test = async() => {
             const db = mysql.createPool({
@@ -26,13 +25,20 @@ exports.test = (req, res) => {
                     insecureAuth: true
             });
 
-            let sql = 'SELECT * FROM member';
-            let [rows, fields] = await db.query(sql);
-            res.render("test", {mail : rows[0].email});
+            // let sql = 'SELECT * FROM members';
+            // let [rows, fields] = await db.query(sql);
+            // res.render("index", {data : rows[0]});
+            // console.log(rows);
+            // console.log(rows[0].memberId)
+
+            let sql = 'SELECT COUNT(*) as cnt FROM members'; 
+            let [rows, fields] = await db.query(sql); 
+            res.render("index", {data : rows[0].cnt});
+            console.log(rows[0]); 
+
     };
     test();
 };
-*/
 
 exports.schedule1 = (req, res) => {
     res.render("schedule1");

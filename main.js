@@ -29,9 +29,8 @@ con.connect(function(err) {
         if(err) throw err;
         console.log('Connected');
 });
-
 app.get("/", homeController.index);
-app.get("/join", homeController.join);
+app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 // app.get("/test", homeController.test);

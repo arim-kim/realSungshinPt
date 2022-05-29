@@ -55,7 +55,7 @@ const db = mysql.createPool({
 
 exports.testEnv = (req, res) => {
 	let exec = async () => {
-		let sql = 'SELECT * FROM member';
+		let sql = 'SELECT * FROM members';
 		let [rows, fields] = await db.query(sql);
 		console.log(rows);
 		res.render("test", {mem : rows});

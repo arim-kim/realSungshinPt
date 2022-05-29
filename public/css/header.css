@@ -1,0 +1,16 @@
+.title {
+    background-color: skyblue;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 50px;
+}
+.title > p {
+    /* background-color:pink; */
+    padding-top: 40px;
+    width: 80%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+}

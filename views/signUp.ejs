@@ -4,8 +4,8 @@
     <title> 성신한 알바 회원가입</title> 
     <!-- 브라우저 기본 스타일 초기화 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <link rel="stylesheet" href="./css/join.css">
-    <script src="js/join.js"></script>
+    <link rel="stylesheet" href="./css/signUp.css">
+    <script src="../public/js/signUp.js"></script>
 </head>
 
 <body>
@@ -16,11 +16,11 @@
         </div>   -->
 
 
-        <form class ="join-form"  action ="/join" method = "post">
+        <form class ="signUp-form"  action ="/signUp" method = "post">
                 <div class = "email">
                         <div class = "emailBox">
                                 <label for = "email">이메일</label>
-                                <input name="email" type="text" placeholder="이메일을 입력해 주세요.">
+                                <input name="memberMail" id = "email" type="text" placeholder="이메일을 입력해 주세요.">
                         </div>
                         <div id="emailError" class="error"></div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class = "name">
                         <div class = "nameBox">
                                 <label>이름</label>
-                                <input name="name"  type="text" placeholder="이름을 입력해 주세요.">
+                                <input name="memberName" id = "name" type="text" placeholder="이름을 입력해 주세요.">
                         </div>
                         <div id="nameError" class="error"></div>
                 </div>
@@ -36,7 +36,7 @@
                 <div class = "password">
                         <div class = "passwordBox">
                                 <label>비밀번호</label>
-                                <input name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+                                <input name="password" id = "password" type="password" placeholder="비밀번호를 입력해 주세요.">
                         </div>
                         <div id="passwordError" class="error"></div>
                 </div>
@@ -54,6 +54,8 @@
                          <button id="signUpButton" type = "submit" onclick="signUpCheck()">가입하기</button>
                 </div>
         </form>
+
+        
     </div>
 </body>
 </html>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
-<style>
-	table {
-		width: 800px;
-		height: 700px;
-		border: 1px solid #444444;
-		border-collapse: collapse;
-		}
-</style>
-    
-<script language="javascript">
+    <style>
+        table {
+            width: 800px;
+            height: 600px;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+            }
+    </style>
+
+<script>
 	var today = new Date(); //오늘 날짜        
 	var date = new Date();
 	
@@ -154,20 +154,83 @@
 			  
 		}
 		
-		//원하는 날짜 영역에 내용 추가하기
-		var tdId = "01"; //1일
-		var str = ""; 
-		// var data = "<%=data%>"; 
-		for(var i in <%=data%>) {
-			str += i.memeberId; 
+		var tdId = "08"; //1일
+        var str = "오늘의 일정";
+		var i; 
+		for(i = 0; i < "<%=data%>"; i++) {
+			str += "아림 "; 
 		}
-		
+		// str += "<br>" + "<%=data%>"; 
 		document.getElementById(tdId).innerHTML = str;
 	}
 
 </script>
+
+<head>
+    <!-- 문자 인코딩 설정 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 뷰포트 랜더링 방식 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SungshinHanPT</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- <script defer="defer" src="./js/main.js"></script> -->
+
+    <!-- 브라우저 기본 스타일을 reset합니다 -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+
+    <!-- font Noto San Kr -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+</head>
+
 <body onload="autoReload();">
-	<table align="center" id="calendar">
+    <header>
+        <div class="loginBar">
+            <div class="loginBarBox">
+                <div>
+                        <form class = "login-form" action="/" method="post">
+                            <input type = "text" name = "id" placeholder="id">
+                            <input type = "text" name = "pw" placeholder="password">
+                            <input type = "submit" name = "login">
+                        </form>
+                </div>
+                <div class ="btnBox">
+                    <a href="signUp">
+                        <input type="button" class = "signUpBtn" value="signUp"></a>
+                </div>
+            </div>
+        </div>
+        <div class="nameBar">
+            <p>성신한 알바</p>
+        </div>
+    </header>
+    <nav>
+        <div class="goChat">
+            <input type="button" id="btnChat" value="채팅">
+        </div>
+        <div class="goAddSchedule">
+            <input type="button" id="btnSchedule" value="일정추가">
+        </div>
+        <div class="goEditPt">
+            <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경">
+        </div>
+        
+        <label><input type="checkbox" name="checkedPT" value="파리바게트"></label>
+        <label><input type="checkbox" name="checkedPT" value="뚜레쥬르"></label>
+        <label><input type="checkbox" name="checkedPT" value="폼드팡"></label>
+
+    </nav>
+    <side>
+        <p>알람창</p>
+        <div class="alertBox"></div>
+    </side>
+    <table align="center" id="calendar">
 		<tr>
 			<td>
 			<a id="before" href="javascript:beforem()"></a>
@@ -194,3 +257,6 @@
 	</table>
 </body>
 </html>
+
+
+ 

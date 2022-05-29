@@ -39,6 +39,7 @@ exports.index = (req, res) => {
     };
     test();
 };
+*/
 
 exports.schedule1 = (req, res) => {
     res.render("schedule1");
@@ -63,7 +64,7 @@ const db = mysql.createPool({
 
 exports.testEnv = (req, res) => {
 	let exec = async () => {
-		let sql = 'SELECT * FROM member';
+		let sql = "SELECT * FROM members";
 		let [rows, fields] = await db.query(sql);
 		console.log(rows);
 		res.render("test", {mem : rows});

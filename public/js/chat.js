@@ -1,4 +1,3 @@
-"use strcit"
 const socket=io();
 
 const nickname=document.querySelector("#nickname")
@@ -7,6 +6,7 @@ const chatInput=document.querySelector(".chatting-input");
 const sendButton=document.querySelector(".send-button");
 const displayContainer=document.querySelector(".display-container");
 
+//엔터치면 전송되고 전송되면 Input창이 비워지는
 chatInput.addEventListener("keypress", (event) => {
     if(event.keycode===13){
         send()
@@ -14,6 +14,7 @@ chatInput.addEventListener("keypress", (event) => {
     }
 })
 
+//obj형태로 채팅보내는 send()함수
 function send(){
     const param={
         name: nickname.value,
@@ -22,7 +23,7 @@ function send(){
     socket.emit("chatting", param)
 }
 
-sendButton.addEventListener("click",send)
+sendButton.addEventListener("click",send) //btn누르면 send함수 호출
 
 socket.on("chatting", (data)=>{
     console.log(data)
@@ -31,7 +32,7 @@ socket.on("chatting", (data)=>{
     item.makeLi()
     displayContainer.scrollTo(0, displayContainer.scrollHeight)
 
-})
+}) //채팅보낸내용 ul의 li로 뜨게함 이름, 메세지, 시간
 
 function LiModel(name, msg, time){
     this.name=name;
@@ -50,3 +51,4 @@ function LiModel(name, msg, time){
     chatList.appendChild(li);
     }
 }
+//Li모델로 뜨게하는 형식

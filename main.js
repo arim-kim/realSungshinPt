@@ -27,22 +27,24 @@ const con = mysql.createConnection({
 
 con.connect(function(err) {
         if(err) throw err;
-        console.log('Connected');
+        console.log('DB Connected');
 });
+
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 // app.get("/test", homeController.test);
 
+/* 로그인 DB 연동*/
 app.post("/", (req, res)=> {
         
-        let id = req.body.id; 
+        let mail = req.body.mail; 
         let pw = req.body.pw; 
-        console.log(id + " : " + pw); 
-        const sql = 'SELECT * from member WHERE memberid=? and password=?';
+        console.log(mail + " : " + pw); 
+        const sql = 'SELECT * from member WHERE memberMail=? and password=?';
 
-        con.query(sql, [id,pw], function(err, results, fields) {
+        con.query(sql, [mail,pw], function(err, results, fields) {
                 if(err) throw err;
                 if(results.length > 0) res.send('you are correct');
                 else res.send('your input is wrong');
@@ -50,22 +52,22 @@ app.post("/", (req, res)=> {
 
         console.log("제출되었습니다");  
 });  
+
+/* 회원가입 DB 연동*/
 //app.post("/join", homeController.joinCheck);
-app.post("/join", (req, res) => {
+app.post("/signUp", (req, res) => {
     const sql = "INSERT INTO member SET ?"
 
     con.query(sql, req.body, function(err, result, fields) {
             if(err) throw err;
             console.log(result);
-            console.log("-------");
-            console.log(req.body.email);
-            console.log(req.body.name);
-            res.send("등록이 완료되었습니다.");
+            res.render("signUpClear");
     });
 });
 
+/* 아르바이트 정보 DB 연동 */
 app.post("/job", (req, res) => {
-    const sql = "INSERT INTO job SET ?"
+    const sql = "INSERT INTO parttime SET ?"
 
     con.query(sql, req.body, function(err, result, fields) {
             if(err) throw err;

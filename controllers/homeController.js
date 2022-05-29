@@ -1,9 +1,9 @@
 exports.main = (req, res) => {
-    res.render("index");
+    res.render("index", {layout : false});
 };
 
 exports.join = (req, res) => {
-    res.render("joinPage");
+    res.render("signUp");
 };
 exports.job = (req, res) => {
     res.render("jobInfo");

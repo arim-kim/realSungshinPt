@@ -156,9 +156,12 @@
 		
 		//원하는 날짜 영역에 내용 추가하기
 		var tdId = "01"; //1일
-		var str = " <%=data%> ";
-		str += "<br>09:00 일정1";
-		str += "<br>12:00 일정2 \n";
+		var str = ""; 
+		// var data = "<%=data%>"; 
+		for(var i in <%=data%>) {
+			str += i.memeberId; 
+		}
+		
 		document.getElementById(tdId).innerHTML = str;
 	}
 

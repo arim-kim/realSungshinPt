@@ -25,9 +25,17 @@ exports.index = (req, res) => {
                     insecureAuth: true
             });
 
-            let sql = 'SELECT * FROM member';
-            let [rows, fields] = await db.query(sql);
-            res.render("index", {data : rows[0].memberId});
+            // let sql = 'SELECT * FROM members';
+            // let [rows, fields] = await db.query(sql);
+            // res.render("index", {data : rows[0]});
+            // console.log(rows);
+            // console.log(rows[0].memberId)
+
+            let sql = 'SELECT COUNT(*) as cnt FROM members'; 
+            let [rows, fields] = await db.query(sql); 
+            res.render("index", {data : rows[0].cnt});
+            console.log(rows[0]); 
+
     };
     test();
 };

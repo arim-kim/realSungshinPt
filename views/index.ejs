@@ -3,7 +3,7 @@
     <style>
         table {
             width: 800px;
-            height: 700px;
+            height: 600px;
             border: 1px solid #444444;
             border-collapse: collapse;
             }
@@ -154,10 +154,13 @@
 			  
 		}
 		
-		//원하는 날짜 영역에 내용 추가하기
-		var tdId = "01"; //1일
-        var str = "";
-		str += <%=data%>;
+		var tdId = "08"; //1일
+        var str = "오늘의 일정";
+		var i; 
+		for(i = 0; i < "<%=data%>"; i++) {
+			str += "아림 "; 
+		}
+		// str += "<br>" + "<%=data%>"; 
 		document.getElementById(tdId).innerHTML = str;
 	}
 
@@ -252,7 +255,6 @@
 			<td width="14%"><font color="#009de0">토</font></td>
 			<td width="14%"><font color="#ed5353">일</font></td>
 		</tr>
-		<!-- <%= data%> -->
 	</table>
 </body>
 </html>

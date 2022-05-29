@@ -1,3 +1,4 @@
+/*
 header {
     height: 150px;
     width: 100%;
@@ -28,7 +29,6 @@ header .nameBar>p {
     text-align: center;
 }
 
-/* 일정 추가, 채팅 */
 nav {
     background-color: rgb(99, 172, 236);
     height: 80px;
@@ -58,7 +58,6 @@ nav .addSchedule2 {
     display: inline-block;
 }
 
-/* 알림 */
 aside {
     background-color: aquamarine;
     width: 300px;
@@ -76,7 +75,7 @@ aside .alertBox {
     height: 550px;
     margin-top: 10px;
 }
-
+*/
 #schedule {
     border: solid yellow 1px;
     /*섹션범위*/

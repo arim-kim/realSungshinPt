@@ -40,7 +40,9 @@ app.get("/signUp", homeController.join);
 app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
-app.get("/test", homeController.test);
+app.get("/test", homeController.testEnv);
+app.get("/schedule1", homeController.schedule1);
+app.get("/schedule2", homeController.schedule2);
 
 /* 로그인 DB 연동*/
 app.post("/", (req, res)=> {

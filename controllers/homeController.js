@@ -12,6 +12,7 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
+/*
 exports.test = (req, res) => {
     const mysql = require('mysql2/promise');
     let test = async() => {
@@ -31,6 +32,7 @@ exports.test = (req, res) => {
     };
     test();
 };
+*/
 
 exports.schedule1 = (req, res) => {
     res.render("schedule1");
@@ -55,7 +57,7 @@ const db = mysql.createPool({
 
 exports.testEnv = (req, res) => {
 	let exec = async () => {
-		let sql = 'SELECT * FROM members';
+		let sql = "SELECT * FROM members";
 		let [rows, fields] = await db.query(sql);
 		console.log(rows);
 		res.render("test", {mem : rows});

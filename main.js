@@ -4,7 +4,12 @@ const express = require("express"),
         errorController = require("./controllers/errorController"),
         layouts = require("express-ejs-layouts"),
         bodyParser = require("body-parser"),
+        memberController = require("./controllers/memberController"),
+        db = require("./models/index"),
+        models = require("./models")
         mysql = require("mysql");
+
+db.sequelize.sync();
 
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
@@ -32,9 +37,14 @@ con.connect(function(err) {
 
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
+app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
-// app.get("/test", homeController.test);
+
+app.get("/test", homeController.testEnv);
+app.get("/schedule1", homeController.schedule1);
+app.get("/schedule2", homeController.schedule2);
+
 
 /* 로그인 DB 연동*/
 app.post("/", (req, res)=> {
@@ -42,7 +52,7 @@ app.post("/", (req, res)=> {
         let mail = req.body.mail; 
         let pw = req.body.pw; 
         console.log(mail + " : " + pw); 
-        const sql = 'SELECT * from member WHERE memberMail=? and password=?';
+        const sql = 'SELECT * from members WHERE memberMail=? and password=?';
 
         con.query(sql, [mail,pw], function(err, results, fields) {
                 if(err) throw err;
@@ -54,9 +64,9 @@ app.post("/", (req, res)=> {
 });  
 
 /* 회원가입 DB 연동*/
-//app.post("/join", homeController.joinCheck);
+// app.post("/join", homeController.joinCheck);
 app.post("/signUp", (req, res) => {
-    const sql = "INSERT INTO member SET ?"
+    const sql = "INSERT INTO members SET ?"
 
     con.query(sql, req.body, function(err, result, fields) {
             if(err) throw err;
@@ -64,6 +74,26 @@ app.post("/signUp", (req, res) => {
             res.render("signUpClear");
     });
 });
+
+
+// app.post('/signUp', (req, res) => {
+//         console.log(req.body);
+    
+//         models.member.create({
+//             email: req.body.memberMail,
+//             name: req.body.memberName,
+//             password: req.body.password
+//         })
+//             .then( result => {
+//                 console.log("데이터 추가 완료");
+//                 res.render("signUpClear");
+//             })
+//             .catch( err => {
+//                 console.log(err)
+//                 console.log("데이터 추가 실패");
+//             })
+//     });
+
 
 /* 아르바이트 정보 DB 연동 */
 app.post("/job", (req, res) => {

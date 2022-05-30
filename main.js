@@ -44,7 +44,6 @@ app.get("/schedule1", homeController.schedule1);
 app.get("/schedule2", homeController.schedule2);
 
 /* 로그인 DB 연동*/
-/*아아*/
 app.post("/", (req, res)=> {
 
         member.findOne({title : req.body.mail}, function(err, member){

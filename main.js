@@ -14,17 +14,17 @@ const express = require("express"),
 
 db.sequelize.sync();
 
+
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
-
 app.use(layouts);
-
 app.use(
 express.urlencoded({
 extended: true
 })
 );
 app.use(express.static('public'));
+
 
 // const con = mysql.createConnection({
 //         host: '34.64.173.255',
@@ -33,14 +33,9 @@ app.use(express.static('public'));
 //         database: 'SSPT'
 // });
 
-// con.connect(function(err) {
-//         if(err) throw err;
-//         console.log('DB Connected');
-// });
-
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
-app.get("/signUP", memberController.getAllMembers);
+// app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
@@ -81,6 +76,7 @@ app.post("/", (req, res)=> {
 // app.post("/join", homeController.joinCheck);
 // app.post("/signUp", (req, res) => {
 //     const sql = "INSERT INTO members SET ? where ptMemberId = 1";
+
 
 //     con.query(sql, req.body, function(err, result, fields) {
 //             if(err) throw err;
@@ -137,6 +133,7 @@ app.post('/job', (req, res) => {
                 console.log(err)
                 console.log("데이터 추가 실패");
         })
+
 });
 
 

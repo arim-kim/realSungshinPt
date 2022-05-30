@@ -1,3 +1,5 @@
+
+
 module.exports = (sequelize, Sequelize) => {
     const member = sequelize.define("member", {
         memberMail: {

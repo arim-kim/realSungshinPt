@@ -4,18 +4,18 @@ const express = require("express"),
         errorController = require("./controllers/errorController"),
         layouts = require("express-ejs-layouts"),
         bodyParser = require("body-parser"),
-        memberController = require("./controllers/memberController"),
-        db = require("./models/index"),
-        models = require("./models")
-        mysql = require("mysql");
+        // memberController = require("./controllers/memberController"),
+        // db = require("./models/index"),
+        // models = require("./models"),
+        con = require("./config/mysql"),
+        connect = con.init(); 
+        dotenv = require('dotenv');
 
-db.sequelize.sync();
-
+dotenv.config(); 
+        
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
-
 app.use(layouts);
-
 app.use(
 express.urlencoded({
 extended: true
@@ -23,21 +23,9 @@ extended: true
 );
 app.use(express.static('public'));
 
-const con = mysql.createConnection({
-        host: '34.64.173.255',
-        user: 'cc',
-        password: 'password',
-        database: 'SSPT'
-});
-
-con.connect(function(err) {
-        if(err) throw err;
-        console.log('DB Connected');
-});
-
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
-app.get("/signUP", memberController.getAllMembers);
+// app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
@@ -66,7 +54,7 @@ app.post("/", (req, res)=> {
 app.post("/signUp", (req, res) => {
     const sql = "INSERT INTO members SET ?"
 
-    con.query(sql, req.body, function(err, result, fields) {
+    connect.query(sql, req.body, function(err, result, fields) {
             if(err) throw err;
             console.log(result);
             res.render("signUpClear");
@@ -74,30 +62,30 @@ app.post("/signUp", (req, res) => {
 });
 
 
-// app.post('/signUp', (req, res) => {
-//         console.log(req.body);
+app.post('/signUp', (req, res) => {
+        console.log(req.body);
     
-//         models.member.create({
-//             email: req.body.memberMail,
-//             name: req.body.memberName,
-//             password: req.body.password
-//         })
-//             .then( result => {
-//                 console.log("데이터 추가 완료");
-//                 res.render("signUpClear");
-//             })
-//             .catch( err => {
-//                 console.log(err)
-//                 console.log("데이터 추가 실패");
-//             })
-//     });
+        models.member.create({
+            email: req.body.memberMail,
+            name: req.body.memberName,
+            password: req.body.password
+        })
+            .then( result => {
+                console.log("데이터 추가 완료");
+                res.render("signUpClear");
+            })
+            .catch( err => {
+                console.log(err)
+                console.log("데이터 추가 실패");
+            })
+    });
 
 
 /* 아르바이트 정보 DB 연동 */
 app.post("/job", (req, res) => {
     const sql = "INSERT INTO parttime SET ?"
 
-    con.query(sql, req.body, function(err, result, fields) {
+    connect.query(sql, req.body, function(err, result, fields) {
             if(err) throw err;
            console.log(result);
             res.send("등록이 완료되었습니다.");

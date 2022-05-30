@@ -1,31 +1,48 @@
-const db = require("../dbconnection");
-/*getScdl1Params = body => {
+const db = require("../dbconnection"),
+getScheduleParams = body => {
     return {
         wage : body.wage,
         startTime : body.startTime,
         endTime : body.endTime,
         isCovered : body.isCovered,
-        rest : body.rest
-    };
-},
-getScdl2Params = body => {
-    return {
+        rest : body.rest,
         overPay : body.overPay,
         night : body.night,
         holiday : body.holiday,
         extra : body.extra
     };
+}
+
+module.exports = {
+    addSchedule : async (req, res) => {
+        let sql = 'SELECT * FROM parttime where ptMemberId=2';
+        let [rows, fields] = await db.query(sql);
+        //console.log(rows);
+        res.render("addSchedule", { pt: rows });
+    },
+    addScheduleClear : async (req, res) => {
+        try {
+            let scdl = getScheduleParams(req.body);
+            let sql = "INSERT INTO schedule(scdlMemId, scdlPtId, isCovered, startTime, endTime, holiday, overPay, rest, night, extra, wage) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            let params = [2, 4, scdl.isCovered, scdl.startTime, scdl.endTime, scdl.holiday, scdl.overPay, scdl.rest, scdl.night, scdl.extra, scdl.wage];
+            await db.query(sql, params);
+            res.render("submit");
+        } catch (err) {
+            res.status(500).send({
+                message: err.message
+            });
+        }
+    }
 };
-*/
 
-
+/*
 exports.showscdl1 = async (req, res) => {
     let sql = 'SELECT * FROM parttime where ptMemberId=51';
     let [rows, fields] = await db.query(sql);
     //console.log(rows);
     res.render("schedule1", { pt : rows });
 };
-/*
+
 exports.showscdl2 = (req, res) => {
     res.render("schedule2");
 };
@@ -40,6 +57,7 @@ exports.testScdl = async (req, res) => {
 };
 
 */
+
 /*
 module.exports = {
     testScdl : async (req, res, next) => {

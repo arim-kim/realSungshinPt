@@ -21,8 +21,9 @@
             <!--이전에 추가한 아르바이트 목록 불러오기(추후 구현 필요)-->
             <select name="ptname" style="width: 100%;">
                 <option value="" disabled selected>선택</option>
-                <option value="">스타벅스 성신여대점</option> <!--예시1-->
-                <option value="">GS25 성신여대점</option> <!--예시2-->
+                <% for (i = 0; i < pt.length; i++) { %>
+                    <option value=""><%= pt[i].parttimeName %></option>
+                <% } %>
             </select>
         
             <br><br>

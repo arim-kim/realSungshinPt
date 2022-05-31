@@ -1,0 +1,15 @@
+
+#btns button{
+    /* 여기다가 버튼 속성 추가하면 됨 */
+    border-radius: 5px;
+    width: 250px;
+    height: 250px;
+    margin-top : 100px;
+    margin-left: 100px;
+    color: black;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#btns button:hover {
+    color: skyblue;
+}

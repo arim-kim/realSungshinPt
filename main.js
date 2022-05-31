@@ -39,6 +39,7 @@ app.get("/job", homeController.job);
 app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
+
 app.get("/schedule1", homeController.schedule1);
 app.get("/schedule2", homeController.schedule2);
 app.get("/job-list", parttimeController.getOneJob); 
@@ -48,7 +49,7 @@ app.post("/", async (req, res)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);     
 }); 
        
-
+c
 
 app.post('/signUp', (req, res) => {
         console.log(req.body);

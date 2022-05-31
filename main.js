@@ -5,6 +5,7 @@ const express = require("express"),
         layouts = require("express-ejs-layouts"),
         bodyParser = require("body-parser"),
         memberController = require("./controllers/memberController"),
+        scheduleController = require("./controllers/scheduleController"),
         db = require("./models/index"),
         models = require("./models")
         mysql = require("mysql");
@@ -41,8 +42,8 @@ app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
-app.get("/schedule1", homeController.schedule1);
-app.get("/schedule2", homeController.schedule2);
+app.get("/addSchedule",scheduleController.addSchedule);
+app.post("/addScheduleClear", scheduleController.addScheduleClear)
 
 /* 로그인 DB 연동*/
 app.post("/", (req, res)=> {

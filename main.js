@@ -6,6 +6,7 @@ const express = require("express"),
         bodyParser = require("body-parser"),
         memberController = require("./controllers/memberController"),
         parttimeController = require("./controllers/parttimeController"),
+        scheduleController = require("./controllers/scheduleController"),
         db = require("./models/index"),
         cors=require('cors'),
         models = require("./models"),
@@ -73,8 +74,10 @@ app.get("/job", homeController.job);
 app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
-app.get("/schedule1", homeController.schedule1);
-app.get("/schedule2", homeController.schedule2);
+//app.get("/schedule1", homeController.schedule1);
+//app.get("/schedule2", homeController.schedule2);
+app.get("/addSchedule", scheduleController.addSchedule);
+app.get("/addScheduleClear", scheduleController.addScheduleClear);
 app.get("/job-list", parttimeController.getOneJob); 
 
 

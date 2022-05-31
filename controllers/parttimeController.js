@@ -12,9 +12,6 @@ exports.getAllParttimes = async (req, res) => {
             message: err.message
         });
     }
-<<<<<<< Updated upstream
-};
-=======
 };
 
 exports.getOneJob = async (req, res) => {
@@ -46,4 +43,3 @@ exports.getOneJob = async (req, res) => {
         });
     }
 }
->>>>>>> Stashed changes

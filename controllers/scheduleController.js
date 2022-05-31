@@ -54,7 +54,7 @@ exports.testScdl = async (req, res) => {
 */
 module.exports = {
     addSchedule : async (req, res) => {
-        let sql = 'SELECT * FROM parttime where ptMemberId=2';
+        let sql = 'SELECT * FROM parttime where ptMemberId=51';
         let [rows, fields] = await db.query(sql);
         //console.log(rows);
         res.render("addSchedule", { pt: rows });

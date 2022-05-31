@@ -49,8 +49,7 @@ exports.index = (req, res) => {
     test();
 };
 
-
-exports.schedule1 = (req, res) => {
+exports.addSchedule = (req, res) => {
     res.render("schedule1");
 };
 

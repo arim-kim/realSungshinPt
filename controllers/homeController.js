@@ -1,6 +1,14 @@
+<<<<<<< Updated upstream
 const con = require("../config/mysql"),
         connect = con.init(); 
         dotenv = require('dotenv');
+=======
+const db = require("../models/index"),
+Parttime = db.parttime,
+member = db.member,
+Op = db.Sequelize.Op;
+
+>>>>>>> Stashed changes
 
 exports.main = (req, res) => {
     res.render("index", {layout : false});
@@ -16,15 +24,46 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
+<<<<<<< Updated upstream
 exports.index = (req, res) => {
     let test = async() => {
             let sql = 'SELECT COUNT(*) as cnt FROM members'; 
             let [rows, fields] = await connect.query(sql); 
             res.render("index", {data : rows[0].cnt});
             console.log(rows[0]); 
+=======
+exports.index = async (req, res) => {
+    
+    if(!req.session.login) {
+        req.session.login = false
+        req.session.idx = -1
+    }
+        try{
+            data = await member.findAll();
+            console.log(data[0].dataValues); 
+            res.render("index", {data : data[0].dataValues});
 
-    };
-    test();
+        }catch (err) {
+            res.status(500).send({
+                message: err.message
+            });
+        }
+
+
+};
+
+>>>>>>> Stashed changes
+
+exports.getAllParttimes = async (req, res) => {
+    try {
+        data = await Parttime.findAll();
+        console.log(data);
+        res.render("jobinfo");
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
 };
 
 
@@ -36,6 +75,7 @@ exports.schedule2 = (req, res) => {
     res.render("schedule2");
 };
 
+<<<<<<< Updated upstream
 
 exports.testEnv = (req, res) => {
 	let exec = async () => {
@@ -46,4 +86,27 @@ exports.testEnv = (req, res) => {
 		res.render("test", {mem : rows});
 	};
 	exec();
+=======
+require('dotenv').config();
+const mysql = require('mysql2/promise');
+
+// const db = mysql.createPool({
+// 	host: process.env.DB_HOST,
+// 	user: process.env.DB_USER,
+// 	password: process.env.DB_PW,
+// 	port: process.env.DB_PORT,
+// 	database: process.env.DB_NAME,
+// 	waitForConnections: true,
+// 	insecureAuth: true
+// });
+
+exports.testEnv = (req, res) => {
+	// let exec = async () => {
+	// 	let sql = "SELECT * FROM members";
+	// 	let [rows, fields] = await db.query(sql);
+	// 	console.log(rows);
+	// 	res.render("test", {mem : rows});
+	// };
+	// exec();
+>>>>>>> Stashed changes
 };

@@ -10,7 +10,12 @@ const express = require("express"),
         models = require("./models"),
         session = require('express-session'),
         MysqlStore = require('connect-mysql')(session),
+<<<<<<< Updated upstream
         mysql = require("mysql");
+=======
+        mysql = require("mysql")
+        loginFu = require("./controllers/loginManager");
+>>>>>>> Stashed changes
 
 db.sequelize.sync();
 
@@ -24,6 +29,7 @@ extended: true
 })
 );
 app.use(express.static('public'));
+<<<<<<< Updated upstream
 
 
 // const con = mysql.createConnection({
@@ -32,6 +38,13 @@ app.use(express.static('public'));
 //         password: 'password',
 //         database: 'SSPT'
 // });
+=======
+app.use(session({
+	secret:'keyboard cat',
+	resave:false,
+	saveUninitialize:true
+}));
+>>>>>>> Stashed changes
 
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
@@ -42,8 +55,10 @@ app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
 app.get("/schedule1", homeController.schedule1);
 app.get("/schedule2", homeController.schedule2);
+app.get("/job-list", parttimeController.getOneJob); 
 
 /* 로그인 DB 연동*/
+<<<<<<< Updated upstream
 app.post("/", (req, res)=> {
 
         member.findOne({title : req.body.mail}, function(err, member){
@@ -85,6 +100,14 @@ app.post("/", (req, res)=> {
 //     });
 // });
 
+=======
+app.post("/", async (req, res)=> {
+        loginFu.login_f(req.body.mail,req.body.pw,res,req);     
+}); 
+       
+
+
+>>>>>>> Stashed changes
 app.post('/signUp', (req, res) => {
         console.log(req.body);
     
@@ -104,6 +127,7 @@ app.post('/signUp', (req, res) => {
 });
 
 
+<<<<<<< Updated upstream
 /* 아르바이트 정보 DB 연동 */
 // app.post("/job", (req, res) => {
 //     const sql = "INSERT INTO parttime SET ?"
@@ -114,6 +138,8 @@ app.post('/signUp', (req, res) => {
 //             res.send("등록이 완료되었습니다.");
 //     });
 // });
+=======
+>>>>>>> Stashed changes
 
 app.post('/job', (req, res) => {
         console.log(req.body);
@@ -133,7 +159,10 @@ app.post('/job', (req, res) => {
                 console.log(err)
                 console.log("데이터 추가 실패");
         })
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 });
 
 

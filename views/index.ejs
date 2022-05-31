@@ -39,7 +39,9 @@
 		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
 		var tbcal = document.getElementById("calendar"); // 테이블 달력을 만들 테이블
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
-		yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
+		var year = today.getFullYear(); 
+		var month = today.getMonth() + 1;
+		yearmonth.innerHTML = year + "년 "+ month + "월"; //년도와 월 출력
 
 		if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
 		{
@@ -91,6 +93,7 @@
 			str += "<div>"+i+"</div>";
 			var day = (i<10) ? "0"+i : i;            	
 			str += "<div id='"+day+"'></div>"; //나중에 원하는 날에 일정을 넣기위해 id값을 날자로 설정
+			str += "<button class = 'button' onclick='location.href=\"/job-list\";'></button>";
 			cell.innerHTML = str;
 			
 			cnt = cnt + 1;
@@ -100,6 +103,8 @@
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
+				// str += "<input type="button" id="btn" value="결과 등록하기"/>";
+				str += "<button class = 'button' onclick='location.href=\"/job-list\";'></button>";
 				cell.innerHTML = str;
 				cell.style.color = "#009de0";
 				cell.style.backgroundColor = "#f7f7f7";                    
@@ -107,9 +112,11 @@
 			if (cnt % 7 == 0) { //일요일
 				var str="";
 				str += "<div>"+i+"</div>";
+				str += "";
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
+				str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
 				cell.innerHTML = str;
 				row = calendar.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
@@ -154,13 +161,13 @@
 			  
 		}
 		
-		var tdId = "08"; //1일
+		var tdId = "01"; //1일
         var str = "오늘의 일정";
 		var i; 
-		for(i = 0; i < "<%=data%>"; i++) {
-			str += "아림 "; 
+		if (tdId == "0" + "<%=data.memberId%>") {
+			str +=  "<br>" + "<%=data.memberMail%>";  
 		}
-		// str += "<br>" + "<%=data%>"; 
+	
 		document.getElementById(tdId).innerHTML = str;
 	}
 

@@ -1,3 +1,9 @@
+
+const db = require("../models/index"),
+Parttime = db.parttime,
+member = db.member,
+Op = db.Sequelize.Op;
+
 exports.main = (req, res) => {
     res.render("index", {layout : false});
 };
@@ -12,33 +18,40 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
-exports.index = (req, res) => {
-    const mysql = require('mysql2/promise');
-    let test = async() => {
-            const db = mysql.createPool({
-                    host: '34.64.173.255',
-                    user: 'cc',
-                    password: 'password',
-                    port: 3306,
-                    database: 'SSPT',
-                    waitForConnetctions: true,
-                    insecureAuth: true
+
+exports.index = async (req, res) => {
+    
+    if(!req.session.login) {
+        req.session.login = false
+        req.session.idx = -1
+    }
+        try{
+            data = await member.findAll();
+            console.log(data[0].dataValues); 
+            res.render("index", {data : data[0].dataValues});
+
+        }catch (err) {
+            res.status(500).send({
+                message: err.message
             });
+        }
 
-            // let sql = 'SELECT * FROM members';
-            // let [rows, fields] = await db.query(sql);
-            // res.render("index", {data : rows[0]});
-            // console.log(rows);
-            // console.log(rows[0].memberId)
 
-            let sql = 'SELECT COUNT(*) as cnt FROM members'; 
-            let [rows, fields] = await db.query(sql); 
-            res.render("index", {data : rows[0].cnt});
-            console.log(rows[0]); 
-
-    };
-    test();
 };
+
+
+exports.getAllParttimes = async (req, res) => {
+    try {
+        data = await Parttime.findAll();
+        console.log(data);
+        res.render("jobinfo");
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+};
+
 
 exports.schedule1 = (req, res) => {
     res.render("schedule1");
@@ -48,23 +61,12 @@ exports.schedule2 = (req, res) => {
     res.render("schedule2");
 };
 
-require('dotenv').config();
-const mysql = require('mysql2/promise');
-
-const db = mysql.createPool({
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PW,
-	port: process.env.DB_PORT,
-	database: process.env.DB_NAME,
-	waitForConnections: true,
-	insecureAuth: true
-});
 
 exports.testEnv = (req, res) => {
 	let exec = async () => {
 		let sql = "SELECT * FROM members";
 		let [rows, fields] = await db.query(sql);
+
 		console.log(rows);
 		res.render("test", {mem : rows});
 	};

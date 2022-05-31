@@ -153,7 +153,17 @@ header {
   
   }
   
+.button {
+  border: 0;
+  outline: 0;
+  height: 100px;
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0);
+}
 
+.button:hover {
+  background-color: saddlebrown;
+}
   /* 알림 */
   
 side {

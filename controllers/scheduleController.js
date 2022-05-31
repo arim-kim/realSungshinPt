@@ -63,7 +63,7 @@ module.exports = {
         try {
             let scdl = getScheduleParams(req.body);
             let sql = "INSERT INTO schedule(scdlMemId, scdlPtId, isCovered, startTime, endTime, holiday, overPay, rest, night, extra, wage) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            let params = [2, 4, scdl.isCovered, scdl.startTime, scdl.endTime, scdl.holiday, scdl.overPay, scdl.rest, scdl.night, scdl.extra, scdl.wage];
+            let params = [51, 8, scdl.isCovered, scdl.startTime, scdl.endTime, scdl.holiday, scdl.overPay, scdl.rest, scdl.night, scdl.extra, scdl.wage];
             await db.query(sql, params);
             res.render("submit");
         } catch (err) {

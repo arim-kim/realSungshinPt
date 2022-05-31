@@ -1,8 +1,8 @@
-
 const db = require("../models/index"),
 Parttime = db.parttime,
 member = db.member,
 Op = db.Sequelize.Op;
+
 
 exports.main = (req, res) => {
     res.render("index", {layout : false});
@@ -17,7 +17,6 @@ exports.job = (req, res) => {
 exports.friend = (req, res) => {
     res.render("addFriend");
 };
-
 
 exports.index = async (req, res) => {
     
@@ -61,14 +60,25 @@ exports.schedule2 = (req, res) => {
     res.render("schedule2");
 };
 
+require('dotenv').config();
+const mysql = require('mysql2/promise');
+
+// const db = mysql.createPool({
+// 	host: process.env.DB_HOST,
+// 	user: process.env.DB_USER,
+// 	password: process.env.DB_PW,
+// 	port: process.env.DB_PORT,
+// 	database: process.env.DB_NAME,
+// 	waitForConnections: true,
+// 	insecureAuth: true
+// });
 
 exports.testEnv = (req, res) => {
-	let exec = async () => {
-		let sql = "SELECT * FROM members";
-		let [rows, fields] = await db.query(sql);
-
-		console.log(rows);
-		res.render("test", {mem : rows});
-	};
-	exec();
+	// let exec = async () => {
+	// 	let sql = "SELECT * FROM members";
+	// 	let [rows, fields] = await db.query(sql);
+	// 	console.log(rows);
+	// 	res.render("test", {mem : rows});
+	// };
+	// exec();
 };

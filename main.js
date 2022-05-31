@@ -6,7 +6,6 @@ const express = require("express"),
         bodyParser = require("body-parser"),
         memberController = require("./controllers/memberController"),
         parttimeController = require("./controllers/parttimeController"),
-        scheduleController = require("./controllers/scheduleController"),
         db = require("./models/index"),
         models = require("./models"),
         session = require('express-session'),
@@ -16,17 +15,17 @@ const express = require("express"),
 
 db.sequelize.sync();
 
-
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
+
 app.use(layouts);
+
 app.use(
 express.urlencoded({
 extended: true
 })
 );
 app.use(express.static('public'));
-
 app.use(session({
 	secret:'keyboard cat',
 	resave:false,
@@ -35,23 +34,22 @@ app.use(session({
 
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
-// app.get("/signUP", memberController.getAllMembers);
+app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
 app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
+app.get("/schedule1", homeController.schedule1);
+app.get("/schedule2", homeController.schedule2);
 app.get("/job-list", parttimeController.getOneJob); 
 
-app.get("/addSchedule",scheduleController.addSchedule);
-app.post("/addScheduleClear", scheduleController.addScheduleClear)
-
-
 /* 로그인 DB 연동*/
-
 app.post("/", async (req, res)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);     
 }); 
        
+
+
 app.post('/signUp', (req, res) => {
         console.log(req.body);
     
@@ -90,7 +88,6 @@ app.post('/job', (req, res) => {
                 console.log(err)
                 console.log("데이터 추가 실패");
         })
-
 });
 
 

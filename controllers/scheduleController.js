@@ -1,6 +1,13 @@
-const db = require("../dbconnection"),
+//const db = require("../dbconnection"),
+const con = require("../dbconnection");
+const db = require("../models/index"),
+Schedule = db.schedule,
+Op = db.Sequelize.Op;
+/*
 getScheduleParams = body => {
     return {
+        scdlMemId : body.scdlMemId,
+        scdlPtId : body.scdlPtId,
         wage : body.wage,
         startTime : body.startTime,
         endTime : body.endTime,
@@ -12,47 +19,49 @@ getScheduleParams = body => {
         extra : body.extra
     };
 }
-/*getScdl1Params = body => {
-    return {
-        wage : body.wage,
-        startTime : body.startTime,
-        endTime : body.endTime,
-        isCovered : body.isCovered,
-        rest : body.rest
-    };
-},
-getScdl2Params = body => {
-    return {
-        overPay : body.overPay,
-        night : body.night,
-        holiday : body.holiday,
-        extra : body.extra
-    };
-};*/
-
-
-/*
-exports.showscdl1 = (req, res) => {
-    let sql = 'SELECT * FROM parttime where ptMemberId=2';
-    let [rows, fields] = await db.query(sql);
-    //console.log(rows);
-    res.render("schedule1", { pt: rows });
-    res.render("schedule1");
-};
-
-exports.showscdl2 = (req, res) => {
-    res.render("schedule2");
-};
-
-
-exports.testScdl = async (req, res) => {
-    let sql = 'SELECT * FROM parttime where ptMemberId=2';
-    let [rows, fields] = await db.query(sql);
-    //console.log(rows);
-    res.render("addSchedule", { pt: rows });
-};
 */
+
 module.exports = {
+    // 아르바이트 테이블에서 정보 받아와야하는데 이렇게하려면 models/parttime.js도 추가해야하는지 찾아보기
+    // 일단 raw query 사용햠
+    addSchedule : async (req, res) => {
+        try {
+            let sql = 'SELECT * FROM parttime where ptMemberId=49';
+            let [rows, fields] = await con.query(sql);
+            res.render("addSchedule", { pt: rows });
+        } catch (err) {
+            res.status(500).send({
+                message: err.message
+            });
+        }
+    },
+    // sequelize 사용
+    addScheduleClear : async (req, res) => {
+        try {
+            //let scdl = getScheduleParams(req.body);
+            //const schedule
+            await Schedule.create({
+                scdlMemId: req.body.scdlMemId,
+                scdlPtId: req.body.scdlPtId,
+                isCovered: req.body.isCovered,
+                startTime: req.body.startTime,
+                endTime: req.body.endTime,
+                holiday: req.body.holiday,
+                overPay: req.body.overPay,
+                rest: req.body.rest,
+                night: req.body.night,
+                extra: req.body.extra,
+                wage: req.body.wage
+            });
+            res.render("submit");
+        } catch (err) {
+            res.status(500).send({
+                message: err.message
+            });
+        }
+    }
+
+    /*
     addSchedule : async (req, res) => {
         let sql = 'SELECT * FROM parttime where ptMemberId=51';
         let [rows, fields] = await db.query(sql);
@@ -71,25 +80,6 @@ module.exports = {
                 message: err.message
             });
         }
-    }
-    /*
-    saveScdl1 : async (req, res, next) => {
-        let scdl1Params = await getScdl1Params(req.body);
-        res.locals.wage = parseInt(scdl1Params.wage);
-        res.locals.startTime = scdl1Params.startTime;
-        res.locals.endTime = scdl1Params.endTime;
-        res.locals.isCovered = parseInt(scdl1Params.isCovered);
-        res.locals.rest = parseInt(scdl1Params.rest);
-        res.render("schedule2");
-        next();
-    },
-    addSchedule : async (req, res, next) => {
-        let scdl2Params = getScdl2Params(req.body);
-        let sql =
-        "INSERT INTO schedule(scdlMemId, scdlPtId, isCovered, startTime, endTime, holiday, overPay, rest, night, extra, wage) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        let params = [2, 1, res.locals.isCovered, res.locals.startTime, res.locals.endTime, scdl2Params.holiday, scdl2Params.overPay, res.locals.rest, scdl2Params.night, scdl2Params.extra, res.locals.wage];
-        await db.query(sql, params);
-        res.render("submit");
     }
     */
 };

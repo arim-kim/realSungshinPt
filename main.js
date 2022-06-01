@@ -40,8 +40,6 @@ app.get("/job", homeController.job);
 app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
-//app.get("/schedule1", homeController.schedule1);
-//app.get("/schedule2", homeController.schedule2);
 app.get("/addSchedule", scheduleController.addSchedule);
 app.post("/addScheduleClear", scheduleController.addScheduleClear);
 app.get("/job-list", parttimeController.getOneJob); 

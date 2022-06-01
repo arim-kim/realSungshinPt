@@ -14,10 +14,13 @@
                 <hr>
                 <br>
             
+                <!--value에 세션 아이디 값 들어가게 수정 필요-->
+                <input type="hidden" name="scdlMemId" value="2">
+
                 <label style="float: left;">
                     근무지
                 </label>
-                <select name="parttimeName" style="width: 100%;">
+                <select name="scdlPtId" style="width: 100%;">
                     <option value="" disabled selected>선택</option>
                     <% for (i = 0; i < pt.length; i++) { %>
                         <option value=""><%= pt[i].parttimeName %></option>

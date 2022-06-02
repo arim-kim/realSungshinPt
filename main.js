@@ -35,21 +35,20 @@ app.use(session({
 
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
-app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
-app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
+app.get("/job-list", scheduleController.getOneJob); 
+app.get("/editSchedule", scheduleController.editSchedule);
+app.get("/login", homeController.login); 
 app.get("/addSchedule", scheduleController.addSchedule);
-app.get("/addScheduleClear", scheduleController.addScheduleClear);
-app.get("/job-list", parttimeController.getOneJob); 
+app.post("/addScheduleClear", scheduleController.addScheduleClear);
 
 /* 로그인 DB 연동*/
-app.post("/", async (req, res)=> {
-        loginFu.login_f(req.body.mail,req.body.pw,res,req);     
+app.post("/login", async (req, res, next)=> {
+        loginFu.login_f(req.body.mail,req.body.pw,res,req);    
 }); 
        
-c
 
 app.post('/signUp', (req, res) => {
         console.log(req.body);
@@ -70,12 +69,12 @@ app.post('/signUp', (req, res) => {
 });
 
 
-
 app.post('/job', (req, res) => {
         console.log(req.body);
-    
+
         models.parttime.create({
-                ptMemberId : 51,
+                // 여기 내가 수정해놨엉!!
+                ptMemberId : req.session.idx,
                 parttimeName: req.body.parttimeName,
                 weekPay: req.body.weekPay,
                 tax: req.body.tax,
@@ -90,6 +89,7 @@ app.post('/job', (req, res) => {
                 console.log("데이터 추가 실패");
         })
 });
+
 
 
 app.use(errorController.logErrors);

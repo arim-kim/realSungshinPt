@@ -4,6 +4,7 @@ member = db.member,
 Op = db.Sequelize.Op;
 
 
+
 exports.main = (req, res) => {
     res.render("index", {layout : false});
 };
@@ -14,28 +15,51 @@ exports.join = (req, res) => {
 exports.job = (req, res) => {
     res.render("jobInfo");
 };
+
 exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
+exports.login = async (req, res) => {
+    res.render("login"); 
+}
+
+const getPtlist = async (id) => {
+    try {
+        const ptlist = await  Parttime.findAll({
+            attributes : ['parttimeName' , 'color'],
+            where : {
+                ptMemberId : id
+            }
+        })
+        return ptlist; 
+
+    }catch (err) {
+        return err; 
+    }
+
+};
+
 exports.index = async (req, res) => {
-    
     if(!req.session.login) {
         req.session.login = false
         req.session.idx = -1
+        res.render("login");
     }
-        try{
-            data = await member.findAll();
-            console.log(data[0].dataValues); 
-            res.render("index", {data : data[0].dataValues});
 
+    else {
+        try{
+            getPtlist(req.session.idx).then (
+                ptlist => {     
+                    console.log(ptlist); 
+                    res.render("index", {now_user :req.session.idx, data : ptlist});}
+            ); 
         }catch (err) {
             res.status(500).send({
                 message: err.message
             });
         }
-
-
+    }
 };
 
 
@@ -52,26 +76,13 @@ exports.getAllParttimes = async (req, res) => {
 };
 
 
-exports.schedule1 = (req, res) => {
-    res.render("schedule1");
-};
+// exports.schedule1 = (req, res) => {
+//     res.render("schedule1");
+// };
 
-exports.schedule2 = (req, res) => {
-    res.render("schedule2");
-};
-
-require('dotenv').config();
-const mysql = require('mysql2/promise');
-
-// const db = mysql.createPool({
-// 	host: process.env.DB_HOST,
-// 	user: process.env.DB_USER,
-// 	password: process.env.DB_PW,
-// 	port: process.env.DB_PORT,
-// 	database: process.env.DB_NAME,
-// 	waitForConnections: true,
-// 	insecureAuth: true
-// });
+// exports.schedule2 = (req, res) => {
+//     res.render("schedule2");
+// };
 
 exports.testEnv = (req, res) => {
 	// let exec = async () => {

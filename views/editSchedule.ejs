@@ -5,7 +5,7 @@
 
 <body>
 <section id="schedule" align="center">
-    <h1 align="center">일정 추가</h1>
+    <h1 align="center">일정 편집</h1>
     <div id="wrapper" style="width:100%; height: 100%; border:solid blue 1px;">
         <form action="/addScheduleClear" method="post">
             <br><br><br>
@@ -14,14 +14,13 @@
                 <hr>
                 <br>
             
-                <!--value에 세션 아이디 값 들어가게 수정 필요-->
                 <label style="float: left;">
                     근무지
                 </label>
-                <select name="scdlPtId" style="width: 100%;">
+                <select name="parttimeName" style="width: 100%;">
                     <option value="" disabled selected>선택</option>
                     <% for (i = 0; i < pt.length; i++) { %>
-                        <option value="<%=pt[i].parttimeId%>"><%= pt[i].parttimeName %></option>
+                        <option value=""><%= pt[i].parttimeName %></option>
                     <% } %>
                 </select>
             
@@ -146,7 +145,7 @@
                 <h4 style="text-align: right;">일급 [계산]원</h4>
                 <br>
                 
-                <input type="submit" value="추가" style="float:right">
+                <input type="submit" value="편집" style="float:right">
                 <br><br><br><br>
             </div>
         </form>

@@ -33,6 +33,7 @@ Object.keys(db).forEach(modelName => {
 
 db.member = require("./member.js")(sequelize, Sequelize);
 db.parttime = require("./parttime.js")(sequelize, Sequelize);
+db.schedule = require("./schedule.js")(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -39,7 +39,9 @@
 		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
 		var tbcal = document.getElementById("calendar"); // 테이블 달력을 만들 테이블
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
-		yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
+		var year = today.getFullYear(); 
+		var month = today.getMonth() + 1;
+		yearmonth.innerHTML = year + "년 "+ month + "월"; //년도와 월 출력
 
 		if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
 		{
@@ -91,6 +93,7 @@
 			str += "<div>"+i+"</div>";
 			var day = (i<10) ? "0"+i : i;            	
 			str += "<div id='"+day+"'></div>"; //나중에 원하는 날에 일정을 넣기위해 id값을 날자로 설정
+			str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
 			cell.innerHTML = str;
 			
 			cnt = cnt + 1;
@@ -100,6 +103,8 @@
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
+				// str += "<input type="button" id="btn" value="결과 등록하기"/>";
+				str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
 				cell.innerHTML = str;
 				cell.style.color = "#009de0";
 				cell.style.backgroundColor = "#f7f7f7";                    
@@ -107,9 +112,11 @@
 			if (cnt % 7 == 0) { //일요일
 				var str="";
 				str += "<div>"+i+"</div>";
+				str += "";
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
+				str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
 				cell.innerHTML = str;
 				row = calendar.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
@@ -154,13 +161,9 @@
 			  
 		}
 		
-		var tdId = "08"; //1일
+		var tdId = "01"; //1일
         var str = "오늘의 일정";
-		var i; 
-		for(i = 0; i < "<%=data%>"; i++) {
-			str += "아림 "; 
-		}
-		// str += "<br>" + "<%=data%>"; 
+		
 		document.getElementById(tdId).innerHTML = str;
 	}
 
@@ -176,7 +179,6 @@
     <title>SungshinHanPT</title>
 
     <link rel="stylesheet" href="./css/main.css">
-    <!-- <script defer="defer" src="./js/main.js"></script> -->
 
     <!-- 브라우저 기본 스타일을 reset합니다 -->
 
@@ -194,11 +196,7 @@
         <div class="loginBar">
             <div class="loginBarBox">
                 <div>
-                        <form class = "login-form" action="/" method="post">
-                            <input type = "text" name = "mail" placeholder="mail">
-                            <input type = "text" name = "pw" placeholder="password">
-                            <input type = "submit" class = "loginBtn" value = "login">
-                        </form>
+					<p> <%=now_user%> </p>
                 </div>
                 <div class ="btnBox">
 <a href="signUp">
@@ -216,22 +214,24 @@
             <input type="button" id="btnChat" value="채팅">
         </div>
         <div class="goAddSchedule">
-            <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/schedule1';">
+            <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
         </div>
         <div class="goEditPt">
-            <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경">
+            <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경" onclick="location.href='/job';">
         </div>
-        
-        <label><input type="checkbox" name="checkedPT" value="파리바게트"></label>
-        <label><input type="checkbox" name="checkedPT" value="뚜레쥬르"></label>
-        <label><input type="checkbox" name="checkedPT" value="폼드팡"></label>
+		
+		<div>
+		 <% for (var i = 0;i < data.length;i++){ %>
+			<p style ="color : <%= data[i].color%>;";><%= data[i].parttimeName %></p>
+		<% } %>
+		</div>
 
     </nav>
     <side>
         <p>알람창</p>
         <div class="alertBox"></div>
     </side>
-    <table align="center" id="calendar">
+	<table align="center" id="calendar">
 		<tr>
 			<td>
 			<a id="before" href="javascript:beforem()"></a>

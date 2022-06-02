@@ -1,5 +1,3 @@
-
-
 module.exports = (sequelize, Sequelize) => {
     const member = sequelize.define("member", {
         memberMail: {
@@ -24,5 +22,6 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps: false
     });
+
     return member;
 }

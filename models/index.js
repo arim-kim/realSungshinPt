@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/mysql.js')[env];
+const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
@@ -33,8 +33,13 @@ Object.keys(db).forEach(modelName => {
 
 db.member = require("./member.js")(sequelize, Sequelize);
 db.parttime = require("./parttime.js")(sequelize, Sequelize);
+db.schedule = require("./schedule.js")(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+
+
+db.parttime.belongsTo(db.member, {foreignKey : 'memberId', sourceKey : 'ptMemberId'});
+db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId', sourceKey :'memberId'});
 module.exports = db;

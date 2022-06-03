@@ -48,7 +48,7 @@ const getAllSchedule = async (id) => {
         let today = new Date(); 
         let year = today.getFullYear(); 
         let month = today.getMonth() + 1;
-        let day = today.getDate()-1;
+        let day = today.getDate();
         if(month < 10) {
             month = "0"+month;
         }

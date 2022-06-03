@@ -245,7 +245,12 @@
 
     <side>
         <p>알람창</p>
-        <div class="alertBox"></div>
+        <div class="alertBox">
+			<% for (var i = 0;i < schedule.length;i++){ %>
+				<br><p><%= schedule[i].parttime.parttimeName %></p>
+				<br><p><%= schedule[i].startTime %></p>
+			<% } %>
+		</div>
     </side>
 	<table align="center" id="calendar">
 		<tr>

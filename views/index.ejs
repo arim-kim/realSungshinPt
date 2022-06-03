@@ -35,12 +35,17 @@
 
 	function autoReload()
 	{
+		var days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16', '17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
 		var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
 		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
 		var tbcal = document.getElementById("calendar"); // 테이블 달력을 만들 테이블
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
 		var year = today.getFullYear(); 
 		var month = today.getMonth() + 1;
+		if(month <= 10) {
+			month = "0" + month;
+		}
+		
 		yearmonth.innerHTML = year + "년 "+ month + "월"; //년도와 월 출력
 
 		if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
@@ -93,7 +98,9 @@
 			str += "<div>"+i+"</div>";
 			var day = (i<10) ? "0"+i : i;            	
 			str += "<div id='"+day+"'></div>"; //나중에 원하는 날에 일정을 넣기위해 id값을 날자로 설정
-			str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
+			
+			var id = year + "-" + month + "-" + day;
+			str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
 			cell.innerHTML = str;
 			
 			cnt = cnt + 1;
@@ -103,8 +110,8 @@
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
-				// str += "<input type="button" id="btn" value="결과 등록하기"/>";
-				str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
+				var id = year + "-" + month + "-" + day
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
 				cell.innerHTML = str;
 				cell.style.color = "#009de0";
 				cell.style.backgroundColor = "#f7f7f7";                    
@@ -116,7 +123,8 @@
 				var day = (i<10) ? "0"+i : i;            	
 				str += "<div id='"+day+"'>";
 				str += "</div>";
-				str += "<button class = 'button' onclick='location.href=\"/job-list\";'>"+month+"</button>";
+				var id = year + "-" + month + "-" + day
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
 				cell.innerHTML = str;
 				row = calendar.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
@@ -160,7 +168,7 @@
 			}
 			  
 		}
-		
+
 		var tdId = "01"; //1일
         var str = "오늘의 일정";
 		
@@ -209,6 +217,7 @@
             <p>성신한 알바</p>
         </div>
     </header>
+	
     <nav>
         <div class="goChat">
             <input type="button" id="btnChat" value="채팅">
@@ -216,17 +225,24 @@
         <div class="goAddSchedule">
             <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
         </div>
-        <div class="goEditPt">
-            <input type="button" id="btnEditPt" value="아르바이트 추가 및 변경" onclick="location.href='/job';">
+        <div class="goAddPt">
+            <input type="button" id="btngoAddPt" value="아르바이트 추가" onclick="location.href='/job';">
         </div>
-		
-		<div>
+		<div class="goEditPt">
+            <input type="button" id="btnEditPt" value="아르바이트 편집" onclick="location.href='/jobEdit';">
+        </div>
+		<div class="goDeletePt">
+            <input type="button" id="btnDeletePt" value="아르바이트 삭제" onclick="location.href='/jobDelete';">
+        </div>
+	</nav>
+
+		<div class = "pattimeList">
 		 <% for (var i = 0;i < data.length;i++){ %>
-			<p style ="color : <%= data[i].color%>;";><%= data[i].parttimeName %></p>
+			<br><p style ="color : <%= data[i].color%>;";><%= data[i].parttimeName %></p>
 		<% } %>
 		</div>
 
-    </nav>
+
     <side>
         <p>알람창</p>
         <div class="alertBox"></div>

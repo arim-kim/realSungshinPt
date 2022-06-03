@@ -1,6 +1,7 @@
 const db = require("../models/index"),
 Parttime = db.parttime,
 member = db.member,
+schedule = db.schedule, 
 Op = db.Sequelize.Op;
 
 
@@ -23,6 +24,7 @@ exports.friend = (req, res) => {
 exports.login = async (req, res) => {
     res.render("login"); 
 }
+
 
 const getPtlist = async (id) => {
     try {

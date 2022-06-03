@@ -1,5 +1,5 @@
 
-#btns button{
+.btns {
     /* 여기다가 버튼 속성 추가하면 됨 */
     border-radius: 5px;
     width: 250px;
@@ -10,6 +10,13 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-#btns button:hover {
+.delete_btn  button{
+    width: 10px;
+    height: 10px;
+    position: static;
+
+}
+.btns button:hover {
     color: skyblue;
 }
+

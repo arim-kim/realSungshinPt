@@ -38,8 +38,10 @@ db.schedule = require("./schedule.js")(sequelize, Sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.parttime.belongsTo(db.member, {foreignKey : 'ptMemberId'});
+db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId'});
 
+db.parttime.hasMany(db.schedule, {foreignKey : 'scdlPtId'});
+db.schedule.belongsTo(db.parttime, {foreignKey : 'scdlPtId'});
 
-db.parttime.belongsTo(db.member, {foreignKey : 'memberId', sourceKey : 'ptMemberId'});
-db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId', sourceKey :'memberId'});
 module.exports = db;

@@ -6,6 +6,7 @@ module.exports = {
     "database": "SSPT",
     "host": "34.64.173.255",
     "dialect": "mysql"
+    
   },
   "test": {
     "username": "cc",
@@ -13,6 +14,7 @@ module.exports = {
     "database": "SSPT",
     "host": "34.64.173.255",
     "dialect": "mysql"
+
   },
   "production": {
     "username": "cc",

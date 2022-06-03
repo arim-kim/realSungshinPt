@@ -38,17 +38,21 @@ app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
-app.get("/job-list", scheduleController.getOneJob); 
-app.get("/editSchedule", scheduleController.editSchedule);
+app.get("/job-list", scheduleController.getSchedule); 
+app.get("/jobEdit", parttimeController.editJob);
 app.get("/login", homeController.login); 
 app.get("/addSchedule", scheduleController.addSchedule);
 app.post("/addScheduleClear", scheduleController.addScheduleClear);
+app.post("/jobEdit",parttimeController.jobEditClear);
+app.post("/job-list",scheduleController.deleteSchedule);
+app.get("/jobDelete", parttimeController.jobDelete);
+app.post("/jobDelete", parttimeController.jobDeleteClear);
 
 /* 로그인 DB 연동*/
 app.post("/login", async (req, res, next)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);    
 }); 
-       
+         
 
 app.post('/signUp', (req, res) => {
         console.log(req.body);

@@ -207,6 +207,7 @@
 					<p> <%=now_user%> </p>
                 </div>
                 <div class ="btnBox">
+
 					<input type="button" class = "signUpBtn" value="Logout">
                 </div>
             </div>
@@ -218,12 +219,15 @@
 
 
     <nav>
+        <a href="/chat">
         <div class="goChat">
-            <input type="button" id="btnChat" value="채팅">
+            <input type="button" id="btnChat" value="채팅" onclick="homeControllers.homeControllers">
         </div>
         <div class="goAddSchedule">
+
             <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
         </div>
+
         <div class="goAddPt">
             <input type="button" id="btngoAddPt" value="아르바이트 추가" onclick="location.href='/job';">
         </div>

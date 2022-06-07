@@ -15,12 +15,13 @@ exports.join = (req, res) => {
     res.render("signUp");
 };
 exports.job = (req, res) => {
-    res.render("jobInfo");
+    res.render("jobinfo");
 };
 
 exports.friend = (req, res) => {
     res.render("addFriend");
 };
+
 
 exports.login = async (req, res) => {
     res.render("login"); 
@@ -120,10 +121,12 @@ exports.index = async (req, res) => {
                 } catch (err) {
             res.status(500).send({
                 message: err.message
+
             });
         }
     }
 };
+
 
 
 exports.getAllParttimes = async (req, res) => {

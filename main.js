@@ -13,9 +13,8 @@ const express = require("express"),
         models = require("./models"),
         session = require('express-session'),
         MysqlStore = require('connect-mysql')(session),
-        mysql = require("mysql"),
+        mysql = require('mysql2'),
         http=require('http').createServer(app), //윤영추가
-
         loginFu = require("./controllers/loginManager");
         const {Socket}= require('engine.io');
         const io=require("socket.io")(http); //윤영추가
@@ -24,6 +23,14 @@ const express = require("express"),
     
 
 db.sequelize.sync();
+
+app.use(session({
+	secret:'keyboard cat',
+	resave:false,
+	saveUninitialize:true
+}));
+
+
 
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
@@ -34,6 +41,24 @@ app.use(cors()); //윤영추가
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
+
+app.get("/", homeController.index);
+app.get("/signUp", homeController.join);
+app.get("/job", homeController.job);
+app.get("/friend", homeController.friend);
+app.get("/test", homeController.testEnv);
+app.get("/chat", chatController.getAllfriend);
+
+app.get('/chat/:friendId',);
+app.get("/job-list", scheduleController.getSchedule); 
+app.get("/jobEdit", parttimeController.editJob);
+app.get("/login", homeController.login); 
+app.get("/addSchedule", scheduleController.addSchedule);
+app.post("/addScheduleClear", scheduleController.addScheduleClear);
+app.post("/jobEdit",parttimeController.jobEditClear);
+app.post("/job-list",scheduleController.deleteSchedule);
+app.get("/jobDelete", parttimeController.jobDelete);
+app.post("/jobDelete", parttimeController.jobDeleteClear);
 
 const { engine } = require("express/lib/application");
 const moment=require("moment");
@@ -75,32 +100,6 @@ io.on('connection', (socket,req,res) =>{
 
 
 
-app.use(session({
-	secret:'keyboard cat',
-	resave:false,
-	saveUninitialize:true
-}));
-
-
-
-
-app.get("/", homeController.index);
-app.get("/signUp", homeController.join);
-app.get("/job", homeController.job);
-app.get("/friend", homeController.friend);
-app.get("/test", homeController.testEnv);
-app.get("/chat", chatController.getAllfriend);
-
-app.get('/chat/:friendId',);
-app.get("/job-list", scheduleController.getSchedule); 
-app.get("/jobEdit", parttimeController.editJob);
-app.get("/login", homeController.login); 
-app.get("/addSchedule", scheduleController.addSchedule);
-app.post("/addScheduleClear", scheduleController.addScheduleClear);
-app.post("/jobEdit",parttimeController.jobEditClear);
-app.post("/job-list",scheduleController.deleteSchedule);
-app.get("/jobDelete", parttimeController.jobDelete);
-app.post("/jobDelete", parttimeController.jobDeleteClear);
 
 
 /* 로그인 DB 연동*/

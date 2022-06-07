@@ -142,13 +142,6 @@ exports.getAllParttimes = async (req, res) => {
 };
 
 
-// exports.schedule1 = (req, res) => {
-//     res.render("schedule1");
-// };
-
-// exports.schedule2 = (req, res) => {
-//     res.render("schedule2");
-// };
 
 exports.testEnv = (req, res) => {
 	// let exec = async () => {

@@ -3,8 +3,6 @@ Parttime = db.parttime,
 member = db.member,
 Op = db.Sequelize.Op;
 
-
-
 exports.main = (req, res) => {
     res.render("index", {layout : false});
 };

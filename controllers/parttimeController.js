@@ -1,15 +1,16 @@
-const db = require("../models/index"),
-Parttime = db.parttime,
-Op = db.Sequelize.Op;
-
-exports.getAllParttimes = async (req, res) => {
-    try {
-        data = await Parttime.findAll();
-        console.log(data);
-        res.render("jobinfo");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
+exports.getParttimes = async (res, req, err) => {
+    models.parttime.create({
+        // 여기 내가 수정해놨엉!!
+        ptMemberId : req.session.idx,
+        parttimeName: req.body.parttimeName,
+        weekPay: req.body.weekPay,
+        tax: req.body.tax,
+        color : req.body.color
+    }).then( result => {
+        console.log("데이터 추가 완료");
+        res.render("clear");
+    }).catch( err => {
+        console.log(err)
+        console.log("데이터 추가 실패");
+    })  
 };

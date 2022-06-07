@@ -1,6 +1,3 @@
-
-const member = require("../models/member")
-
 module.exports = (sequelize, Sequelize) => {
     const parttime = sequelize.define("parttime", {
         parttimeId: {
@@ -11,7 +8,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         ptMemberId: {
             type: Sequelize.INTEGER,
-            foreignKey: 'memberId',
+            // foreignKey: 'memberId',
+            // references :{
+            //     model: member,
+            //     key : 'memberId'
+            // },
             allowNull: false,
             primaryKey: true
         },

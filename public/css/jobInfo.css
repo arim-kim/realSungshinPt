@@ -63,7 +63,8 @@ label {
     margin: auto auto;
 }
 .jobName input {
-    background-color: skyblue;
+    border-radius: 7px;
+    background-color:rgb(202, 243, 255);
     width: 50%;
 }
 
@@ -74,6 +75,21 @@ label {
     margin: 0 auto;
 }
 .weekPayBox {
+    height: 25px;
+    width: 100%;
+    padding-top: 45px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.tax {
+    /* background-color:green; */
+    height: 100px;
+    width: 80%;
+
+    margin: 0 auto;
+}
+.taxBox {
     height: 25px;
     width: 100%;
     padding-top: 45px;
@@ -111,7 +127,8 @@ label {
 button {
     cursor: pointer;
     height: 30px;
-    background-color: skyblue;
+    border-radius: 7px;
+    background-color:rgb(202, 243, 255);
 }
 
 .error {

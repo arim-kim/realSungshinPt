@@ -31,15 +31,14 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
 db.member = require("./member.js")(sequelize, Sequelize);
 db.parttime = require("./parttime.js")(sequelize, Sequelize);
 db.schedule = require("./schedule.js")(sequelize, Sequelize);
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-
-
 db.parttime.belongsTo(db.member, {foreignKey : 'memberId', sourceKey : 'ptMemberId'});
 db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId', sourceKey :'memberId'});
+
 module.exports = db;

@@ -1,6 +1,5 @@
-function submit() {
-
-    let job = document.getElementById("jobName").value
+document.getElementById('job-form').onsubmit = function() {
+    let job = this.parttimeName.value
     let check = true;
 
     if(job===""){
@@ -10,12 +9,5 @@ function submit() {
         document.getElementById("jobError").innerHTML=""
     }
 
-    if(check){
-        document.getElementById("jobError").innerHTML=""
-
-        //비동기 처리이벤트
-        setTimeout(function() {
-          alert("아르바이트 정보가 추가되었습니다.")
-        },0);
-    }
+    return check;
 }

@@ -38,7 +38,6 @@
                         console.log(message.value+'가 도착');
                         socket.emit('new_message',message.value);
                         document.querySelector("#message").value = "";
-
                         return false;
                     }
                     
@@ -65,6 +64,7 @@
                             messages.appendChild
                         }
                     })
+
                         socket.on('new_message',data=>{
                         console.log('Server.js says',data)
                         let li=document.createElement("li");
@@ -81,6 +81,7 @@
     <div class="goAddFriend">
         <input type="button" id="btnChat" value="친구추가하기" 
         onclick="homeControllers.friend">
+
     </div>
     <div id="roomList">
         <div id="roomHeader">채팅방 목록</div>

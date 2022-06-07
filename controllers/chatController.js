@@ -1,7 +1,5 @@
 const e = require("cors");
 const res = require("express/lib/response");
-
-//const { friend } = require("../models/index");
 const db = require("../models/index"),
 Chat = db.chat,
 Member=db.member,
@@ -12,39 +10,6 @@ var fid=new Array();
 //크레이트로 방...만들기..
 //파트타임 컨트롤러에 있음.
 //
-
-// const getChat = async(req,res)=>{ 
-//     console.log("겟챗 가지고")
-//     try{
-//         return{
-//         chatNum: req.body.chatNumber,
-//         rId: req.body.receiverId,
-//         sId: req.body.senderId,
-//         msg: req.body.chatContent,
-//         chattime: req.body.chatTime
-//         };
-//     }catch(err){
-//         res.status(500).send({
-//             message:err.messaage
-//         })
-//     }
-// }
-
-// const findById=async(id, result)=>{ //주어진 id값으로 memberId를 찾음
-//     try{
-//         data=await Member.findOne({
-//             attributes : ['memberId'],
-//             where : {
-//                 memberId : id
-//             }
-//         })
-//         return data;
-//     }catch{
-//         console.log(err);
-       
-//     }
-// }
-
 
 const getId= async(name)=>{ //이름으로 id찾기
     try{  
@@ -61,16 +26,6 @@ const getId= async(name)=>{ //이름으로 id찾기
         console.log(err);
     }
 }
-
-//     // console.log(req.param("friendId"));
-//     res.render('chat');
-// }
-
-// exports.post = function(req, res){
-//     console.log(req.body);
-//     res.render('chat');
-// };
-
 
 
 const getName = async(id) => {

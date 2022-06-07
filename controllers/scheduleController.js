@@ -1,31 +1,8 @@
-
-
-const parttime = require("../models/parttime");
-
-const db = require("../dbconnection"),
-      models = require("../models/index"),
+const models = require("../models/index"),
       Sequelize = require('sequelize'),
       Parttime = models.parttime,
       schedule = models.schedule,
       dayFunc = require('date-fns'); 
-
-
-// exports.editSchedule = async (req, res) => {
-//     getPtlist(req.session.idx).then (
-//         ptlist => {     
-//             console.log(ptlist); 
-//             res.render("addSchedule", { pt : ptlist});}
-//     );    
-// };
-
-// // 수정해야함 
-// exports.editScheduleClear = async (req, res) => {
-//     getPtlist(req.session.idx).then (
-//         ptlist => {     
-//             console.log(ptlist); 
-//             res.render("addSchedule", { pt : ptlist});}
-//     );    
-// };
 
 
 const getPtlist = async (id) => {
@@ -48,7 +25,6 @@ const getPtlist = async (id) => {
 exports.getSchedule = async (req, res) => {
     
       var thisDay = new Date(req.query.date);
-    //   var thisDay = parseISO(thisDay);
       console.log(thisDay);
       startOfDay = dayFunc.startOfDay(thisDay);
       endOfDay = dayFunc.endOfDay(thisDay);

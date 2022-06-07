@@ -102,7 +102,6 @@ app.post("/job-list",scheduleController.deleteSchedule);
 app.get("/jobDelete", parttimeController.jobDelete);
 app.post("/jobDelete", parttimeController.jobDeleteClear);
 
-
 /* 로그인 DB 연동*/
 app.post("/login", async (req, res, next)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);    

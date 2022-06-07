@@ -35,6 +35,7 @@ Object.keys(db).forEach(modelName => {
 
 db.member = require("./member.js")(sequelize, Sequelize);
 db.parttime = require("./parttime.js")(sequelize, Sequelize);
+
 db.chat= require('./chat.js')(sequelize, Sequelize);
 db.friends=require('./freind.js')(sequelize,Sequelize);
 
@@ -50,6 +51,7 @@ db.monthly = require("./monthly")(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
 
 db.parttime.belongsTo(db.member, {foreignKey : 'ptMemberId'});
 db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId'});

@@ -1,4 +1,3 @@
-
 const models = require("../models/index"),
 member = models.member,
 parttime = models.parttime;

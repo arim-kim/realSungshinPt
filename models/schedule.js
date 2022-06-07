@@ -1,3 +1,7 @@
+const models = require("../models/index"),
+member = models.member,
+parttime = models.parttime; 
+
 module.exports = (sequelize, Sequelize) => {
     const schedule = sequelize.define("schedule", {
         idSchedule: {

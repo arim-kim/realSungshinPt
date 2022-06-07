@@ -7,8 +7,6 @@ Sequelize = require('sequelize'),
 schedule = db.schedule, 
 Op = db.Sequelize.Op;
 
-
-
 exports.main = (req, res) => {
     res.render("index", {layout : false});
 };

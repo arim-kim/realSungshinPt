@@ -11,7 +11,7 @@ const express = require("express"),
         models = require("./models"),
         session = require('express-session'),
         MysqlStore = require('connect-mysql')(session),
-        mysql = require("mysql")
+        mysql = require("mysql"),
         loginFu = require("./controllers/loginManager");
 
 db.sequelize.sync();
@@ -52,49 +52,16 @@ app.post("/jobDelete", parttimeController.jobDeleteClear);
 app.post("/login", async (req, res, next)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);    
 }); 
-         
 
-app.post('/signUp', (req, res) => {
-        console.log(req.body);
-    
-        models.member.create({
-                memberMail: req.body.memberMail,
-                memberName: req.body.memberName,
-                password: req.body.password
-        })
-        .then( result => {
-                console.log("데이터 추가 완료");
-                res.render("clear");
-        })
-        .catch( err => {
-                console.log(err)
-                console.log("데이터 추가 실패");
-        })
-});
+/* 회원가입 DB 연동 */
+app.post('/signUp', async (req, res, err) => {
+        memberController.getMembers(res, req);
+})
 
-
-app.post('/job', (req, res) => {
-        console.log(req.body);
-
-        models.parttime.create({
-                // 여기 내가 수정해놨엉!!
-                ptMemberId : req.session.idx,
-                parttimeName: req.body.parttimeName,
-                weekPay: req.body.weekPay,
-                tax: req.body.tax,
-                color : req.body.color
-        })
-        .then( result => {
-                console.log("데이터 추가 완료");
-                res.render("clear");
-        })
-        .catch( err => {
-                console.log(err)
-                console.log("데이터 추가 실패");
-        })
-});
-
-
+/* 아르바이트 DB 연동 */
+app.post("/job", async(req, res, err) => {
+        parttimeController.getParttimes(res, req, err);
+})
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>  
 <html lang="ko"> 
+
 <head> 
     <title>아르바이트 정보</title> 
     <!-- 브라우저 기본 스타일 초기화 -->
@@ -9,19 +10,12 @@
 </head>
 
 <body>
-
-    <!-- <header>
-        <div class = "title">
-            <p> 아르바이트 추가 </p>
-        </div>
-    </header>  -->
-
         <div class = "wrapper">
-                <form name = "job-form" action = "/job" method = "post">
+                <form id = "job-form" action = "/job" method = "post">
                         <div class = "jobName">
                                 <div class = "jobNameBox">
                                         <label>아르바이트 이름</label>
-                                        <input name="parttimeName" type="text" placeholder="아르바이트 이름을 입력해 주세요.">
+                                        <input name="parttimeName" id = "parttimeName" type="text" placeholder="아르바이트 이름을 입력해 주세요.">
                                 </div>
                                 <div id="jobError" class="error"></div>    
                         </div>
@@ -65,7 +59,8 @@
                             </div>
     
                             <div class = "edit">
-                                <input type = "submit" id="editButton" onclick="submit()">완료</button>
+                                <button id="editButton">완료</button>
+                                <script src="./js/jobInfo.js"></script>
                         </div>
                 </form>
     </div>

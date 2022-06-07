@@ -1,17 +1,17 @@
-const db = require("../dbconnection"),
-getScheduleParams = body => {
-    return {
-        wage : body.wage,
-        startTime : body.startTime,
-        endTime : body.endTime,
-        isCovered : body.isCovered,
-        rest : body.rest,
-        overPay : body.overPay,
-        night : body.night,
-        holiday : body.holiday,
-        extra : body.extra
-    };
-}
+// const db = require("../dbconnection"),
+// getScheduleParams = body => {
+//     return {
+//         wage : body.wage,
+//         startTime : body.startTime,
+//         endTime : body.endTime,
+//         isCovered : body.isCovered,
+//         rest : body.rest,
+//         overPay : body.overPay,
+//         night : body.night,
+//         holiday : body.holiday,
+//         extra : body.extra
+//     };
+// }
 /*getScdl1Params = body => {
     return {
         wage : body.wage,

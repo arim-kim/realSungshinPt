@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chetting</title>
+    <title>chatting</title>
     <link rel="stylesheet" href="./css/chat.css">
-    <script src="js/chat.js"></script>
 </head>
 
 <body>
@@ -16,53 +15,96 @@
         </div>
 
         <div class="display-container">
-            <ul class="chatting-list">
-
-                <li class="sent">
-                   
-                </li>
-
-                <li class="receive">
-                 
-                </li>
+            <ul id="messages"> <div class="time" id="chatTime">06/06 13:01</div>
             </ul>
+           
         </div>
+       
+        <div class="input-container">        
+                
+                <div id="chat-list"></div> 
+                <script src="/socket.io/socket.io.js"></script>
 
-        <div class="input-container">
-            <span>
-            <form action="/chat" method="post">
-            <input type="text" class="chatting-input">
-            <button class="send-button">전송</button>
-            </form>
+                <form onsubmit="return sendMessage()" >
+                    <input name ='messageContent'id="message" placeholder="Enter message">
+                    <input type="submit" value="send">
+                </form>            
+                
+                <script>
+                    const socket= io('http://localhost:80');
+                    function sendMessage(){
+                        let message = document.querySelector("#message");
+
+                        console.log(message.value+'가 도착');
+                        socket.emit('new_message',message.value);
+                        document.querySelector("#message").value = "";
+
+                        return false;
+                    }
+                    
+                    socket.on('new_message',data=>{
+                        console.log('Server says',data);
+                    });
+                 
+                    function setReceiver(){
+                       
+                    }
+
+
+                  
+                
+                   fetch("http://localhost:80/get_messages") 
+                    .then(res=>res.join())
+                    .then(data=>{
+                        const messages=document.querySelector('#messages')
+
+                        for(let i=0; i< data.length; i++){
+                            let li=document.createElement('li')
+                            li.id=data[i].id
+                            li.innerHTML=data[i].message
+                            messages.appendChild
+                        }
+                    })
+                        socket.on('new_message',data=>{
+                        console.log('Server.js says',data)
+                        let li=document.createElement("li");
+                        li.innerHTML=data;
+                        const messages=document.querySelector("#messages");
+                        messages.appendChild(li)
+                    });
+                
+                </script>   
             </span>
         </div>
         
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" 
-    integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew==" 
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer">
-    </script> 
-    <script src="js/chat.js"></script>
-
+    <div class="goAddFriend">
+        <input type="button" id="btnChat" value="친구추가하기" 
+        onclick="homeControllers.friend">
+    </div>
     <div id="roomList">
         <div id="roomHeader">채팅방 목록</div>
-        <div id="roomSelect">
-            
-            <div class="roomEI active" data-id="1"> friend1</div>
-            <div class="roomEI" data-id="2">friend2</div>
-            <div class="roomEI" data-id="3">ffriend3</div>
-            <div class="roomEI" data-id="4">friend4</div>
+        <div id="roomSelect" >
+            <%  FFFF.forEach ( s => {   %>
+                <button class ="roomEI" id="freindId" onclick="setReceiver();">
+                <%= s.memberName %>
+                 </button>
+            <% }); %>
+            <select name="" id=""></select>
         </div>
     </div>
 
     <div id="calenderList">
         <div id="calenderHeader">동료 캘랜더 목록</div>
         <div id="calenderSelect">
-            <div class="CalenderEI active" data-id="1">friend1's Calnender</div>
-            <div class="CalenderEI" data-id="2">friend2's Calnender</div>
+            <% FFFF.forEach(e=>{ %>
+                <button class="CalenderEI" onclick="">
+                    <%=e.memberName%> 's Calnender%>
+                </button>
+            <%});%> 
+            <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
             <div class="CalenderEI" data-id="3">friend3's Calnender</div>
-            <div class="CalenderEI" data-id="4">friend4's Calnender</div>
+            <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
         </div>
     </div>
 

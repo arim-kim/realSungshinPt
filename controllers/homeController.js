@@ -19,11 +19,11 @@ exports.friend = (req, res) => {
 };
 
 
-
+/*
 exports.chat=(req,res)=>{
     res.render("chat");
 }
-
+*/
 
 
 exports.index = async (req, res) => {

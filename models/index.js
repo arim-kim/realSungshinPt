@@ -1,3 +1,5 @@
+//모델의 대문
+
 'use strict';
 
 const fs = require('fs');
@@ -33,6 +35,15 @@ Object.keys(db).forEach(modelName => {
 
 db.member = require("./member.js")(sequelize, Sequelize);
 db.parttime = require("./parttime.js")(sequelize, Sequelize);
+db.chat= require('./chat.js')(sequelize, Sequelize);
+db.friends=require('./freind.js')(sequelize,Sequelize);
+
+
+// db.friends.belongsTo(db.member, {forienKey : ( 'myId' ,'yourId')}); 
+// db.member.hasMany(db.friends, {forienKey : ('myId' ,'yourId')});
+
+
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

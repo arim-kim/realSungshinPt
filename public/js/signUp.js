@@ -1,9 +1,9 @@
-function signUpCheck() {
-    
-    let email = document.getElementById("email").value
-    let name = document.getElementById("name").value
-    let password = document.getElementById("password").value
-    let passwordCheck = document.getElementById("passwordCheck").value
+document.getElementById('signUp-form').onsubmit = function() {
+
+    let email = this.email.value
+    let name = this.name.value
+    let password = this.password.value
+    let passwordCheck = this.passwordCheck.value
     let check = true;
     
     //이메일 확인
@@ -53,17 +53,5 @@ function signUpCheck() {
         //document.getElementById("passwordCheckError").innerHTML=""
     }
 
-    if(check){
-        document.getElementById("emailError").innerHTML=""
-        document.getElementById("nameError").innerHTML=""
-        document.getElementById("passwordError").innerHTML=""
-        document.getElementById("passwordCheckError").innerHTML=""
-        
-        //비동기 처리이벤트
-        setTimeout(function() {
-          alert("가입이 완료되었습니다.")
-        },0);
-    }
+    return check;
 }
-
-

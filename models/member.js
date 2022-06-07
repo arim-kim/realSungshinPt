@@ -17,10 +17,14 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING,
             allowNull: false
+            // set(value) {
+            //     this.setDataValue('password', hash(value));
+            // }
         }
     },
     {
         timestamps: false
     });
+
     return member;
 }

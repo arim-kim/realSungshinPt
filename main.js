@@ -15,6 +15,7 @@ const express = require("express"),
         MysqlStore = require('connect-mysql')(session),
         mysql = require("mysql"),
         http=require('http').createServer(app), //윤영추가
+
         loginFu = require("./controllers/loginManager");
         const {Socket}= require('engine.io');
         const io=require("socket.io")(http); //윤영추가
@@ -85,68 +86,37 @@ app.use(session({
 
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
-app.get("/signUP", memberController.getAllMembers);
 app.get("/job", homeController.job);
-app.get("/job", parttimeController.getAllParttimes);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
 app.get("/chat", chatController.getAllfriend);
-// app.get('/chat/friendId', chatController.findById);
 
-
-//app.get("/schedule1", homeController.schedule1);
-//app.get("/schedule2", homeController.schedule2);
-app.get("/addSchedule", scheduleController.addSchedule);
-app.get("/addScheduleClear", scheduleController.addScheduleClear);
-app.get("/job-list", parttimeController.getOneJob); 
 app.get('/chat/:friendId',);
+app.get("/job-list", scheduleController.getSchedule); 
+app.get("/jobEdit", parttimeController.editJob);
+app.get("/login", homeController.login); 
+app.get("/addSchedule", scheduleController.addSchedule);
+app.post("/addScheduleClear", scheduleController.addScheduleClear);
+app.post("/jobEdit",parttimeController.jobEditClear);
+app.post("/job-list",scheduleController.deleteSchedule);
+app.get("/jobDelete", parttimeController.jobDelete);
+app.post("/jobDelete", parttimeController.jobDeleteClear);
+
+
 /* 로그인 DB 연동*/
-app.post("/", async (req, res)=> {
-        loginFu.login_f(req.body.mail,req.body.pw,res,req);     
+app.post("/login", async (req, res, next)=> {
+        loginFu.login_f(req.body.mail,req.body.pw,res,req);    
 }); 
-       
 
+/* 회원가입 DB 연동 */
+app.post('/signUp', async (req, res, err) => {
+        memberController.getMembers(res, req);
+})
 
-app.post('/signUp', (req, res) => {
-        console.log(req.body);
-    
-        models.member.create({
-                memberMail: req.body.memberMail,
-                memberName: req.body.memberName,
-                password: req.body.password
-        })
-        .then( result => {
-                console.log("데이터 추가 완료");
-                res.render("clear");
-        })
-        .catch( err => {
-                console.log(err)
-                console.log("데이터 추가 실패");
-        })
-});
-
-
-
-app.post('/job', (req, res) => {
-        console.log(req.body);
-    
-        models.parttime.create({
-                ptMemberId : 51,
-                parttimeName: req.body.parttimeName,
-                weekPay: req.body.weekPay,
-                tax: req.body.tax,
-                color : req.body.color
-        })
-        .then( result => {
-                console.log("데이터 추가 완료");
-                res.render("clear");
-        })
-        .catch( err => {
-                console.log(err)
-                console.log("데이터 추가 실패");
-        })
-});
-
+/* 아르바이트 DB 연동 */
+app.post("/job", async(req, res, err) => {
+        parttimeController.getParttimes(res, req, err);
+})
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

@@ -8,7 +8,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         ptMemberId: {
             type: Sequelize.INTEGER,
-            foreignKey: 'memberId',
+            // foreignKey: 'memberId',
+            // references :{
+            //     model: member,
+            //     key : 'memberId'
+            // },
             allowNull: false,
             primaryKey: true
         },
@@ -36,5 +40,6 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false,
         tableName: 'parttime'
     });
+
     return parttime;
 }

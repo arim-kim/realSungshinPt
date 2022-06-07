@@ -1,0 +1,34 @@
+<!DOCTYPE html>  
+<html lang="ko"> 
+<head> 
+    <title>아르바이트 정보</title> 
+    <!-- 브라우저 기본 스타일 초기화 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="./css/jobInfo.css">
+    <script src="./js/jobInfo.js"></script>
+</head>
+
+<body>
+        <div class = "wrapper">
+                <form name = "jobDelete" action = "/jobDelete" method = "post">
+                        <div class = "jobName">
+                                <div class = "jobNameBox">
+                                        <label>아르바이트 이름</label>
+                                        <select name="parttimeId" style="width: 100%;">
+                                            <option value="" disabled selected>선택</option>
+                                            <% for (i = 0; i < pt.length; i++) { %>
+                                                <option value="<%=pt[i].parttimeId%>"><%= pt[i].parttimeName %></option>
+                                            <% } %>
+                                        </select>
+                                </div>
+                                <div id="jobError" class="error"></div>    
+                        </div>
+                            <div class = "edit">
+                                <input type = "submit" id="editButton" onclick="submit()">완료</button>
+                        </div>
+                </form>
+    </div>
+
+</body>
+</html>
+                                   

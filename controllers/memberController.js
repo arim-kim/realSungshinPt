@@ -6,7 +6,7 @@ exports.getAllMembers = async (req, res) => {
     try {
         data = await Member.findAll();
         console.log(data);
-        res.render("singUp");
+        res.render("signUp");
     } catch (err) {
         res.status(500).send({
             message: err.message

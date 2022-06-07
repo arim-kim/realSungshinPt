@@ -1,3 +1,6 @@
+
+const member = require("../models/member")
+
 module.exports = (sequelize, Sequelize) => {
     const parttime = sequelize.define("parttime", {
         parttimeId: {
@@ -36,5 +39,6 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false,
         tableName: 'parttime'
     });
+
     return parttime;
 }

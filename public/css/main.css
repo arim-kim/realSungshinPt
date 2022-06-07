@@ -87,58 +87,17 @@
   /* 일정 추가, 채팅 */
   
   nav {
-  /* background-color: rgb(99, 172, 236); */
+  background-color: rgb(99, 172, 236);
   height: 80px;
-  width: 100%;
-  
-  }
-  
-  nav .goChat  {
-  
-  /* background-color: blueviolet; */
-  width: 220px;
-  height: 100%;  
+  width: 60%;
   float: left;
-  margin-left: 100px;
-  
-  }
-  
-  nav .goAddSchedule {
-  
-  /* background-color: rgb(170, 52, 170); */
-  
-  width: 220px;
-  
-  height: 100%;  
-  
-  float: left;
-  
+
+
   }
 
-  nav .goEditPt {
-
-    /* background-color: beige; */
+  #btnSchedule, #btnChat, #btngoAddPt, #btnEditPt, #btnDeletePt{
   
-    width: 220px;
-    
-    height: 100%;  
-
-    float: left;
-
- }
-
- nav .PTlist {
-  background-color: red;
-  bottom: 0;
-  float: left;
-  height: 40%;
-  width: 50%;
-  vertical-align: middle;
-}
-
-  #btnSchedule, #btnChat, #btnEditPt {
-  
-  width: 150px;
+  width: 100px;
   
   height: 60px;
   
@@ -146,10 +105,15 @@
   
   margin-top: 10px;
   
-  display: inline-block;
-  
+  float : left; 
   }
   
+.pattimeList {
+height: 80px;
+background-color: aliceblue;
+display: flex;
+
+  }
 .button {
   border: 0;
   outline: 0;

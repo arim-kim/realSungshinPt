@@ -1,6 +1,10 @@
 const db = require("../models/index"),
 Parttime = db.parttime,
 member = db.member,
+daily = db.daily, 
+monthly = db.monthly,
+Sequelize = require('sequelize'),
+schedule = db.schedule, 
 Op = db.Sequelize.Op;
 
 exports.main = (req, res) => {
@@ -22,6 +26,7 @@ exports.login = async (req, res) => {
     res.render("login"); 
 }
 
+
 const getPtlist = async (id) => {
     try {
         const ptlist = await  Parttime.findAll({
@@ -38,6 +43,57 @@ const getPtlist = async (id) => {
 
 };
 
+const getMonthPay = async (id) => {
+    try {
+        const monthPay = await monthly.findAll({
+                where : { monthlyMemId : id}
+        })
+        return monthPay;
+        console.log(monthPay);
+
+    }catch (err) {
+        return err; 
+    }
+}
+
+const getAllSchedule = async (id) => {
+    try {
+        let today = new Date(); 
+        let year = today.getFullYear(); 
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+        if(month < 10) {
+            month = "0"+month;
+        }
+        if(day < 10) {
+            day = "0"+day;
+        }
+        let thisDay = year + "-" + month + "-" + day; 
+        // console.log(thisDay);
+        const scheduleList = await  schedule.findAll({
+            include : [{
+                model : Parttime, 
+                attributes : ['parttimeName' , 'parttimeId', 'color']
+            }
+            ], 
+                where: {
+                        scdlMemId : id,
+                        $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),thisDay)
+                },
+                order: [
+                    ['startTime', 'ASC'],
+                ] 
+
+        })
+
+        return scheduleList; 
+
+    }catch (err) {
+        return err; 
+    }
+
+};
+
 exports.index = async (req, res) => {
     if(!req.session.login) {
         req.session.login = false
@@ -45,14 +101,23 @@ exports.index = async (req, res) => {
         res.render("login");
     }
 
+
     else {
         try{
-            getPtlist(req.session.idx).then (
-                ptlist => {     
-                    console.log(ptlist); 
-                    res.render("index", {now_user :req.session.idx, data : ptlist});}
-            ); 
-        }catch (err) {
+            getAllSchedule(req.session.idx).then (
+                scheduleList => {
+                    getPtlist(req.session.idx).then (
+                        ptlist => {     
+                            getMonthPay(req.session.idx).then (
+                                monthlyPay => {
+                                    console.log(monthlyPay);
+                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList, monthlyPay : monthlyPay});
+                                    })
+                                }
+                            )
+                        }
+                    )
+                } catch (err) {
             res.status(500).send({
                 message: err.message
             });

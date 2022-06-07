@@ -42,7 +42,8 @@ exports.login_f = async (member_mail,member_password,res,req) => {
                 getPtlist(req.session.idx).then (
                     ptlist => {     
                         console.log(ptlist); 
-                        res.render("index", {now_user :req.session.idx, data : ptlist});}
+                        res.redirect("/");}
+                        // res.render("index", {now_user :req.session.idx, data : ptlist});}
                 ); 
                 // signUp.ejs 조금 수정했어요 session 확인하려구 
                 console.log("로그인 성공"); 

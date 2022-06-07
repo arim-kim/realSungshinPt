@@ -70,7 +70,8 @@ label {
     margin: auto auto;
 }
 .friendEmail input {
-    background-color: skyblue;
+    border-radius: 7px;
+    background-color:rgb(202, 243, 255);
     width: 60%;
 }
 
@@ -88,7 +89,8 @@ label {
     cursor: pointer;
 }
 button {
-    background-color: skyblue;
+    border-radius: 7px;
+    background-color:rgb(202, 243, 255);
     cursor: pointer;
     height: 30px;
 }

@@ -44,8 +44,29 @@ db.friends=require('./freind.js')(sequelize,Sequelize);
 
 
 
+db.schedule = require("./schedule.js")(sequelize, Sequelize);
+db.daily = require("./daily.js")(sequelize, Sequelize);
+db.monthly = require("./monthly")(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.parttime.belongsTo(db.member, {foreignKey : 'ptMemberId'});
+db.member.hasMany(db.parttime, {foreignKey : 'ptMemberId'});
+
+db.parttime.hasMany(db.schedule, {foreignKey : 'scdlPtId'});
+db.schedule.belongsTo(db.parttime, {foreignKey : 'scdlPtId'});
+
+db.daily.belongsTo(db.parttime,{foreignKey : 'dailyPtId'}); 
+db.parttime.hasMany(db.daily,{foreignKey : 'dailyPtId'} );
+
+db.daily.belongsTo(db.member,  {foreignKey : 'dailyMemId'}); 
+db.member.hasMany(db.daily,  {foreignKey : 'dailyMemId'});
+
+db.monthly.belongsTo(db.parttime,{foreignKey : 'monthlyPtId'}); 
+db.parttime.hasMany(db.monthly,{foreignKey : 'monthlyPtId'} );
+
+db.monthly.belongsTo(db.member,  {foreignKey : 'monthlyMemId'}); 
+db.member.hasMany(db.monthly,  {foreignKey : 'monthlyMemId'});
 
 module.exports = db;

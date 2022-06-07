@@ -1,4 +1,4 @@
-const socket=io();
+/*const socket=io();
 
 const nickname=document.querySelector("#nickname")
 const chatList=document.querySelector(".chatting-list")
@@ -51,4 +51,4 @@ function LiModel(name, msg, time){
     chatList.appendChild(li);
     }
 }
-//Li모델로 뜨게하는 형식
+//Li모델로 뜨게하는 형식*/

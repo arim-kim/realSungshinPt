@@ -1,8 +1,11 @@
 const db = require("../models/index"),
 Parttime = db.parttime,
 member = db.member,
+daily = db.daily, 
+monthly = db.monthly,
+Sequelize = require('sequelize'),
+schedule = db.schedule, 
 Op = db.Sequelize.Op;
-
 
 exports.main = (req, res) => {
     res.render("index", {layout : false});
@@ -12,31 +15,118 @@ exports.join = (req, res) => {
     res.render("signUp");
 };
 exports.job = (req, res) => {
-    res.render("jobInfo");
+    res.render("jobinfo");
 };
+
 exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
+
+exports.login = async (req, res) => {
+    res.render("login"); 
+}
+
+
+const getPtlist = async (id) => {
+    try {
+        const ptlist = await  Parttime.findAll({
+            attributes : ['parttimeName' , 'color'],
+            where : {
+                ptMemberId : id
+            }
+        })
+        return ptlist; 
+
+    }catch (err) {
+        return err; 
+    }
+
+};
+
+const getMonthPay = async (id) => {
+    try {
+        const monthPay = await monthly.findAll({
+                where : { monthlyMemId : id}
+        })
+        return monthPay;
+        console.log(monthPay);
+
+    }catch (err) {
+        return err; 
+    }
+}
+
+const getAllSchedule = async (id) => {
+    try {
+        let today = new Date(); 
+        let year = today.getFullYear(); 
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+        if(month < 10) {
+            month = "0"+month;
+        }
+        if(day < 10) {
+            day = "0"+day;
+        }
+        let thisDay = year + "-" + month + "-" + day; 
+        // console.log(thisDay);
+        const scheduleList = await  schedule.findAll({
+            include : [{
+                model : Parttime, 
+                attributes : ['parttimeName' , 'parttimeId', 'color']
+            }
+            ], 
+                where: {
+                        scdlMemId : id,
+                        $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),thisDay)
+                },
+                order: [
+                    ['startTime', 'ASC'],
+                ] 
+
+        })
+
+        return scheduleList; 
+
+    }catch (err) {
+        return err; 
+    }
+
+};
+
 exports.index = async (req, res) => {
-    
     if(!req.session.login) {
         req.session.login = false
         req.session.idx = -1
+        res.render("login");
     }
-        try{
-            data = await member.findAll();
-            console.log(data[0].dataValues); 
-            res.render("index", {data : data[0].dataValues});
 
-        }catch (err) {
+
+    else {
+        try{
+            getAllSchedule(req.session.idx).then (
+                scheduleList => {
+                    getPtlist(req.session.idx).then (
+                        ptlist => {     
+                            getMonthPay(req.session.idx).then (
+                                monthlyPay => {
+                                    console.log(monthlyPay);
+                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList, monthlyPay : monthlyPay});
+                                    })
+                                }
+                            )
+                        }
+                    )
+                } catch (err) {
             res.status(500).send({
                 message: err.message
+
             });
         }
-
-
+    }
 };
+
 
 
 exports.getAllParttimes = async (req, res) => {
@@ -52,26 +142,13 @@ exports.getAllParttimes = async (req, res) => {
 };
 
 
-exports.schedule1 = (req, res) => {
-    res.render("schedule1");
-};
+// exports.schedule1 = (req, res) => {
+//     res.render("schedule1");
+// };
 
-exports.schedule2 = (req, res) => {
-    res.render("schedule2");
-};
-
-require('dotenv').config();
-const mysql = require('mysql2/promise');
-
-// const db = mysql.createPool({
-// 	host: process.env.DB_HOST,
-// 	user: process.env.DB_USER,
-// 	password: process.env.DB_PW,
-// 	port: process.env.DB_PORT,
-// 	database: process.env.DB_NAME,
-// 	waitForConnections: true,
-// 	insecureAuth: true
-// });
+// exports.schedule2 = (req, res) => {
+//     res.render("schedule2");
+// };
 
 exports.testEnv = (req, res) => {
 	// let exec = async () => {

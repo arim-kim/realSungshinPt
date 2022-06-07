@@ -1,85 +1,102 @@
-//const db = require("../dbconnection"),
-const con = require("../dbconnection");
-const db = require("../models/index"),
-Schedule = db.schedule,
-Op = db.Sequelize.Op;
-/*
-getScheduleParams = body => {
-    return {
-        scdlMemId : body.scdlMemId,
-        scdlPtId : body.scdlPtId,
-        wage : body.wage,
-        startTime : body.startTime,
-        endTime : body.endTime,
-        isCovered : body.isCovered,
-        rest : body.rest,
-        overPay : body.overPay,
-        night : body.night,
-        holiday : body.holiday,
-        extra : body.extra
-    };
-}
-*/
+const models = require("../models/index"),
+      Sequelize = require('sequelize'),
+      Parttime = models.parttime,
+      schedule = models.schedule,
+      dayFunc = require('date-fns'); 
 
-module.exports = {
-    // 아르바이트 테이블에서 정보 받아와야하는데 이렇게하려면 models/parttime.js도 추가해야하는지 찾아보기
-    // 일단 raw query 사용햠
-    addSchedule : async (req, res) => {
-        try {
-            let sql = 'SELECT * FROM parttime where ptMemberId=49';
-            let [rows, fields] = await con.query(sql);
-            res.render("addSchedule", { pt: rows });
-        } catch (err) {
-            res.status(500).send({
-                message: err.message
-            });
-        }
-    },
-    // sequelize 사용
-    addScheduleClear : async (req, res) => {
-        try {
-            //let scdl = getScheduleParams(req.body);
-            //const schedule
-            await Schedule.create({
-                scdlMemId: req.body.scdlMemId,
-                scdlPtId: req.body.scdlPtId,
-                isCovered: req.body.isCovered,
-                startTime: req.body.startTime,
-                endTime: req.body.endTime,
-                holiday: req.body.holiday,
-                overPay: req.body.overPay,
-                rest: req.body.rest,
-                night: req.body.night,
-                extra: req.body.extra,
-                wage: req.body.wage
-            });
-            res.render("submit");
-        } catch (err) {
-            res.status(500).send({
-                message: err.message
-            });
-        }
+
+const getPtlist = async (id) => {
+    try {
+        const ptlist = await Parttime.findAll({
+            attributes : ['parttimeName' , 'parttimeId'],
+            where : {
+                ptMemberId : id
+            }
+        })
+        console.log(ptlist); 
+        return ptlist; 
+
+    }catch (err) {
+        return err; 
     }
 
-    /*
-    addSchedule : async (req, res) => {
-        let sql = 'SELECT * FROM parttime where ptMemberId=51';
-        let [rows, fields] = await db.query(sql);
-        //console.log(rows);
-        res.render("addSchedule", { pt: rows });
-    },
-    addScheduleClear : async (req, res) => {
-        try {
-            let scdl = getScheduleParams(req.body);
-            let sql = "INSERT INTO schedule(scdlMemId, scdlPtId, isCovered, startTime, endTime, holiday, overPay, rest, night, extra, wage) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            let params = [51, 8, scdl.isCovered, scdl.startTime, scdl.endTime, scdl.holiday, scdl.overPay, scdl.rest, scdl.night, scdl.extra, scdl.wage];
-            await db.query(sql, params);
-            res.render("submit");
-        } catch (err) {
-            res.status(500).send({
-                message: err.message
-            });
-        }
-    }
-    */
 };
+
+exports.getSchedule = async (req, res) => {
+    
+      var thisDay = new Date(req.query.date);
+      console.log(thisDay);
+      startOfDay = dayFunc.startOfDay(thisDay);
+      endOfDay = dayFunc.endOfDay(thisDay);
+
+    try {  data = await schedule.findAll( {
+
+        include : [{
+            model : Parttime, 
+            attributes : ['parttimeName' , 'parttimeId', 'color']
+        }
+        ], 
+            where: {
+                    scdlMemId : req.session.idx,
+                    $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),req.query.date)
+            }                
+        });
+        
+        res.render("job_list", {data : data})
+        console.log(data); 
+
+    }catch (err) {
+        console.log("해당 날짜에는 일정이 없습니다. 추가하세요");  
+        res.status(500).send({
+            message: err.message
+        });
+    }
+}
+
+exports.addSchedule = async (req, res) => {
+    getPtlist(req.session.idx).then (
+        ptlist => {     
+            console.log(ptlist); 
+            res.render("addSchedule", { pt : ptlist});}
+    );    
+}
+
+exports.addScheduleClear = async (req, res) => {
+    try {
+        await schedule.create({
+            scdlMemId: req.session.idx,
+            scdlPtId: req.body.scdlPtId,
+            isCovered: req.body.isCovered,
+            startTime: req.body.startTime,
+            endTime: req.body.endTime,
+            holiday: req.body.holiday,
+            overPay: req.body.overPay,
+            rest: req.body.rest,
+            night: req.body.night,
+            extra: req.body.extra,
+            wage: req.body.wage
+        });
+
+        res.render("clear");
+
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+}
+
+
+exports.deleteSchedule= async (req, res) => {
+    try {
+        console.log(req.body.idSchedule);
+        await schedule.destroy({
+            where : { idSchedule: req.body.idSchedule}
+        });
+        res.render("clear");
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+}

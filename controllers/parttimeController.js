@@ -17,6 +17,7 @@ exports.getParttimes = async (res, req, err) => {
         console.log(err)
         console.log("데이터 추가 실패");
     })  
+}
 
 const getPtlist = async (id) => {
     try {
@@ -104,3 +105,4 @@ exports.jobDeleteClear = async (req, res) => {
         });
     }
 }
+

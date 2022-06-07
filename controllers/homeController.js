@@ -1,6 +1,8 @@
 const db = require("../models/index"),
 Parttime = db.parttime,
 member = db.member,
+daily = db.daily, 
+monthly = db.monthly,
 Sequelize = require('sequelize'),
 schedule = db.schedule, 
 Op = db.Sequelize.Op;
@@ -43,6 +45,19 @@ const getPtlist = async (id) => {
 
 };
 
+const getMonthPay = async (id) => {
+    try {
+        const monthPay = await monthly.findAll({
+                where : { monthlyMemId : id}
+        })
+        return monthPay;
+        console.log(monthPay);
+
+    }catch (err) {
+        return err; 
+    }
+}
+
 const getAllSchedule = async (id) => {
     try {
         let today = new Date(); 
@@ -56,7 +71,7 @@ const getAllSchedule = async (id) => {
             day = "0"+day;
         }
         let thisDay = year + "-" + month + "-" + day; 
-        console.log(thisDay);
+        // console.log(thisDay);
         const scheduleList = await  schedule.findAll({
             include : [{
                 model : Parttime, 
@@ -87,19 +102,24 @@ exports.index = async (req, res) => {
         req.session.idx = -1
         res.render("login");
     }
+
+
     else {
         try{
             getAllSchedule(req.session.idx).then (
                 scheduleList => {
                     getPtlist(req.session.idx).then (
                         ptlist => {     
-                            console.log(scheduleList);
-                            res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList});}
-                    ); 
-                }
-
-            )
-        }catch (err) {
+                            getMonthPay(req.session.idx).then (
+                                monthlyPay => {
+                                    console.log(monthlyPay);
+                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList, monthlyPay : monthlyPay});
+                                    })
+                                }
+                            )
+                        }
+                    )
+                } catch (err) {
             res.status(500).send({
                 message: err.message
             });

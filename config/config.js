@@ -5,7 +5,8 @@ module.exports = {
     "password": "password",
     "database": "SSPT",
     "host": "34.64.173.255",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone" : "+09:00"
     
   },
   "test": {
@@ -13,7 +14,8 @@ module.exports = {
     "password": "password",
     "database": "SSPT",
     "host": "34.64.173.255",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone" : "+09:00"
 
   },
   "production": {
@@ -21,6 +23,7 @@ module.exports = {
     "password": "password",
     "database": "SSPT",
     "host": "34.64.173.255",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone" : "+09:00"
   }
 }

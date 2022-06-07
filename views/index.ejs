@@ -169,11 +169,11 @@
 			  
 		}
 
-		var tdId = "01"; //1일
-        var str = "오늘의 일정";
-		
-		document.getElementById(tdId).innerHTML = str;
-	}
+		var i ; 
+		var str = "오늘의 일정"; 
+
+
+}
 
 </script>
 
@@ -217,7 +217,8 @@
             <p>성신한 알바</p>
         </div>
     </header>
-	
+
+
     <nav>
         <div class="goChat">
             <input type="button" id="btnChat" value="채팅">
@@ -266,6 +267,10 @@
 			<td>
 			<a href="javascript:thisMonth()">오늘</a>
 			</td>
+			<% for (var i = 0;i < monthlyPay.length;i++){ %>
+				<p> 총 월 급 :  <%= monthlyPay[i].monthlyTotal%></p>
+			<% } %>
+		
 		</tr>
 		<tr>
 			<td width="14%"> 월 </td>
@@ -277,6 +282,7 @@
 			<td width="14%"><font color="#ed5353">일</font></td>
 		</tr>
 	</table>
+	
 </body>
 </html>
 

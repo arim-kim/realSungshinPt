@@ -15,14 +15,14 @@
         </div>
 
         <div class="display-container">
-            <% for(var i = 0; i < AllChat.length; i++) {%>
-                <% if(AllChat[i].senderId == nowUser) { %>
-                    <div class = "sendMessage" style = "color : white"> <%=AllChat[i].chatContent%> </div> 
+            <% AllChat.forEach(e=> { %>
+                <% if(e.senderId == nowUser) { %>
+                    <div class = "sendMessage" style = "color : white"> <%=e.chatContent%> </div> 
                  <% } %>
-                 <% if(AllChat[i].senderId == 50) { %>
-                     <div class = "receiveMessage" style = "color : black"> <%=AllChat[i].chatContent%> </div> 
+                 <% if(e.senderId == friendId) { %>
+                     <div class = "receiveMessage" style = "color : black"> <%=e.chatContent%> </div> 
                  <% } %>
-             <% } %>
+            <%});%> 
             <ul id="messages"> <div class="time" id="chatTime">06/06 13:01</div>
             </ul>
         </div>
@@ -55,8 +55,7 @@
                     
                     socket.on('new_message',data=>{
                         console.log('Server says',data);
-                        // var p=document.createElement("p");
-                        // p.innerHTML=data.message;
+                        
 
                     });
                  
@@ -86,7 +85,6 @@
                     });
                 
                 </script>   
-            </span>
         </div>
         
     </div>
@@ -95,15 +93,6 @@
     <div id="calenderList">
         <div id="calenderHeader">동료 캘랜더 목록</div>
         <div id="calenderSelect">
-            <!-- <% FFFF.forEach(e=>{ %>
-                <button class="CalenderEI" onclick="">
-                    <%=e.memberName%> 's Calnender%>
-                </button>
-            <%});%>  -->
-            <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
-            <div class="CalenderEI" data-id="3">friend3's Calnender</div>
-            <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
-
         </div>
     </div>
 

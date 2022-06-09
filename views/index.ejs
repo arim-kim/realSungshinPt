@@ -212,7 +212,7 @@
     <nav>
 		<div class = "navBox">
 			<div class="goChat">
-				<input type="button" id="btnChat" value="채팅" onclick="location.href='/chat';">
+				<input type="button" id="btnChat" value="채팅" onclick="location.href='/friendlist';">
 			</div>
 			<div class="goAddSchedule">
 
@@ -252,14 +252,6 @@
 			<% } %>
 		</div>
 
-		<div class = "monthPay">
-			<% var sum = 0%>
-			<% for (var i = 0;i < monthlyPay.length;i++){ %>
-				<p> 월급 :  <%= monthlyPay[i].monthlyTotal%></p>
-				<% sum = sum + monthlyPay[i].monthlyTotal%>
-			<% } %>
-			<p style = "padding-top: 20px;"> 총 월급 :  <%= sum %></p>
-		</div>
     </side>
 	
 	<table align="center" id="calendar">

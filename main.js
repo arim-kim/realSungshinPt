@@ -8,6 +8,9 @@ const express = require("express"),
         parttimeController = require("./controllers/parttimeController"),
         scheduleController = require("./controllers/scheduleController"),
         chatController=require("./controllers/chatController"),
+        friendlistController = require("./controllers/friendlistController"),
+        addFriendController = require("./controllers/addFriendControllers"),
+        friendCalendarController = require("./controllers/friendCalendarController"),
         db = require("./models/index"),
         cors=require('cors'), 
         models = require("./models"),
@@ -44,20 +47,11 @@ app.get("/job", homeController.job);
 
 
 app.get("/logout", loginFu.logout); // 로그아웃
+app.post("/friend", addFriendController.addFriendEmail);
+app.get("/friend", addFriendController.addfriend);
 
-// app.get("/addFriend", chatController.addfriend);
-app.post("/friend", chatController.addFriendReal);
-
-app.get('/chat/:friendId',);
-
-
-// 친구 추가 
-app.get("/friend", homeController.friend); //친구추가view
 app.get("/friendlist", friendlistController.getAllfriends); //뷰 분리시 사용(운영추가)
-
-app.post("/addFriend", addFriendController.addFriendEmail);
 app.get("/chat",chatController.getAllChat);
-
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);
 app.get("/login", homeController.login); 
@@ -67,6 +61,9 @@ app.post("/jobEdit",parttimeController.jobEditClear);
 app.post("/job-list",scheduleController.deleteSchedule);
 app.get("/jobDelete", parttimeController.jobDelete);
 app.post("/jobDelete", parttimeController.jobDeleteClear);
+app.get("/friendCalendar", friendCalendarController.showFriendCalendar); 
+app.get("/friend-job-list", friendCalendarController.showFriendJobList);
+app.get("/showMonthWage", scheduleController.showMonthWage);
 
 const { engine } = require("express/lib/application");
 const moment=require("moment");
@@ -79,16 +76,14 @@ http.listen(port,()=>{
 
 io.on('connection', (socket,req,res) =>{
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-        socket.on("new_message",(data)=>{ //from client()
+        socket.on("new_message",(data, senderId, receiverId)=>{ //from client()
                 console.log("Client(채팅).html) says ",data);
                 io.emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
                 now.format("MM.DD T HH:mm "); //왜 오후 4시가 07로 표기됨? 뒤질래?
-                var currentUserId= "1"; //여기다가 session.Idx? 하면될듯 
-                //receiver은 chatController에서 받아오면 되나.
                 models.chat.create({ //여기서 sql구동
-                        senderId: currentUserId,
-                        receiverId:"2",
+                        senderId: senderId,
+                        receiverId: receiverId,
                         chatTime:now,
                         chatContent:data
                         });

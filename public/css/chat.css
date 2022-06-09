@@ -67,7 +67,18 @@ html,body{
     
 }
 
+.sendMessage {
+background-color: #8a149f;
+width: 200px;
+height: auto;
+margin: 10px;}
 
+.receiveMessage {
+background-color: #da8383;
+width: 200px;
+height: auto;
+margin: 10px;
+}
 
 
 .messsage{

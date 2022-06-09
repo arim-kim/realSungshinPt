@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head></head>
+    <link rel="stylesheet" href="./css/friendlist.css">
+    <title>성신한알바</title>
+</head>
+<body>
+   <!--왜... roomlist가 오류나지? render해서 데이터를 못받아옴-->
+    <div class="goAddFriend">
+        <input type="button" id="btnChat" value="친구추가하기"  onclick="location.href='/friend';">
+
+    </div>
+
+    <div id="roomList">
+        <div id="roomHeader">친구 목록</div>
+        <div id="roomSelect"  method="get">
+                <% FFFF.forEach(e=>{ %>
+                <button class ="roomEI" id="friendId" name="friendId" onclick="setReceiver();">
+                <%=e.memberName%>
+                </button>
+                <%});%> 
+            <select name="" id=""></select>
+        </div>
+    </div>
+</body>
+</html>

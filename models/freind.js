@@ -3,12 +3,14 @@ module.exports = (sequelize, Sequelize) => {
         myId: {
             type: Sequelize.INTEGER,
             allowNull: false,
+            foreignKey: 'memberId',
             primaryKey: true
             
         },
         yourId: {
             type: Sequelize.INTEGER,
             allowNull: false,
+            foreignKey: 'memberId',
             primaryKey: true
         }
     },

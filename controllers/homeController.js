@@ -26,6 +26,9 @@ exports.friend = (req, res) => {
 exports.login = async (req, res) => {
     res.render("login"); 
 }
+exports.friendlist=async(req,res)=>{
+    res.render("friendlist");
+}
 
 const getPtlist = async (id) => {
     try {
@@ -42,19 +45,6 @@ const getPtlist = async (id) => {
     }
 
 };
-
-const getMonthPay = async (id) => {
-    try {
-        const monthPay = await monthly.findAll({
-                where : { monthlyMemId : id}
-        })
-        return monthPay;
-        console.log(monthPay);
-
-    }catch (err) {
-        return err; 
-    }
-}
 
 const getAllSchedule = async (id) => {
     try {
@@ -108,15 +98,14 @@ exports.index = async (req, res) => {
                 scheduleList => {
                     getPtlist(req.session.idx).then (
                         ptlist => {     
-                            getMonthPay(req.session.idx).then (
-                                monthlyPay => {
-                                    console.log(monthlyPay);
-                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList, monthlyPay : monthlyPay});
-                                    })
+                            
+                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList});
+                                    
                                 }
                             )
                         }
                     )
+
                 } catch (err) {
             res.status(500).send({
                 message: err.message
@@ -138,18 +127,6 @@ exports.getAllParttimes = async (req, res) => {
             message: err.message
         });
     }
-};
-
-
-
-exports.testEnv = (req, res) => {
-	// let exec = async () => {
-	// 	let sql = "SELECT * FROM members";
-	// 	let [rows, fields] = await db.query(sql);
-	// 	console.log(rows);
-	// 	res.render("test", {mem : rows});
-	// };
-	// exec();
 };
 
 

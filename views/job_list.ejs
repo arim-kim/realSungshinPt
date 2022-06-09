@@ -23,6 +23,9 @@
                 <input type = "submit" id = "scdlDelete" value = "delete" >
             </form>
         </div>
+            <% if (i == data.length -1)  { %>
+                <div id = "totalPay">오늘의 일급 : <%=dailyPay.total%></div>
+                <% } %>
     <% } %>
 </body>
 </html>

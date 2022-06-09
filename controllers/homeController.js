@@ -26,6 +26,9 @@ exports.friend = (req, res) => {
 exports.login = async (req, res) => {
     res.render("login"); 
 }
+exports.friendlist=async(req,res)=>{
+    res.render("friendlist");
+}
 
 
 const getPtlist = async (id) => {

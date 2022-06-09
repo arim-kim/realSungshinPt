@@ -1,3 +1,14 @@
+const { chat } = require("../../models");
+
+const model=require("../models/index"),
+    Member=model.member,
+    Op=model.Sequelize.Op,
+    Friend=model.friends,
+    Chat=model.chat;
+
+var fid=new Array();
+
+
 /*const socket=io();
 
 const nickname=document.querySelector("#nickname")
@@ -52,3 +63,4 @@ function LiModel(name, msg, time){
     }
 }
 //Li모델로 뜨게하는 형식*/
+

@@ -225,7 +225,7 @@
 
     <nav>
         <div class="goChat">
-            <input type="button" id="btnChat" value="채팅" onclick="location.href='/chat';">
+            <input type="button" id="btnChat" value="채팅" onclick="location.href='/friendlist';">
         </div>
         <div class="goAddSchedule">
             <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
@@ -245,8 +245,8 @@
 	</nav>
 
 		<div class = "pattimeList">
-		 <% for (var i = 0;i < data.length;i++){ %>
-			<br><p style ="color : <%= data[i].color%>;";><%= data[i].parttimeName %></p>
+		 <% for (var i = 0;i < data.length; i++){ %>
+			<br><p style ="color : <%= data[i].color%>";><%= data[i].parttimeName %></p>
 		<% } %>
 		</div>
 

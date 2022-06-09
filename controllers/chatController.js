@@ -7,6 +7,7 @@ Op = db.Sequelize.Op;
 const Friend=db.friends;
 var fid=new Array();
 
+
 const getAllChat = async (myId, friendId) => {
     try {
         data = await Chat.findAll({
@@ -79,34 +80,15 @@ exports.getAllfriend = async (req, res) => {
       )
         fid=[];
 
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-};
+//     } catch (err) {
+//         res.status(500).send({
+//             message: err.message
+//         });
+//     }
+// };
 
 
 
 
-exports.addChat=async(req,res)=>{
-    try {
-        var date=new Date();
-        console.log(date.getMonth,date.getDate,date.getHours, date.getMinutes);
-        console.log("추가하는중....");
-        console.log(req.session.friendId);
-        console.log(req.session.idx);
-        Chat.create({
-            chatContent : req.body.messageContent,
-            receiverId: req.session.friendId ,
-            senderId: req.session.idx,
-            chatTime: '2022-06-08 10:30'
-        
-        })
-        res.render("chat");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-}
+
+\

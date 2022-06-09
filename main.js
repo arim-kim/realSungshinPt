@@ -8,6 +8,8 @@ const express = require("express"),
         parttimeController = require("./controllers/parttimeController"),
         scheduleController = require("./controllers/scheduleController"),
         chatController=require("./controllers/chatController"),
+        addFriendController=require("./controllers/addFriendControllers"),
+        friendlistController=require("./controllers/friendlistController"),
         friendCalendarController = require("./controllers/friendCalendarController");
         db = require("./models/index"),
         cors=require('cors'), //윤영추가 6/1
@@ -46,8 +48,18 @@ app.use(express.static('public'));
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
-app.get("/friend", homeController.friend);
-app.get("/chat", chatController.getAllfriend);
+app.get("/friend", homeController.friend); //친구추가view
+app.get("/test", homeController.testEnv);
+
+
+app.get("/friendlist", friendlistController.getAllfriend); //뷰 분리시 사용(운영추가)
+app.post("/friend", addFriendController.addFriendEmail);
+// app.get("/friend", addFriendController.addFriendEmail);
+app.post("/addFriend", addFriendController.addFriendEmail);
+
+
+
+
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);
 app.get("/login", homeController.login); 
@@ -110,6 +122,10 @@ app.post('/signUp', async (req, res, err) => {
 app.post("/job", async(req, res, err) => {
         parttimeController.getParttimes(res, req, err);
 })
+
+// app.post("/friend", async(req,res)=>{
+//         addFriendController.addFriendEmail(res,req);
+// })
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

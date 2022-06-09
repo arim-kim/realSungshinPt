@@ -1,0 +1,39 @@
+body{
+    width: 100%;
+    display: inline-block;
+    position: center;
+}
+
+
+#roomList{
+    
+    width: 10%;
+    border: 1px solid #8a149f;
+    border-radius: 5px;
+    flex:3;
+    
+}
+
+#roomHeader{
+    background-color: #9f3bdd;
+    color: #fff;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.roomEI{
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.roomEI:hover{
+    background: #f0f0f0;
+}
+.roomEI.active{
+    background: #f0f0f0;
+}

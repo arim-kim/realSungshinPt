@@ -7,35 +7,34 @@ Op = db.Sequelize.Op;
 const Friend=db.friends;
 var fid=new Array();
 
-//크레이트로 방...만들기..
-//파트타임 컨트롤러에 있음.
-//
-
-const getId= async(name)=>{ //이름으로 id찾기
-    try{  
-        id=await Member.findOne({
-            attributes : ['memberId'],
+const getAllChat = async (myId, friendId) => {
+    try {
+        data = await Chat.findAll({
             where : {
-                membername : name
-            }
-        })
-        console.log("getID",id);
-        
-        return id;
-    }catch{
+                [Op.or] : [
+                    {senderId : myId,  receiverId : 50},
+                    {senderId : 50,  receiverId : myId},
+                ]
+                
+            },
+            order : ['chatTime']
+        });
+        return data; 
+    }catch(err) {
         console.log(err);
     }
+
+
 }
-
-
-const getName = async(id) => {
+const getOne = async(id) => {
 try{
     data = await Member.findOne({
-        attributes : ['memberName'],
+        attributes : ['memberName', 'memberId'],
         where : {
             memberId : id
         }
     })
+
     return data; 
 }catch(err) {
     console.log(err);
@@ -43,27 +42,41 @@ try{
 }
 
 exports.getAllfriend = async (req, res) => {
+
+    req.session.friendId = req.query.friendId;
+    
+
     try {
 
         data = await Friend.findAll({
             where: {
-                myId: 50
+                myId: req.session.idx
             }
         });
        
-        await data.forEach(e => {
+        AllChat = getAllChat(req.session.idx, req.session.friendId);
+
+        data.forEach(e => {
             e.yourId
-            getName(e.yourId).then(
+            console.log(e.yourId);
+            getOne(e.yourId).then(
                 new_data=>{
-                    // console.log("forEach",new_data);
                     fid.push(new_data);
-                
                 }
             )
+
+            console.log(fid);
+
             return 0;
       });
-        
-        await res.render("chat", {FFFF:fid});  
+
+      getAllChat(req.session.idx, req.session.friendId).then (
+          AllChat => {
+            console.log(AllChat);
+            res.render("chat", {nowUser : req.session.idx, friendId : req.session.friendId, FFFF:fid, AllChat : AllChat});
+
+          }
+      )
         fid=[];
 
     } catch (err) {
@@ -79,12 +92,14 @@ exports.getAllfriend = async (req, res) => {
 exports.addChat=async(req,res)=>{
     try {
         var date=new Date();
-        console.log(date.getMonth,date.getDate,date.getHours, date.getMinutes)
-        console.log("추가하는중")
+        console.log(date.getMonth,date.getDate,date.getHours, date.getMinutes);
+        console.log("추가하는중....");
+        console.log(req.session.friendId);
+        console.log(req.session.idx);
         Chat.create({
             chatContent : req.body.messageContent,
-            receiverId: getId(req.query.friendId),
-            senderId: '51',
+            receiverId: req.session.friendId ,
+            senderId: req.session.idx,
             chatTime: '2022-06-08 10:30'
         
         })

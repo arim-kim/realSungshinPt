@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const daily = sequelize.define("member", {
+    const daily = sequelize.define("daily", {
         dailyMemId: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -12,12 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE,
             primaryKey: true,
         },
-        dateWeekNum: {
-            type: Sequelize.INTEGER,
-
-            type: Sequelize.STRING,
-            allowNull: false
-        },
+        
         dailyTotal : {
             type: Sequelize.INTEGER,
         }, 

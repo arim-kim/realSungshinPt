@@ -65,17 +65,7 @@ exports.getAllfriends = async (req, res) => {
         
         await res.render("friendlist", { FFFF : fid });
 
-        // 후보 2 
-        // let allfriend = await getAllfriend(req.session.idx);
-        // console.log(allfriend);
-        // res.render("friendlist", { FFFF : allfriend });
-
-        //후보 3
-        // getAllfriend(req.session.idx).then(
-        //     e => {
-        //         res.render("friendlist", { FFFF : e });
-        //     }
-        // )
+        
         fid = [];
 
 

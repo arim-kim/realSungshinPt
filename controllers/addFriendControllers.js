@@ -20,7 +20,9 @@ const isUser = async (email)=>{
     }
 }
 
-
+exports.addfriend=async(req,res)=>{
+    res.render("addFriend")
+}
 
 exports.addFriendEmail =async (req, res)=>{
     try{
@@ -42,20 +44,21 @@ exports.addFriendEmail =async (req, res)=>{
         isalreadyFriend(req.session.idx, fid).then(
             e=> {
                 if(e==null){
-                    Friends.create({
-                        myId : req.session.idx,
-                        yourId: fid
-                    });
-                    console.log("추가완료");
+                    Friends.bulkCreate([{
+                        myId: req.session.idx,
+                        yourId: fid,
+                        room: req.session.idx + "+" + fid
+                    }, {
+                        myId:  fid,
+                        yourId:  req.session.idx,
+                        room: req.session.idx + "+" + fid
+                    }], { returning: true })
                     res.render("newFriend");
-        
                 }else{
                     res.render("alreadyFriend");        
                 }
-               
             }
         )
-        console.log(y);
         
     }catch{
         console.log("error");

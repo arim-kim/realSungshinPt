@@ -30,67 +30,64 @@
        
         <div class="input-container">        
                 
-                <div id="chat-list"></div> 
-                <script src="/socket.io/socket.io.js"></script>
+            <div id="chat-list"></div> 
+            <script src="/socket.io/socket.io.js"></script>
+
+            <form onsubmit="return sendMessage()" >
+                <input name ='messageContent' id="message" placeholder="Enter message">
+                <input type = "hidden" id ='receiver' value = "<%=friendId%>">
+                <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
+                <input type="submit" value="send">
+            </form>            
+            
+            <script>
+                const socket= io('http://localhost:80');
+                function sendMessage(){
+                    let message = document.querySelector("#message");
+                    let senderId = document.querySelector("#sender");
+                    let receiverId = document.querySelector("#receiver");
+
+
+                    console.log(message.value+'가 도착');
+                    socket.emit('new_message',message.value, senderId.value, receiverId.value);
+                    document.querySelector("#message").value = "";
+                    return false;
+                }
                 
-                <form onsubmit="return sendMessage()" >
-                    <input name ='messageContent'id="message" placeholder="Enter message">
-                    <input type="submit" value="send">
-                </form>            
-                
-                <script>
-                    const models = require("../models/index"),
-                    Member = models.member,
-                    Friends = models.friends,
-                    Chat=models.chat;
-
-                    Op = models.Sequelize.Op;        
-
-                    const socket= io('http://localhost:80');
-                    function sendMessage(){
-                        let message = document.querySelector("#message");
-
-               // let senderId = document.querySelector("#sender");
-                    //    let receiverId = document.querySelector("#receiver");
-
-
-
-                        console.log(message.value+'가 도착');
-                        socket.emit('new_message',message.value);
-                        document.querySelector("#message").value = "";
-
-                        return false;
-                    }
+                socket.on('new_message',data=>{
+                    console.log('Server says',data);
+                    // var p=document.createElement("p");
+                    // p.innerHTML=data.message;
                     
+
+                });
+             
+                function setReceiver(){
+                   
+                }
+
+               fetch("http://localhost:80/get_messages") 
+                .then(res=>res.join())
+                .then(data=>{
+                    const messages=document.querySelector('#messages')
+
+                    for(let i=0; i< data.length; i++){
+                        let li=document.createElement('li')
+                        li.id=data[i].id
+                        li.innerHTML=data[i].message
+                        messages.appendChild
+                    }
+                })
+
                     socket.on('new_message',data=>{
-                        console.log('Server says',data);
-                    });
-                 
-
-
-                  
-                
-                   fetch("http://localhost:80/get_messages") 
-                    .then(res=>res.join())
-                    .then(data=>{
-                        const messages=document.querySelector('#messages')
-
-                        for(let i=0; i< data.length; i++){
-                            let li=document.createElement('li')
-                            li.id=data[i].id
-                            li.innerHTML=data[i].message
-                            messages.appendChild
-                        }
-                    })
-                        socket.on('new_message',data=>{
-                        console.log('Server.js says',data)
-                        let li=document.createElement("li");
-                        li.innerHTML=data;
-                        const messages=document.querySelector("#messages");
-                        messages.appendChild(li)
-                    });
-                
-                </script>   
+                    console.log('Server.js says',data)
+                    let li=document.createElement("li");
+                    li.innerHTML=data;
+                    const messages=document.querySelector("#messages");
+                    messages.appendChild(li)
+                });
+            
+            </script>   
         </div>
 
     </div>

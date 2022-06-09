@@ -7,6 +7,7 @@ Op = db.Sequelize.Op;
 const Friend=db.friends;
 var fid=new Array();
 
+
 const models = require("../models/index"),
 friends = models.friends;
 

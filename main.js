@@ -8,6 +8,7 @@ const express = require("express"),
         parttimeController = require("./controllers/parttimeController"),
         scheduleController = require("./controllers/scheduleController"),
         chatController=require("./controllers/chatController"),
+        friendCalendarController = require("./controllers/friendCalendarController");
         db = require("./models/index"),
         cors=require('cors'), //윤영추가 6/1
         models = require("./models"),
@@ -46,10 +47,7 @@ app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
-app.get("/test", homeController.testEnv);
 app.get("/chat", chatController.getAllfriend);
-
-app.get('/chat/:friendId',);
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);
 app.get("/login", homeController.login); 
@@ -59,6 +57,9 @@ app.post("/jobEdit",parttimeController.jobEditClear);
 app.post("/job-list",scheduleController.deleteSchedule);
 app.get("/jobDelete", parttimeController.jobDelete);
 app.post("/jobDelete", parttimeController.jobDeleteClear);
+app.get("/friendCalendar", friendCalendarController.showFriendCalendar); 
+app.get("/friend-job-list", friendCalendarController.showFriendJobList);
+app.get("/showMonthWage", scheduleController.showMonthWage);
 
 const { engine } = require("express/lib/application");
 const moment=require("moment");
@@ -70,21 +71,16 @@ http.listen(port,()=>{
 
 
 
-
-
-
 io.on('connection', (socket,req,res) =>{
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-        socket.on("new_message",(data)=>{ //from client()
+        socket.on("new_message",(data, senderId, receiverId)=>{ //from client()
                 console.log("Client(채팅).html) says ",data);
                 io.emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
                 now.format("MM.DD T HH:mm "); //왜 오후 4시가 07로 표기됨? 뒤질래?
-                var currentUserId= "1"; //여기다가 session.Idx? 하면될듯 
-                //receiver은 chatController에서 받아오면 되나.
                 models.chat.create({ //여기서 sql구동
-                        senderId: currentUserId,
-                        receiverId:"2",
+                        senderId: senderId,
+                        receiverId: receiverId,
                         chatTime:now,
                         chatContent:data
                         });
@@ -92,8 +88,6 @@ io.on('connection', (socket,req,res) =>{
                 console.log(data,"를 언급");
 
          })
-
-       
 
     }) //윤영추가
     

@@ -16,13 +16,6 @@
                 <br> <%=data[i].startTime%> 
                 <br> <%=data[i].endTime%> 
             </button>
-            <form class = "job-list" action="/job-list" method="post">
-                <input type = "hidden" name = "idSchedule" value= "<%=data[i].idSchedule%>">
-                <input type = "submit" value = "delete" >
-            </form>
-            <% if (i == data.length -1)  { %>
-                <div id = "totalPay">오늘의 일급 : <%=dailyPay.total%></div>
-                <% } %>
     <% } %>
 </body>
 </html>

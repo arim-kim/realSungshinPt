@@ -2,6 +2,8 @@ const models = require("../models/index"),
       Sequelize = require('sequelize'),
       Parttime = models.parttime,
       schedule = models.schedule,
+      daily = models.daily, 
+      monthly = models.monthly,
       dayFunc = require('date-fns'); 
 
 
@@ -19,17 +21,18 @@ const getPtlist = async (id) => {
     }catch (err) {
         return err; 
     }
-
 };
+
+
 
 exports.getSchedule = async (req, res) => {
     
       var thisDay = new Date(req.query.date);
       console.log(thisDay);
-      startOfDay = dayFunc.startOfDay(thisDay);
-      endOfDay = dayFunc.endOfDay(thisDay);
 
-    try {  data = await schedule.findAll( {
+    try {  
+        
+        data = await schedule.findAll( {
 
         include : [{
             model : Parttime, 
@@ -41,9 +44,19 @@ exports.getSchedule = async (req, res) => {
                     $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),req.query.date)
             }                
         });
-        
-        res.render("job_list", {data : data})
-        console.log(data); 
+
+
+        dailyPay = await  daily.findOne({
+            attributes : [ 'dailyMemId' , [Sequelize.fn('sum', Sequelize.col('dailyTotal')), 'total']],
+            group : ['dailyMemId'], 
+            raw : true, 
+            where : {
+                dailyMemId : req.session.idx,
+                $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('date'),'%Y-%m-%d'),req.query.date)
+            }
+        })
+
+        res.render("job_list", {data : data, dailyPay : dailyPay}); 
 
     }catch (err) {
         console.log("해당 날짜에는 일정이 없습니다. 추가하세요");  
@@ -95,6 +108,70 @@ exports.deleteSchedule= async (req, res) => {
             where : { idSchedule: req.body.idSchedule}
         });
         res.render("clear");
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+}
+
+const getMonthPay = async (id, month) => {
+
+    try {
+        const monthPay = await monthly.findOne({
+            attributes : [ 'monthlyMemId' ,'month', [Sequelize.fn('sum', Sequelize.col('monthlyTotal')), 'total']],
+            group : ['month'], 
+            raw : true, 
+            where : {
+                monthlyMemId : id,
+                month : month
+            }
+        })
+        return monthPay;
+
+    }catch (err) {
+        return err; 
+    }
+}
+
+const getMonthPay_byPt = async (id,month ) => {
+
+    try {
+        const monthPay_byPt = await monthly.findAll({
+           
+            include : [{
+                model : Parttime, 
+                attributes : ['parttimeName' , 'parttimeId', 'color']
+            }
+            ], 
+            where: {
+                    monthlyMemId : id,
+                    month : month
+            }                
+        });
+
+        return monthPay_byPt;
+
+    }catch (err) {
+        return err; 
+    }
+}
+
+exports.showMonthWage = async (req, res) => {
+    try {
+        const id = req.session.idx, 
+              month =  req.query.month;
+        console.log(req.body.idSchedule);
+        getMonthPay(id, month).then (
+            monthPay => 
+            getMonthPay_byPt(id,month).then (
+                monthPay_byPt => {
+                    console.log(monthPay_byPt)
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt})
+                }
+              )
+            )
+        
     } catch (err) {
         res.status(500).send({
             message: err.message

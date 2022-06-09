@@ -14,7 +14,7 @@
                         <div class = "jobName">
                                 <div class = "jobNameBox">
                                         <label>아르바이트 이름</label>
-                                        <select name="parttimeId" style="width: 100%;">
+                                        <select name="parttimeId">
                                             <option value="" disabled selected>선택</option>
                                             <% for (i = 0; i < pt.length; i++) { %>
                                                 <option value="<%=pt[i].parttimeId%>"><%= pt[i].parttimeName %></option>
@@ -24,7 +24,7 @@
                                 <div id="jobError" class="error"></div>    
                         </div>
                             <div class = "edit">
-                                <input type = "submit" id="editButton" onclick="submit()">완료</button>
+                                <input type = "submit" id="editButton" onclick="alert('아르바이트를 삭제하시겠습니까?')">
                         </div>
                 </form>
     </div>

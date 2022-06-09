@@ -6,10 +6,23 @@ Friends = models.friends;
 Op = models.Sequelize.Op;
 
 
+//우선 입력된 이메일이 회원인지 확인
+const isUser = async (email)=>{
+    try{
+        data=await Member.findOne({
+            where:{
+             memberMail: email   
+            }
+        })
+        return true;
+    }catch{
+        console.log(err);
+    }
+}
 
 
 
-exports.addFriendEmail=async (req, res)=>{
+exports.addFriendEmail =async (req, res)=>{
     try{
         console.log("에드프랜드이메일");
         femail=req.body.friendEmail;

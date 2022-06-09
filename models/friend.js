@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true
+        },
+        room: {
+            type: Sequelize.STRING,
+            allowNull: false
         }
     },
     {

@@ -1,0 +1,143 @@
+
+.one {
+    float:left; 
+    border: 3px solid #9dc39c;
+    width: 25%; 
+    height: 500px;
+    margin-left: 20%;
+    margin-top: 50px;
+    display: inline-block;
+}
+
+.info {
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    background-color:#9dc39c;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+label {
+    margin-top: 5px;
+    /* margin-bottom: 10px; */
+    margin-left: 10px;
+    background-color: #ffdc7c;
+}
+
+.where {
+    height: 80px;
+    width: 100%;
+}
+
+#selection {
+    margin-top: 40px;
+    width: 70%;
+}
+
+
+.wageBox {
+    height: 80px;
+    width: 100%;
+}
+
+#wage {
+    margin-top: 30px;
+    width: 40%;
+}
+
+.workTime {
+    height: 100px;
+    width: 100%;
+}
+
+#start{
+    width: 70%;
+    margin-top: 40px;
+}
+
+#end {
+    margin-top: 5px;
+    float: right;
+}
+
+.coverBox {
+    height: 80px;
+    width: 100%;
+}
+
+.coverBox > input {
+    margin-top: 40px;
+}
+
+.break{
+    height: 80px;
+    width: 100%;
+}
+
+#rest{
+    margin-top: 30px;
+    width: 70%;
+}
+
+
+.two {
+    float:left; 
+    border: 3px solid #9dc39c;
+    width: 25%; 
+    height: 500px;
+    margin-left: 10%;
+    margin-top: 50px;
+    display: inline-block;
+}
+
+.overPayBox {
+    height: 80px;
+    width: 100%;
+}
+
+#overPay {
+    margin-top: 40px;
+    width: 50%;
+}
+
+.nightBox {
+    height: 80px;
+    width: 100%;
+}
+
+#night {
+    margin-top: 40px;
+    width: 50%;
+}
+
+.holidayBox {
+    height: 80px;
+    width: 100%;
+}
+
+#holiday {
+    margin-top: 40px;
+    width: 50%;
+}
+
+.extraBox {
+    height: 80px;
+    width: 100%;
+}
+
+#extra {
+    margin-top: 40px;
+    width: 50%;
+}
+
+.totalPay {
+    margin-right: 20px;
+}
+
+#scdlSubmit {
+    margin-right: 20px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+}

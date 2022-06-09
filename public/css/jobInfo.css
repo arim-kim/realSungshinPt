@@ -1,78 +1,38 @@
-/* html {
-    background-color: orange;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-} */
-
-.title {
-    background-color: skyblue;
-    width: 30%;
-    height: 100px;
-    margin: auto;
-    margin-top: 50px;
-}
-.title > p {
-    /* background-color:pink; */
-    padding-top: 40px;
-    width: 80%;
-    margin: auto;
-    display: block;
-    text-align: center;
-    font-size: 30px;
-}
-
-.wrapper {
-    /* background-color: palegreen; */
-    width: 40%;
-    margin: 0 auto;
-    margin-top: 50px;
-    border: 1px solid skyblue;;
-    padding: 20px;
-}
-
-/* header {
-    /* background-color: antiquewhite;
-    height: 100px;
-    width: 80%;
-    display: flex;
-    margin: 0 auto;
-}
-header .title {
-    margin: auto auto;
-    text-align: center;
-} */
-
 label {
-    padding-right: 5px;
+    padding-right: 10px;
 }
 
-.jobName {
-    /* background-color: slateblue; */
-    height: 100px;
-    width: 80%;
-    margin: 0 auto;
+select{
+    width: 200px;
+    padding: .8em .5em;
+    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+    border: 1px solid #9dc39c;
+    border-radius: 0px;
+    appearance: none;
 }
+
 .jobNameBox {
-    padding-top: 45px;
+    padding-top: 80px;
     height: 25px;
     width: 100%;
     text-align: center;
     margin: auto auto;
 }
-.jobName input {
-    border-radius: 7px;
-    background-color:rgb(202, 243, 255);
-    width: 50%;
+#parttimeName {
+    width: 350px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+    border-radius: 5px;
 }
 
 .weekPay {
-    /* background-color:orange; */
     height: 100px;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 .weekPayBox {
     height: 25px;
@@ -83,10 +43,9 @@ label {
 }
 
 .tax {
-    /* background-color:green; */
     height: 100px;
     width: 80%;
-
+    font-family: 'Nanum Gothic', sans-serif;
     margin: 0 auto;
 }
 .taxBox {
@@ -98,11 +57,10 @@ label {
 }
 
 .color {
-    /* background-color:green; */
     height: 100px;
     width: 80%;
-
     margin: 0 auto;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 .colorBox {
     height: 25px;
@@ -113,22 +71,20 @@ label {
 }
 
 .edit {
-    /* background-color:blue; */
-    padding-top: 20px;
-    height: 70px;
-    width: 80%;
-    margin: auto;
+    padding-top: 40px;
+    height: 25px;
+    width: 100%;
     text-align: center;
+    margin: auto auto;
+    font-family: 'Nanum Gothic', sans-serif;
 }
-.editButton {
-    margin: auto;
-    display: block;
-}
-button {
-    cursor: pointer;
+#editButton {
+    width: 100px;
     height: 30px;
-    border-radius: 7px;
-    background-color:rgb(202, 243, 255);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
 }
 
 .error {
@@ -138,6 +94,6 @@ button {
     height: 20px;
     color:red;
     font-weight: 700;
-    padding-top: 10px;
-    padding-left: 40%;
+    padding-top: 20px;
+    padding-left: 45%;
 }

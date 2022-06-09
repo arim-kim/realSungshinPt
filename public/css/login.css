@@ -1,0 +1,67 @@
+.mailBox {
+    padding-top: 100px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+.pwBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+.submitBox {
+    padding-top: 45px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+
+#mail {
+    width: 350px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+    border-radius: 5px;
+}
+
+#pw {
+    width: 350px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+    border-radius: 5px;
+}
+
+.loginBtn {
+    width: 100px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+}
+
+.signUpBox {
+    padding-top: 55px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
+
+.signUpBtn {
+    width: 100px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+}

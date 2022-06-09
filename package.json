@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/kche1106/SungShinPT#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "connect-mysql": "^4.0.0",
     "cors": "^2.8.5",
     "data-fns": "^0.1.8",

@@ -7,6 +7,7 @@ Op = db.Sequelize.Op;
 const Friend=db.friends;
 var fid=new Array();
 
+
 //크레이트로 방...만들기..
 //파트타임 컨트롤러에 있음.
 //
@@ -72,8 +73,6 @@ exports.getAllfriend = async (req, res) => {
         });
     }
 };
-
-
 
 
 exports.addChat=async(req,res)=>{

@@ -2,7 +2,7 @@ const db = require("../models/index"),
 Parttime = db.parttime,
 Op = db.Sequelize.Op;
 
-exports.getParttimes = async (res, req, err) => {
+exports.addParttime = async (res, req, err) => {
     models.parttime.create({
         // 여기 내가 수정해놨엉!!
         ptMemberId : req.session.idx,
@@ -11,11 +11,11 @@ exports.getParttimes = async (res, req, err) => {
         tax: req.body.tax,
         color : req.body.color
     }).then( result => {
-        console.log("데이터 추가 완료");
+        console.log("아르바이트 추가 완료");
         res.render("clear");
     }).catch( err => {
         console.log(err)
-        console.log("데이터 추가 실패");
+        console.log("아르바이트 추가 실패");
     })  
 }
 

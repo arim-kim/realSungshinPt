@@ -9,18 +9,16 @@ const express = require("express"),
         scheduleController = require("./controllers/scheduleController"),
         chatController=require("./controllers/chatController"),
         db = require("./models/index"),
-        cors=require('cors'), //윤영추가 6/1
+        cors=require('cors'), 
         models = require("./models"),
         session = require('express-session'),
         MysqlStore = require('connect-mysql')(session),
         mysql = require('mysql2'),
-        http=require('http').createServer(app), //윤영추가
+        http=require('http').createServer(app), 
         loginFu = require("./controllers/loginManager");
         const {Socket}= require('engine.io');
-        const io=require("socket.io")(http); //윤영추가
+        const io=require("socket.io")(http); 
 
-    
-    
 
 db.sequelize.sync();
 
@@ -29,8 +27,6 @@ app.use(session({
 	resave:false,
 	saveUninitialize:true
 }));
-
-
 
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
@@ -48,6 +44,8 @@ app.get("/job", homeController.job);
 app.get("/friend", homeController.friend);
 app.get("/test", homeController.testEnv);
 app.get("/chat", chatController.getAllfriend);
+
+app.get("/logout", loginFu.logout); // 로그아웃
 
 app.get('/chat/:friendId',);
 app.get("/job-list", scheduleController.getSchedule); 
@@ -69,10 +67,6 @@ http.listen(port,()=>{
 }) //윤영추가(이거지우면 chat X)
 
 
-
-
-
-
 io.on('connection', (socket,req,res) =>{
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
         socket.on("new_message",(data)=>{ //from client()
@@ -90,31 +84,23 @@ io.on('connection', (socket,req,res) =>{
                         });
                 
                 console.log(data,"를 언급");
-
-         })
-
-       
-
+         })    
     }) //윤영추가
-    
 
 
-
-
-
-/* 로그인 DB 연동*/
+/* 로그인 */
 app.post("/login", async (req, res, next)=> {
         loginFu.login_f(req.body.mail,req.body.pw,res,req);    
 }); 
 
-/* 회원가입 DB 연동 */
+/* 회원가입 */
 app.post('/signUp', async (req, res, err) => {
-        memberController.getMembers(res, req);
+        memberController.signUp(res, req);
 })
 
-/* 아르바이트 DB 연동 */
+/* 아르바이트 */
 app.post("/job", async(req, res, err) => {
-        parttimeController.getParttimes(res, req, err);
+        parttimeController.addParttime(res, req, err);
 })
 
 app.use(errorController.logErrors);

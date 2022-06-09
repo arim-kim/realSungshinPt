@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&family=Jua&family=Nanum+Gothic&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+/* font-weight 추가함(굵게) */
+.year-month {
+  font-style: italic;
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+/*로그아웃*/
+/* header > logOutBar > logOutBarBox > btnBox > logOutBtn */
+header {
+  height: 30px;
+  width: 100%;
+}
+
+header .logOutBar { 
+  height: 30px;
+}
+
+header .logOutBarBox {
+  /* border: 1px solid gainsboro; */
+  float: right;
+  height: 100%;
+}
+
+.logOutBtn {
+  border: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+/* 이동 바 */
+nav {
+  height: 70px;
+  width: 60%;
+  float: left;
+}
+
+nav   .navBox {
+  border: 3px solid #9dc39c;
+  height: 70px;
+  margin-left: 14%;
+}
+
+#btnSchedule, #btnChat, #btngoAddPt, #btnEditPt, #btnDeletePt {
+  width: 100px;
+  height: 40px;
+  margin-left: 35px;
+  margin-top: 10px;
+  float: left;
+  border-radius: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #9dc39c;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+
+/*아르바이트 리스트*/
+.pattimeList {
+  height: 70px;
+  width: 33%;
+  border: 3px solid #ccddef;
+  display:flex;
+  padding-left: 20px;
+}
+
+.pattimeList > p {
+  margin-top: 25px;
+  margin-left: 8px;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 알림 및 월급*/
+side {
+  margin-top: 30px;
+  /* background-color: #9dc39c; */
+  border: 3px solid #9dc39c;
+  width: 300px;
+  height: 650px;
+  float: left;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
+side .alarmNameBox {
+  background-color: #9dc39c;
+  height: 40px;
+}
+
+
+.alarmNameBox > p {
+  padding-top: 10px;
+  text-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.alertBox {
+  height: 430px;
+  left: 0;
+  text-align: center;
+}
+
+.monthPay {
+  height: 175px;
+  background-color: #9dc39c;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.monthPay > p {
+  text-align: center;
+  padding-top: 5px;
+}
+
+/*캘린더*/
+#calendar {
+  margin-top: 30px;
+  /* background-color: bisque; */
+  border: 3px solid #9dc39c;
+}
+
+#yearmonth {
+  height: 30px;
+  /* background-color: #9dc39c;  */
+  margin-bottom: 30px;
+}
+
+#before {
+  height: 30px;
+  float: left;
+}
+
+#next {
+  height: 30px;
+  float: right;
+}
+
+.button {
+  border: 0;
+  outline: 0;
+  height: 100px;
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.button:hover {
+  background-color: #9dc39c;
+}

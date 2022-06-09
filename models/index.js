@@ -43,6 +43,7 @@ db.schedule = require("./schedule.js")(sequelize, Sequelize);
 db.daily = require("./daily.js")(sequelize, Sequelize);
 db.monthly = require("./monthly")(sequelize, Sequelize);
 
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

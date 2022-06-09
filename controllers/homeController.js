@@ -8,7 +8,7 @@ schedule = db.schedule,
 Op = db.Sequelize.Op;
 
 exports.main = (req, res) => {
-    res.render("index", {layout : false});
+    res.render("index");
 };
 
 exports.join = (req, res) => {
@@ -26,7 +26,6 @@ exports.friend = (req, res) => {
 exports.login = async (req, res) => {
     res.render("login"); 
 }
-
 
 const getPtlist = async (id) => {
     try {
@@ -152,3 +151,5 @@ exports.testEnv = (req, res) => {
 	// };
 	// exec();
 };
+
+

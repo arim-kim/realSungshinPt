@@ -1,9 +1,8 @@
 .wrapper {
-    /* background-color: palegreen; */
     width: 40%;
     margin: 0 auto;
     margin-top: 50px;
-    border: 1px solid skyblue;;
+    /* border: 1px solid skyblue; */
     padding: 20px;
 }
 
@@ -13,8 +12,12 @@
 
 .wrapper > button {
     margin-top: 20px;
-    margin-left: 45%;
-    background-color: skyblue;
+    margin-left: 40%;
     cursor: pointer;
+    width: 100px;
     height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
 }

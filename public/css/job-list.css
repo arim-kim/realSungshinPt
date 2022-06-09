@@ -1,22 +1,42 @@
+.scdlBox {
+    width: 200px;
+    height: 300px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+}
 
 .btns {
     /* 여기다가 버튼 속성 추가하면 됨 */
     border-radius: 5px;
-    width: 250px;
-    height: 250px;
-    margin-top : 100px;
-    margin-left: 100px;
-    color: black;
-    background-color: rgba(0, 0, 0, 0);
+    width: 200px;
+    height: 200px;
+    border-left: none;
+    border-right: none;
+    background-color: white;
+    /* margin-top : 100px;
+    margin-left: 100px; */
 }
 
-.delete_btn  button{
-    width: 10px;
-    height: 10px;
-    position: static;
-
-}
 .btns button:hover {
     color: skyblue;
+}
+
+.job-list{
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 100px;
+    height: 30px;
+}
+
+#scdlDelete{
+    width: 100px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    background-color: white;
+    position: relative;
 }
 

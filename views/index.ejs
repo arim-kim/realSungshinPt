@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <style>
-        table {
-            width: 800px;
-            height: 600px;
-            border: 1px solid #444444;
-            border-collapse: collapse;
-            }
-    </style>
 
 <script>
 	var today = new Date(); //오늘 날짜        
@@ -149,7 +141,7 @@
 			//오늘날짜배경색
 			if( today.getFullYear() == date.getFullYear() && today.getMonth() == date.getMonth() && i==date.getDate() )
 			{
-				cell.style.backgroundColor = "#e2f3da"; //오늘날짜배경색
+				cell.style.backgroundColor = "#ffca7a"; //오늘날짜배경색
 			}
 			
 			//마지막 날짜가 지나면 일요일까지 칸 그리기
@@ -171,8 +163,6 @@
 
 		var i ; 
 		var str = "오늘의 일정"; 
-
-
 }
 
 </script>
@@ -186,7 +176,7 @@
 
     <title>SungshinHanPT</title>
 
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/index.css">
 
     <!-- 브라우저 기본 스타일을 reset합니다 -->
 
@@ -194,93 +184,104 @@
 
     <!-- font Noto San Kr -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" 
+	rel="stylesheet">
 </head>
 
 <body onload="autoReload();">
     <header>
-        <div class="loginBar">
-            <div class="loginBarBox">
-                <div>
+        <div class="logOutBar">
+            <div class="logOutBarBox">
+                <!-- <div>
 					<p> <%=now_user%> </p>
-                </div>
+                </div> -->
                 <div class ="btnBox">
-
-					<input type="button" class = "signUpBtn" value="Logout">
-                </div>
+					<input type="button" class = "logOutBtn" value="Log out" onclick="location.href='/logout'">
+				</div>
             </div>
         </div>
-        <!-- <div class="nameBar">
-            <p>성신한 알바</p>
-        </div> -->
     </header>
 
 
     <nav>
-        <div class="goChat">
-            <input type="button" id="btnChat" value="채팅" onclick="location.href='/chat';">
-        </div>
-        <div class="goAddSchedule">
+		<div class = "navBox">
+			<div class="goChat">
+				<input type="button" id="btnChat" value="채팅" onclick="location.href='/chat';">
+			</div>
+			<div class="goAddSchedule">
 
-            <input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
-        </div>
+				<input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
+			</div>
 
-        <div class="goAddPt">
-            <input type="button" id="btngoAddPt" value="아르바이트 추가" onclick="location.href='/job';">
-        </div>
-		<div class="goEditPt">
-            <input type="button" id="btnEditPt" value="아르바이트 편집" onclick="location.href='/jobEdit';">
-        </div>
-		<div class="goDeletePt">
-            <input type="button" id="btnDeletePt" value="아르바이트 삭제" onclick="location.href='/jobDelete';">
-        </div>
+			<div class="goAddPt">
+				<input type="button" id="btngoAddPt" value="아르바이트 추가" onclick="location.href='/job';">
+			</div>
+			<div class="goEditPt">
+				<input type="button" id="btnEditPt" value="아르바이트 편집" onclick="location.href='/jobEdit';">
+			</div>
+			<div class="goDeletePt">
+				<input type="button" id="btnDeletePt" value="아르바이트 삭제" onclick="location.href='/jobDelete';">
+			</div>
+		</div>
 	</nav>
 
 		<div class = "pattimeList">
 		 <% for (var i = 0;i < data.length;i++){ %>
-			<br><p style ="color : <%= data[i].color%>;";><%= data[i].parttimeName %></p>
+			<p style ="color : <%= data[i].color%>; font-family: 'Nanum Gothic', sans-serif;"><%= data[i].parttimeName %></p>
 		<% } %>
 		</div>
 
 
     <side>
-        <p>알람창</p>
+		<div class = "alarmNameBox">
+        	<p>알람창</p>
+		</div>
         <div class="alertBox">
 			<% for (var i = 0;i < schedule.length;i++){ %>
-				<br><p><%= schedule[i].parttime.parttimeName %></p>
-				<br><p><%= schedule[i].startTime %></p>
+				<br><p style ="color : <%= data[i].color%>;"><%= schedule[i].parttime.parttimeName %></p>
+				<br><p style ="color : <%= data[i].color%>;"><%= schedule[i].startTime %></p>
 			<% } %>
 		</div>
+
+		<div class = "monthPay">
+			<% var sum = 0%>
+			<% for (var i = 0;i < monthlyPay.length;i++){ %>
+				<p> 월급 :  <%= monthlyPay[i].monthlyTotal%></p>
+				<% sum = sum + monthlyPay[i].monthlyTotal%>
+			<% } %>
+			<p style = "padding-top: 20px;"> 총 월급 :  <%= sum %></p>
+		</div>
     </side>
+	
 	<table align="center" id="calendar">
 		<tr>
 			<td>
 			<a id="before" href="javascript:beforem()"></a>
 			</td>
-			<td colspan="4" align="center">
+
+			<td colspan="5" align="center">
 			<div id="yearmonth"></div>
 			</td>
+			
 			<td>
 			<a id="next" href="javascript:nextm()"></a>
 			</td>
-			<td>
+			<!-- <td>
 			<a href="javascript:thisMonth()">오늘</a>
-			</td>
-			<% for (var i = 0;i < monthlyPay.length;i++){ %>
+			</td> -->
+			<!-- <% for (var i = 0;i < monthlyPay.length;i++){ %>
 				<p> 총 월 급 :  <%= monthlyPay[i].monthlyTotal%></p>
-			<% } %>
-		
+			<% } %> -->
 		</tr>
+		
 		<tr>
-			<td width="14%"> 월 </td>
-			<td width="14%"> 화 </td>
-			<td width="14%"> 수 </td>
-			<td width="14%"> 목 </td>
-			<td width="14%"> 금 </td>
-			<td width="14%"><font color="#009de0">토</font></td>
-			<td width="14%"><font color="#ed5353">일</font></td>
+			<td width="14.5%"> 월 </td>
+			<td width="14.5%"> 화 </td>
+			<td width="14.5%"> 수 </td>
+			<td width="14.5%"> 목 </td>
+			<td width="14.5%"> 금 </td>
+			<td width="14.5%"><font color="#009de0">토</font></td>
+			<td width="14.5%"><font color="#ed5353">일</font></td>
 		</tr>
 	</table>
 	

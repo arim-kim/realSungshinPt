@@ -60,39 +60,9 @@
                 </label>
                 <br>
                 <select name="rest" id="rest" class="form-control" style="width: 100%;">
-                    <% for (i = 3; i < 11; i++) { %>
+                    <% for (i = 0; i < 11; i++) { %>
                         <option value="<%= i * 10 %>"><%= i * 10 %></option>
-                    <% } %>  
-                <!--휴게시간 선택-
-                <% for (var i = 0; i < 49; i++) { %>
-                    <% var hour = ''; %>
-                    <% var min = '00'; %>
-                
-                    <% if ((Math.ceil(i / 2)) < 13) { %>
-                        <%= hour = (Math.floor(i / 2)); %>
-                    <% } else { %>
-                        <%= hour = (Math.floor(i / 2)); %>
-                    <% } %>
-                
-                    <%= hour = (Math.floor(i / 2)); %>
-                
-                    <% if (hour < 10) { %>
-                        <%= hour = '0' + hour; %>
-                    <% } %>
-                
-                    <% if (i % 2 != 0) { %>
-                        <% min = '30'; %>
-                    <% } %>
-                    
-                    <% var rest = hour * 60 + min; %>
-    
-                    document
-                        .write('<option value="rest">
-                            <%= hour %>시간 
-                            <%= min %>분
-                            </option>');
-                <% } %>-->
-                    
+                    <% } %>    
                 </select>
 
                 
@@ -142,8 +112,7 @@
     
                 <br><br>
                 <hr>
-                <!--일급 계산해서 [] 안에 보여주게 처리(함수 아직 못만듦)-->
-                <h4 style="text-align: right;">일급 [계산]원</h4>
+                
                 <br>
                 
                 <input type="submit" value="추가" style="float:right">

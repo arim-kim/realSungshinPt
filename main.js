@@ -48,18 +48,13 @@ app.use(express.static('public'));
 app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
+
+// 친구 추가 
 app.get("/friend", homeController.friend); //친구추가view
-app.get("/test", homeController.testEnv);
-
-
-app.get("/friendlist", friendlistController.getAllfriend); //뷰 분리시 사용(운영추가)
+app.get("/friendlist", friendlistController.getAllfriends); //뷰 분리시 사용(운영추가)
 app.post("/friend", addFriendController.addFriendEmail);
-// app.get("/friend", addFriendController.addFriendEmail);
 app.post("/addFriend", addFriendController.addFriendEmail);
-
-
-
-
+app.get("/chat",chatController.getAllChat);
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);
 app.get("/login", homeController.login); 

@@ -26,7 +26,6 @@ const getAllfriend = async(id) => {
                 myId: id
             }
         });
-
         await data.forEach(e => {
             e.yourId
           console.log(e.yourId);
@@ -78,6 +77,7 @@ exports.getAllfriends = async (req, res) => {
         //     }
         // )
         fid = [];
+
 
     }catch(err){
         console.log(err);

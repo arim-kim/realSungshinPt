@@ -32,16 +32,28 @@
                 
                 <div id="chat-list"></div> 
                 <script src="/socket.io/socket.io.js"></script>
-
+                
                 <form onsubmit="return sendMessage()" >
                     <input name ='messageContent'id="message" placeholder="Enter message">
                     <input type="submit" value="send">
                 </form>            
                 
                 <script>
+                    const models = require("../models/index"),
+                    Member = models.member,
+                    Friends = models.friends,
+                    Chat=models.chat;
+
+                    Op = models.Sequelize.Op;        
+
                     const socket= io('http://localhost:80');
                     function sendMessage(){
                         let message = document.querySelector("#message");
+
+               // let senderId = document.querySelector("#sender");
+                    //    let receiverId = document.querySelector("#receiver");
+
+
 
                         console.log(message.value+'가 도착');
                         socket.emit('new_message',message.value);
@@ -54,9 +66,6 @@
                         console.log('Server says',data);
                     });
                  
-                    function setReceiver(){
-                       
-                    }
 
 
                   
@@ -86,26 +95,7 @@
 
     </div>
 
-    <div class="chatContent">
-        <%  FFFF.forEach ( s => {   %>
-            <%= s.chatContent%>
-        <% }); %>
-    </div>
 
-    <div class="goAddFriend">
-        <input type="button" id="btnChat" value="친구추가하기" onclick="location.href='/addFriend';">
-    </div>
-    <div id="roomList">
-        <div id="roomHeader">채팅방 목록</div>
-        <div id="roomSelect" >
-            <%  FFFF.forEach ( s => {   %>
-                <button class ="roomEI" id="freindId" onclick="setReceiver();">
-                <%= s.memberName %>
-                 </button>
-            <% }); %>
-            <select name="" id=""></select>
-        </div>
-    </div>
 
 </body>
 </html>

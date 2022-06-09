@@ -37,3 +37,36 @@ body{
 .roomEI.active{
     background: #f0f0f0;
 }
+#calenderList{
+    width: 250px;
+    border: 1px solid #8a149f;
+    border-radius: 5px;
+}
+
+#calenderHeader{
+    background-color: #9471f4;
+    color: #fff;
+    height: 40px;
+    width: 10%;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.CalenderEI{
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.CalenderEI:hover{
+    background: #f0f0f0;
+}
+
+.CalenderEI.active{
+    background: #f0f0f0;
+}
+
+

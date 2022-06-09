@@ -24,18 +24,24 @@
                 
                 <div id="chat-list"></div> 
                 <script src="/socket.io/socket.io.js"></script>
-
+                
                 <form onsubmit="return sendMessage()" >
                     <input name ='messageContent'id="message" placeholder="Enter message">
                     <input type="submit" value="send">
                 </form>            
                 
                 <script>
+                    const models = require("../models/index"),
+                    Member = models.member,
+                    Friends = models.friends,
+                    Chat=models.chat;
+
+                    Op = models.Sequelize.Op;        
+
                     const socket= io('http://localhost:80');
                     function sendMessage(){
                         let message = document.querySelector("#message");
-
-
+                        
                         console.log(message.value+'가 도착');
                         socket.emit('new_message',message.value);
                         document.querySelector("#message").value = "";
@@ -49,10 +55,7 @@
 
                     });
                  
-                    function setReceiver(){
-                       
-                    }
-
+                   
 
                   
                 
@@ -84,19 +87,6 @@
     </div>
     
 
-    <div id="calenderList">
-        <div id="calenderHeader">동료 캘랜더 목록</div>
-        <div id="calenderSelect">
-            <!-- <% FFFF.forEach(e=>{ %>
-                <button class="CalenderEI" onclick="">
-                    <%=e.memberName%> 's Calnender%>
-                </button>
-            <%});%>  -->
-            <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
-            <div class="CalenderEI" data-id="3">friend3's Calnender</div>
-            <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
-        </div>
-    </div>
 
 </body>
 </html>

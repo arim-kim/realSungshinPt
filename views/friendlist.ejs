@@ -5,7 +5,6 @@
     <title>성신한알바</title>
 </head>
 <body>
-   <!--왜... roomlist가 오류나지? render해서 데이터를 못받아옴-->
     <div class="goAddFriend">
         <input type="button" id="btnChat" value="친구추가하기"  onclick="location.href='/friend';">
 
@@ -13,13 +12,26 @@
 
     <div id="roomList">
         <div id="roomHeader">친구 목록</div>
-        <div id="roomSelect"  method="get">
+        <div id="roomSelect" >
                 <% FFFF.forEach(e=>{ %>
-                <button class ="roomEI" id="friendId" name="friendId" onclick="setReceiver();">
+                <button class ="roomEI" id="friendId" name="friendId" onclick="">
                 <%=e.memberName%>
                 </button>
                 <%});%> 
             <select name="" id=""></select>
+        </div>
+    </div>
+    <div id="calenderList">
+        <div id="calenderHeader">동료 캘랜더 목록</div>
+        <div id="calenderSelect">
+            <% FFFF.forEach(e=>{ %>
+                <button class="CalenderEI" onclick="">
+                    <%=e.memberName%> 's Calnender%>
+                </button>
+            <%});%> 
+            <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
+            <div class="CalenderEI" data-id="3">friend3's Calnender</div>
+            <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
         </div>
     </div>
 </body>

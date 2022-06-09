@@ -9,7 +9,6 @@ var fid=new Array();
 
 const getName = async(id) => {
 try{
-    console.log("겟네임ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ")
     data = await Member.findOne({
         attributes : ['memberName'],
         where : {
@@ -34,11 +33,9 @@ exports.getAllfriend = async (req, res) => {
         });
        
         await data.forEach(e => {
-            console.log("바보야 ", e.yourId);
 
             getName(e.yourId).then(
                 new_data=>{
-                    // console.log("forEach",new_data);
                     fid.push(new_data);
                 
                 }
@@ -59,22 +56,3 @@ exports.getAllfriend = async (req, res) => {
 
 
 
-exports.addChat=async(req,res)=>{
-    try {
-        var date=new Date();
-        console.log(date.getMonth,date.getDate,date.getHours, date.getMinutes)
-        console.log("추가하는중")
-        Chat.create({
-            chatContent : req.body.messageContent,
-            receiverId: getId(req.query.friendId),
-            senderId: '51',
-            chatTime: '2022-06-08 10:30'
-        
-        })
-        res.render("chat");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-}

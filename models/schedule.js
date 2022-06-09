@@ -1,6 +1,9 @@
+const { schedule } = require("../models/index");
+
 const models = require("../models/index"),
+moment = require("moment"),
 member = models.member,
-parttime = models.parttime; 
+parttime = models.parttime;
 
 
 module.exports = (sequelize, Sequelize) => {
@@ -32,7 +35,14 @@ module.exports = (sequelize, Sequelize) => {
         },
         endTime: {
             type: Sequelize.DATE,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                isAfterStartTime(value) {
+                    if (!moment(value).isAfter(moment(this.startTime))) {
+                        throw new Error("시작 시간 이후로 설정해주세요!");
+                    }
+                  }
+            }
         },
         holiday: {
             type: Sequelize.INTEGER,

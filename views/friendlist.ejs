@@ -13,14 +13,22 @@
 
     <div id="roomList">
         <div id="roomHeader">친구 목록</div>
-        <div id="roomSelect"  method="get">
-                <% FFFF.forEach(e=>{ %>
-                <button class ="roomEI" id="friendId" name="friendId" onclick="setReceiver();">
-                <%=e.memberName%>
-                </button>
-                <%});%> 
-            <select name="" id=""></select>
+        <div id="roomSelect">
+            <% if(FFFF) { %>
+             <% FFFF.forEach(e=>{ %>
+                <button class = 'button' id = <%=e.memberId%> onclick='location.href="/chat?friendId=" + id;'><%= e.memberName%>'s chatting</button>
+            <%});%> 
+            <%}%>
         </div>
+        
+    </div>
+    <div id ="roomCalendarHeader">친구 캘린더 보기</div>
+    <div id = "calendarSelect">
+        <% if(FFFF) { %>
+            <% FFFF.forEach(e=>{ %>
+                <button class = 'button' id = <%=e.memberId%> onclick='location.href="/friendCalendar?friendId=" + id;'><%= e.memberName%>'s Calendar</button>
+           <%});%> 
+           <%}%>
     </div>
 </body>
 </html>

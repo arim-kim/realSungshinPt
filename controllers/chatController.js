@@ -5,50 +5,32 @@ Chat = db.chat,
 Member=db.member,
 Op = db.Sequelize.Op;
 const Friend=db.friends;
-var fid=new Array();
 
 
-const models = require("../models/index"),
-friends = models.friends;
 
-//크레이트로 방...만들기..
-//파트타임 컨트롤러에 있음.
-//
-
-const getId= async(name)=>{ //이름으로 id찾기
-    try{  
-        id=await Member.findOne({
-            attributes : ['memberId'],
+const getAllChat =  async (myId, friendId) => {
+    try {
+         data = await Chat.findAll({
             where : {
-                membername : name
-            }
-        })
-        console.log("getID",id);
-        
-        return id;
-    }catch{
+                [Op.or] : [
+                    {senderId : myId,  receiverId : friendId},
+                    {senderId : friendId,  receiverId : myId},
+                ]
+            },
+            order : ['chatTime']
+        });
+        console.log("함수 내 데이터 : " + data);
+        return data; 
+    }catch(err) {
         console.log(err);
     }
 }
 
 
-const getName = async(id) => {
-try{
-    data = await Member.findOne({
-        attributes : ['memberName'],
-        where : {
-            memberId : id
-        }
-    })
-    return data; 
-}catch(err) {
-    console.log(err);
-}
-}
-
-exports.getAllfriend = async (req, res) => {
+exports.getAllChat = async (req, res) => {
     try {
-
+        AllChat = await getAllChat(req.session.idx, req.query.friendId);
+        res.render("chat", {nowUser : req.session.idx, friendId : req.query.friendId, AllChat : AllChat});
         data = await Friend.findAll({
             where: {
                 myId: 50

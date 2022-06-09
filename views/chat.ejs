@@ -35,6 +35,7 @@
                     function sendMessage(){
                         let message = document.querySelector("#message");
 
+
                         console.log(message.value+'가 도착');
                         socket.emit('new_message',message.value);
                         document.querySelector("#message").value = "";
@@ -43,6 +44,9 @@
                     
                     socket.on('new_message',data=>{
                         console.log('Server says',data);
+                        // var p=document.createElement("p");
+                        // p.innerHTML=data.message;
+
                     });
                  
                     function setReceiver(){
@@ -78,31 +82,16 @@
         </div>
         
     </div>
-    <div class="goAddFriend">
-        <input type="button" id="btnChat" value="친구추가하기" 
-        onclick="homeControllers.friend">
-
-    </div>
-    <div id="roomList">
-        <div id="roomHeader">채팅방 목록</div>
-        <div id="roomSelect" >
-            <%  FFFF.forEach ( s => {   %>
-                <button class ="roomEI" id="freindId" onclick="setReceiver();">
-                <%= s.memberName %>
-                 </button>
-            <% }); %>
-            <select name="" id=""></select>
-        </div>
-    </div>
+    
 
     <div id="calenderList">
         <div id="calenderHeader">동료 캘랜더 목록</div>
         <div id="calenderSelect">
-            <% FFFF.forEach(e=>{ %>
+            <!-- <% FFFF.forEach(e=>{ %>
                 <button class="CalenderEI" onclick="">
                     <%=e.memberName%> 's Calnender%>
                 </button>
-            <%});%> 
+            <%});%>  -->
             <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
             <div class="CalenderEI" data-id="3">friend3's Calnender</div>
             <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->

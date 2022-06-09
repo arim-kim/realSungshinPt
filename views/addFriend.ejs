@@ -12,16 +12,18 @@
 
 
     <div class="wrapper">
-            <form name = "friend-form" action = "/friend" method = "post">
-                <div class = "friendEmail">
+            <form name = "friend-form" action = "/friend" method = "post"type="submit" value="제출">
+                <div class = "friendEmaildiv">
                         <div class = "friendEmailBox">
                                 <label>친구 이메일 입력</label>
-                                <input id="friendEmail" type="text" placeholder="친구 이메일을 입력해 주세요." maxlength="30">
+                                <input id="friendEmail" name="friendEmail" type="text" placeholder="친구 이메일을 입력해 주세요." maxlength="30">
                         </div>
                         <div id="fEmailError" class="error"></div>
                 </div>
                 <div class ="sendMail">
-                        <button id="sendMailButton"action="" onclick="sendMailCheck()">친구추가신청보내기</button>
+                        <!-- <button id="sendMailButton" type="submit">친구추가</button> -->
+                        <input type = "submit" class = "loginBtn" id="sendMailBtn" value = "addFriend">
+
                 </div>
             </form>
     </div>

@@ -15,9 +15,16 @@
         </div>
 
         <div class="display-container">
+            <% for(var i = 0; i < AllChat.length; i++) {%>
+                <% if(AllChat[i].senderId == nowUser) { %>
+                    <div class = "sendMessage" style = "color : white"> <%=AllChat[i].chatContent%> </div> 
+                 <% } %>
+                 <% if(AllChat[i].senderId == 50) { %>
+                     <div class = "receiveMessage" style = "color : black"> <%=AllChat[i].chatContent%> </div> 
+                 <% } %>
+             <% } %>
             <ul id="messages"> <div class="time" id="chatTime">06/06 13:01</div>
             </ul>
-           
         </div>
        
         <div class="input-container">        
@@ -26,7 +33,9 @@
                 <script src="/socket.io/socket.io.js"></script>
 
                 <form onsubmit="return sendMessage()" >
-                    <input name ='messageContent'id="message" placeholder="Enter message">
+                    <input name ='messageContent' id="message" placeholder="Enter message">
+                    <input type = "hidden" id ='receiver' value = "<%=friendId%>">
+                    <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
                     <input type="submit" value="send">
                 </form>            
                 
@@ -34,10 +43,12 @@
                     const socket= io('http://localhost:80');
                     function sendMessage(){
                         let message = document.querySelector("#message");
+                        let senderId = document.querySelector("#sender");
+                        let receiverId = document.querySelector("#receiver");
 
 
                         console.log(message.value+'가 도착');
-                        socket.emit('new_message',message.value);
+                        socket.emit('new_message',message.value, senderId.value, receiverId.value);
                         document.querySelector("#message").value = "";
                         return false;
                     }
@@ -53,9 +64,6 @@
                        
                     }
 
-
-                  
-                
                    fetch("http://localhost:80/get_messages") 
                     .then(res=>res.join())
                     .then(data=>{
@@ -82,7 +90,7 @@
         </div>
         
     </div>
-    
+
 
     <div id="calenderList">
         <div id="calenderHeader">동료 캘랜더 목록</div>
@@ -95,6 +103,7 @@
             <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
             <div class="CalenderEI" data-id="3">friend3's Calnender</div>
             <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
+
         </div>
     </div>
 

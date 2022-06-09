@@ -37,6 +37,7 @@
                 <input name ='messageContent' id="message" placeholder="Enter message">
                 <input type = "hidden" id ='receiver' value = "<%=friendId%>">
                 <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
+                <input type = "hidden" id = 'room' value = "<%=room%>">
                 <input type="submit" value="send">
             </form>            
             
@@ -46,10 +47,11 @@
                     let message = document.querySelector("#message");
                     let senderId = document.querySelector("#sender");
                     let receiverId = document.querySelector("#receiver");
+                    let room = document.querySelector("#room"); 
 
 
                     console.log(message.value+'가 도착');
-                    socket.emit('new_message',message.value, senderId.value, receiverId.value);
+                    socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value);
                     document.querySelector("#message").value = "";
                     return false;
                 }

@@ -8,7 +8,7 @@ schedule = db.schedule,
 Op = db.Sequelize.Op;
 
 exports.main = (req, res) => {
-    res.render("index", {layout : false});
+    res.render("index");
 };
 
 exports.join = (req, res) => {
@@ -29,7 +29,6 @@ exports.login = async (req, res) => {
 exports.friendlist=async(req,res)=>{
     res.render("friendlist");
 }
-
 
 const getPtlist = async (id) => {
     try {
@@ -129,4 +128,5 @@ exports.getAllParttimes = async (req, res) => {
         });
     }
 };
+
 

@@ -51,3 +51,11 @@ exports.login_f = async (member_mail,member_password,res,req) => {
     });
 }
 
+exports.logout = function (req, res) {
+    console.log(req.session);
+    req.session = null;  // 세션 삭제
+    // console.log(req.session);
+    // res.clearCookie('sid'); // 세션 쿠키 삭제
+    console.log("로그아웃");
+    res.render("logout");
+};

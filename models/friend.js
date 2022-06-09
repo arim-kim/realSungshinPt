@@ -12,6 +12,10 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             foreignKey: 'memberId',
             primaryKey: true
+        },
+        room: {
+            type: Sequelize.STRING,
+            allowNull: false
         }
     },
     {

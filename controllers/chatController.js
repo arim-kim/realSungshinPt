@@ -7,6 +7,8 @@ Op = db.Sequelize.Op;
 const Friend=db.friends;
 var fid=new Array();
 
+const models = require("../models/index"),
+friends = models.friends;
 
 //크레이트로 방...만들기..
 //파트타임 컨트롤러에 있음.
@@ -94,3 +96,31 @@ exports.addChat=async(req,res)=>{
         });
     }
 }
+
+
+exports.addfriend=async(req,res)=>{
+    res.render("addFriend")
+}
+
+exports.addFriendReal=async(req,res)=>{
+    
+    models.friends.bulkCreate([{
+        myId: req.session.idx,
+        yourId: req.body.friendEmail,
+        room: req.session.idx + "+" + req.body.friendEmail
+    }, {
+        myId: req.body.friendEmail,
+        yourId: req.session.idx,
+        room: req.session.idx + "+" + req.body.friendEmail
+    }], { returning: true })
+
+    .then( result => {
+        console.log("친구추가 완료");
+        res.render("clear");
+    })
+    .catch( err => {
+        console.log(err)
+        console.log("친구추가 실패");
+    })
+}
+

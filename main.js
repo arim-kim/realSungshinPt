@@ -47,6 +47,9 @@ app.get("/chat", chatController.getAllfriend);
 
 app.get("/logout", loginFu.logout); // 로그아웃
 
+app.get("/addFriend", chatController.addfriend);
+app.post("/friend", chatController.addFriendReal);
+
 app.get('/chat/:friendId',);
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);

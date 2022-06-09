@@ -1,0 +1,11 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<body>
+    <div id ="totalWage"> 총 월급 : <%=monthWage.total%></div>
+    <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
+        <br><p><%= monthPay_byPt[i].parttime.parttimeName %> : <%=monthPay_byPt[i].monthlyTotal%></p>
+    <% } %>
+</body>

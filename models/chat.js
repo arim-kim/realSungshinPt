@@ -22,7 +22,8 @@ module.exports = (sequelize, Sequelize) => {
         chatTime: {
             type: Sequelize.DATE,
             defaultValue: 'X',
-            allowNull: false
+            allowNull: false,
+            
         },
         chatContent: {
             type: Sequelize.STRING,

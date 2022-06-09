@@ -73,12 +73,14 @@ http.listen(port,()=>{
         console.log(`Listeninig to port ${port}`)
 }) //윤영추가(이거지우면 chat X)
 
-
+    
 io.on('connection', (socket,req,res) =>{
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-        socket.on("new_message",(data, senderId, receiverId)=>{ //from client()
+        socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
+                console.log("채팅방번호 : " + room)
+                socket.join(room);
                 console.log("Client(채팅).html) says ",data);
-                io.emit('new_message',data) //to client 전달
+                io.to(room).emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
                 now.format("MM.DD T HH:mm "); //왜 오후 4시가 07로 표기됨? 뒤질래?
                 models.chat.create({ //여기서 sql구동
@@ -90,7 +92,6 @@ io.on('connection', (socket,req,res) =>{
                 
                 console.log(data,"를 언급");
          })    
-    }) //윤영추가
 
 
 /* 로그인 */

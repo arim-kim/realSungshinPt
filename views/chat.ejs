@@ -46,12 +46,12 @@
                 const socket= io('http://localhost:80');
                 console.log(socket);
 
+
                 window.onload = function() {
                     let room = document.querySelector("#room"); 
                     console.log("방번호" + room.value);
                     socket.emit('room', room.value);
                 }
-
 
                 function sendMessage(){
                     let message = document.querySelector("#message");
@@ -64,7 +64,6 @@
                     socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value);
                     document.querySelector("#message").value = "";
                     return false;
-
                 }
 
                 function startChat() {

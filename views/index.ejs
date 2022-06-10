@@ -35,6 +35,7 @@
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
 		var year = today.getFullYear(); 
 		var month = today.getMonth() + 1;
+		var ScheduleClist =  document.querySelector("#count").value;
 		if(month < 10) {
 			month = "0" + month;
 		}
@@ -98,7 +99,8 @@
 			str += "<div id='"+day+"'></div>"; //나중에 원하는 날에 일정을 넣기위해 id값을 날자로 설정
 			
 			var id = year + "-" + month + "-" + day;
-			str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
+			str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+"</button>";
+
 			cell.innerHTML = str;
 			
 			cnt = cnt + 1;
@@ -109,7 +111,7 @@
 				str += "<div id='"+day+"'>";
 				str += "</div>";
 				var id = year + "-" + month + "-" + day
-				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+"</button>";
 				cell.innerHTML = str;
 				cell.style.color = "#009de0";
 				cell.style.backgroundColor = "#f7f7f7";                    
@@ -122,7 +124,7 @@
 				str += "<div id='"+day+"'>";
 				str += "</div>";
 				var id = year + "-" + month + "-" + day
-				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+ month+"</button>";
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/job-list?date=" + id + "\";'>"+"</button>";
 				cell.innerHTML = str;
 				row = calendar.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
@@ -207,8 +209,7 @@
             </div>
         </div>
     </header>
-
-
+	<input type="hidden" id = 'count' value = "<%=scheduleC%>">
     <nav>
 		<div class = "navBox">
 			<div class="goChat">
@@ -251,7 +252,6 @@
 		<div class="showMonthWage" id="showMonthWageBtn"></div>
 
     </side>
-	
 	<table align="center" id="calendar">
 		<tr>
 			<td>

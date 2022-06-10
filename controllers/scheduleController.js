@@ -167,7 +167,7 @@ exports.showMonthWage = async (req, res) => {
             getMonthPay_byPt(id,month).then (
                 monthPay_byPt => {
                     console.log(monthPay_byPt)
-                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt})
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthPayId : id})
                 }
               )
             )

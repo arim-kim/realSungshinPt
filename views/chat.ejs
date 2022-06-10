@@ -43,12 +43,18 @@
             
             <script>
                 const socket= io('http://localhost:80');
+
+                window.onload = function() {
+                    let room = document.querySelector("#room"); 
+                    console.log("방번호" + room.value);
+                    socket.emit('room', room.value);
+                }
+
                 function sendMessage(){
                     let message = document.querySelector("#message");
                     let senderId = document.querySelector("#sender");
                     let receiverId = document.querySelector("#receiver");
                     let room = document.querySelector("#room"); 
-
 
                     console.log(message.value+'가 도착');
                     socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value);
@@ -60,8 +66,6 @@
                     console.log('Server says',data);
                     // var p=document.createElement("p");
                     // p.innerHTML=data.message;
-                    
-
                 });
              
                 function setReceiver(){

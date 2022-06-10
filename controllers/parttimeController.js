@@ -3,7 +3,7 @@ Parttime = db.parttime,
 Op = db.Sequelize.Op;
 
 exports.addParttime = async (res, req, err) => {
-    models.parttime.create({
+    db.parttime.create({
         // 여기 내가 수정해놨엉!!
         ptMemberId : req.session.idx,
         parttimeName: req.body.parttimeName,

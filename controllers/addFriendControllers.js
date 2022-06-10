@@ -61,7 +61,7 @@ exports.addFriendEmail =async (req, res)=>{
         )
         
     }catch{
-        console.log("error");
+        res.render("alreadyFriend");        
     }
 }
 

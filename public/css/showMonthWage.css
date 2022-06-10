@@ -1,0 +1,13 @@
+table {
+    margin-left: 42%;
+    border-style: solid;
+}
+
+tr {
+    color: black;
+}
+
+td {
+    border-style: dashed;
+    color: #9dc39c;
+}

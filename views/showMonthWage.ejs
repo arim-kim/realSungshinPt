@@ -1,13 +1,37 @@
-
-
 <!DOCTYPE html>
 <html lang="ko">
-
+<head>
+    <link rel="stylesheet" href="./css/showMonthWage.css">
+</head>
 <body>
     <div id ="totalWage"> 총 월급 : <%=monthWage.total%></div>
     <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
         <br><p><%= monthPay_byPt[i].parttime.parttimeName %> : <%=monthPay_byPt[i].monthlyTotal%></p>
     <% } %>
-    <button id = "homeButton" onclick="location.href='/'" >홈으로</button>
 
+<table>
+        <tr>
+            <th colspan="2"><%= monthPayId %>님의 급여 명세표</th>
+        </tr>
+        <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
+            <tr>
+                <td>
+                    <%= monthPay_byPt[i].parttime.parttimeName %>
+                </td>
+                <td>
+                    <%=monthPay_byPt[i].monthlyTotal%>
+                </td>
+            </tr>
+        <% } %>
+        <tr>
+            <td>
+                총 월급
+            </td>
+            <td>
+                <%=monthWage.total%>
+            </td>
+        </tr>
+    </table>
+
+    <button id = "homeButton" onclick="location.href='/'" >홈으로</button>
 </body>

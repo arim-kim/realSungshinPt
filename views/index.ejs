@@ -215,10 +215,8 @@
 				<input type="button" id="btnChat" value="채팅" onclick="location.href='/friendlist';">
 			</div>
 			<div class="goAddSchedule">
-
 				<input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
 			</div>
-
 			<div class="goAddPt">
 				<input type="button" id="btngoAddPt" value="아르바이트 추가" onclick="location.href='/job';">
 			</div>
@@ -229,8 +227,6 @@
 				<input type="button" id="btnDeletePt" value="아르바이트 삭제" onclick="location.href='/jobDelete';">
 			</div>
 
-		<div class="showMonthWage" id="showMonthWageBtn">
-		</div>
 	</nav>
 
 		<div class = "pattimeList">
@@ -251,6 +247,8 @@
 				<br><p style ="color : <%= data[i].color%>;"><%= schedule[i].startTime %></p>
 			<% } %>
 		</div>
+		
+		<div class="showMonthWage" id="showMonthWageBtn"></div>
 
     </side>
 	
@@ -267,9 +265,10 @@
 			<td>
 			<a id="next" href="javascript:nextm()"></a>
 			</td>
-			<td>
+
+			<!-- <td>
 			<a href="javascript:thisMonth()">오늘</a>
-			</td>
+			</td> -->
       
 		</tr>
 		

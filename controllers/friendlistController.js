@@ -4,6 +4,7 @@ const model=require("../models/index"),
     Friend=model.friends;
     var fid =new Array();
 
+
 const getOne = async(id) => {
     try{
         data = await Member.findOne({
@@ -43,7 +44,7 @@ const getAllfriend = async(id) => {
 
 
 
-exports.getAllfriends = async (req, res) => {
+exports.getAllfriends = async (req, res, next) => {
 
     try{
 
@@ -60,18 +61,18 @@ exports.getAllfriends = async (req, res) => {
           getOne(e.yourId).then(
               new_data=>{
                   fid.push(new_data);
-              })
-            return 0; });
-        
-        await res.render("friendlist", { FFFF : fid });
+            })
 
-        
+            return 0; 
+        });
+
+        await res.render("friendlist", { FFFF : fid});
+
         fid = [];
-
+        
 
     }catch(err){
         console.log(err);
     }
 
 }
-    

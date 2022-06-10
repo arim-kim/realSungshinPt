@@ -1,9 +1,8 @@
-
 .one {
     float:left; 
     border: 3px solid #9dc39c;
     width: 25%; 
-    height: 500px;
+    height: 460px;
     margin-left: 20%;
     margin-top: 50px;
     display: inline-block;
@@ -84,7 +83,7 @@ label {
     float:left; 
     border: 3px solid #9dc39c;
     width: 25%; 
-    height: 500px;
+    height: 460px;
     margin-left: 10%;
     margin-top: 50px;
     display: inline-block;
@@ -134,7 +133,15 @@ label {
     margin-right: 20px;
 }
 
+hr {
+    height: 2px;
+    color: #9dc39c;
+    background-color: #9dc39c;
+    border: none;
+}
+
 #scdlSubmit {
+    margin-top: 10px;
     margin-right: 20px;
     border-top: none;
     border-left: none;

@@ -1,100 +1,44 @@
-/* html {
-    /* background-color: orange;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-} */
-/* body {
-    /* background-color: yellow; 
-    width: 60%;
-    margin: 0 auto;
-    border: 1px solid black;
-} */
-
-
-
-.title {
-    background-color: skyblue;
-    width: 30%;
-    height: 100px;
-    margin: auto;
-    margin-top: 50px;
-}
-.title > p {
-    /* background-color:pink; */
-    padding-top: 40px;
-    width: 80%;
-    margin: auto;
-    display: block;
-    text-align: center;
-    font-size: 30px;
-}
-
 .wrapper {
     /* background-color: palegreen; */
     width: 40%;
     margin: 0 auto;
     margin-top: 50px;
-    border: 1px solid skyblue;;
+    /* border: 1px solid skyblue;; */
     padding: 20px;
 }
 
-/* header {
-    /* background-color: antiquewhite;
-    height: 150px;
-    width: 80%;
-    margin: 0 auto;
-}
-header > p {
-    padding-top: 100px;
-    text-align: center;
-} */
-
-label {
-    padding-right: 5px;
-}
-
 .friendEmail {
-    /* background-color:brown; */
-    height: 100px;
-    width: 80%;
-    /* display: flex; */
-    margin: 0 auto;
-}
-.friendEmailBox {
-    /* background-color: cornflowerblue; */
-    padding-top: 45px;
-    height: 25px;
-    width: 80%;
+    height: 20px;
+    width: 100%;
     text-align: center;
     margin: auto auto;
 }
-.friendEmail input {
-    border-radius: 7px;
-    background-color:rgb(202, 243, 255);
-    width: 60%;
+#friendEmail {
+    width: 350px;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
+    border-radius: 5px;
 }
 
 .sendMail {
-    /* background-color:blue; */
-    height: 80px;
-    padding-top: 20px;
-    width: 80%;
-    margin: auto;
+    padding-top: 80px;
+    height: 25px;
+    width: 100%;
     text-align: center;
-}
-.sendMailButton {
-    margin: auto;
-    display: block;
+    margin: auto auto;
     cursor: pointer;
 }
-button {
-    border-radius: 7px;
-    background-color:rgb(202, 243, 255);
-    cursor: pointer;
+
+#sendMailButton {
+    width: 100px;
     height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #9dc39c;
 }
 
 .error {

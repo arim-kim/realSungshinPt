@@ -51,10 +51,10 @@ nav {
   float: left;
 }
 
-nav   .navBox {
+nav .navBox {
   border: 3px solid #9dc39c;
   height: 70px;
-  margin-left: 14%;
+  margin-left: 10%;
 }
 
 #btnSchedule, #btnChat, #btngoAddPt, #btnEditPt, #btnDeletePt {
@@ -112,25 +112,36 @@ side .alarmNameBox {
 }
 
 .alertBox {
-  height: 430px;
+  height: 505px;
   left: 0;
   text-align: center;
 }
 
-.monthPay {
-  height: 175px;
+.showMonthWage {
+  height: 100px;
   background-color: #9dc39c;
   font-family: 'Nanum Gothic', sans-serif;
 }
 
-.monthPay > p {
+#btnShowWage {
   text-align: center;
   padding-top: 5px;
+  width: 100px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 30%;
+  border-radius: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid grey;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 /*캘린더*/
 #calendar {
   margin-top: 30px;
+  margin-right: 5%;
   /* background-color: bisque; */
   border: 3px solid #9dc39c;
 }

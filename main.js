@@ -45,7 +45,6 @@ app.get("/", homeController.index);
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 
-
 app.get("/logout", loginFu.logout); // 로그아웃
 app.post("/friend", addFriendController.addFriendEmail);
 app.get("/friend", addFriendController.addfriend);
@@ -74,11 +73,20 @@ http.listen(port,()=>{
 }) //윤영추가(이거지우면 chat X)
 
     
-io.on('connection', (socket,req,res) =>{
+io.on('connection', (socket) =>{   //,req,res
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-        socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
-                console.log("채팅방번호 : " + room)
+
+        console.log(socket.rooms);
+        socket.on("room",(room) => {
                 socket.join(room);
+                console.log("회원이 입장")
+        })
+        console.log(socket.rooms);
+
+        socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
+
+                console.log("채팅방번호 : " + room)
+                
                 console.log("Client(채팅).html) says ",data);
                 io.to(room).emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
@@ -88,10 +96,10 @@ io.on('connection', (socket,req,res) =>{
                         receiverId: receiverId,
                         chatTime:now,
                         chatContent:data
-                        });
-                
+                });
                 console.log(data,"를 언급");
-         })    
+         })  
+})
 
 
 /* 로그인 */

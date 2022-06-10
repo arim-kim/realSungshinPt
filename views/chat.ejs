@@ -41,51 +41,54 @@
             </form>            
             
             <script>
+            window.onload = function() {
+                    sendRoomid(); 
+                }
+                
                 const socket= io('http://localhost:80');
+                function sendRoomid() {
+                    let roomId = document.querySelector("#room");
+                    socket.emit('room_id', roomId.value); 
+                    return false; 
+                }
+            
                 function sendMessage(){
                     let message = document.querySelector("#message");
                     let senderId = document.querySelector("#sender");
                     let receiverId = document.querySelector("#receiver");
-
+                    let room = document.querySelector("#room"); 
 
                     console.log(message.value+'가 도착');
-                    socket.emit('new_message',message.value, senderId.value, receiverId.value);
+                    socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value);
                     document.querySelector("#message").value = "";
                     return false;
                 }
                 
-                socket.on('new_message',data=>{
-                    console.log('Server says',data);
-                    // var p=document.createElement("p");
-                    // p.innerHTML=data.message;
-                    
-
-                });
              
-                function setReceiver(){
+            //     function setReceiver(){
                    
-                }
+            //     }
 
-               fetch("http://localhost:80/get_messages") 
-                .then(res=>res.join())
-                .then(data=>{
-                    const messages=document.querySelector('#messages')
+            //    fetch("http://localhost:80/get_messages") 
+            //     .then(res=>res.join())
+            //     .then(data=>{
+            //         const messages=document.querySelector('#messages')
 
-                    for(let i=0; i< data.length; i++){
-                        let li=document.createElement('li')
-                        li.id=data[i].id
-                        li.innerHTML=data[i].message
-                        messages.appendChild
-                    }
-                })
+            //         for(let i=0; i< data.length; i++){
+            //             let li=document.createElement('li')
+            //             li.id=data[i].id
+            //             li.innerHTML=data[i].message
+            //             messages.appendChild
+            //         }
+            //     })
 
-                    socket.on('new_message',data=>{
-                    console.log('Server.js says',data)
-                    let li=document.createElement("li");
-                    li.innerHTML=data;
-                    const messages=document.querySelector("#messages");
-                    messages.appendChild(li)
-                });
+            //         socket.on('new_message',data=>{
+            //         console.log('Server.js says',data)
+            //         let li=document.createElement("li");
+            //         li.innerHTML=data;
+            //         const messages=document.querySelector("#messages");
+            //         messages.appendChild(li)
+            //     });
             
             </script>   
         </div>

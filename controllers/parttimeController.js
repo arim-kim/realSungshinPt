@@ -1,9 +1,11 @@
+const member = require("../models/member");
+
 const db = require("../models/index"),
 Parttime = db.parttime,
 Op = db.Sequelize.Op;
 
 exports.addParttime = async (res, req, err) => {
-    models.parttime.create({
+    db.parttime.create({
         // 여기 내가 수정해놨엉!!
         ptMemberId : req.session.idx,
         parttimeName: req.body.parttimeName,
@@ -89,6 +91,10 @@ exports.jobDelete = async (req, res) => {
             res.render("jobDelete", { pt : ptlist});}
     );
 }
+
+
+
+
 
 exports.jobDeleteClear = async (req, res) => {
     try {

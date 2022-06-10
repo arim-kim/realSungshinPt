@@ -24,31 +24,32 @@ const express = require("express"),
 
 
 db.sequelize.sync();
-
 app.use(session({
 	secret:'keyboard cat',
 	resave:false,
 	saveUninitialize:true
 }));
+app.use(bodyParser.json());
 
 app.set("port", process.env.PORT || 80);
 app.set("view engine", "ejs");
-
 
 app.use(layouts);
 app.use(cors()); //윤영추가
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-
 app.get("/", homeController.index);
+// app.get("/", memberController.UserDelete);  //유저 딜리트
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
-
+app.get("/deleteUser", memberController.UserDelete);
 
 app.get("/logout", loginFu.logout); // 로그아웃
-app.post("/friend", addFriendController.addFriendEmail);
 app.get("/friend", addFriendController.addfriend);
+app.get("/friend", addFriendController.addFriendEmail);
+app.post("/friend", addFriendController.addFriendEmail);
+
 
 app.get("/friendlist", friendlistController.getAllfriends); //뷰 분리시 사용(운영추가)
 app.get("/chat",chatController.getAllChat);
@@ -67,6 +68,7 @@ app.get("/showMonthWage", scheduleController.showMonthWage);
 
 const { engine } = require("express/lib/application");
 const moment=require("moment");
+const member = require("./models/member");
 
 const port=80; //윤영 임시추가.. 근데 port없이 어떻게 http.
 http.listen(port,()=>{
@@ -80,7 +82,7 @@ io.on('connection', (socket,req,res) =>{
                 console.log("Client(채팅).html) says ",data);
                 io.emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
-                now.format("MM.DD T HH:mm "); //왜 오후 4시가 07로 표기됨? 뒤질래?
+                now.format("MM.DD T HH:mm "); 
                 models.chat.create({ //여기서 sql구동
                         senderId: senderId,
                         receiverId: receiverId,
@@ -107,6 +109,7 @@ app.post('/signUp', async (req, res, err) => {
 app.post("/job", async(req, res, err) => {
         parttimeController.addParttime(res, req, err);
 })
+
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

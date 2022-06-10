@@ -7,12 +7,10 @@
 <body>
     <div class="goAddFriend">
         <input type="button" id="btnChat" value="친구추가하기"  onclick="location.href='/friend';">
-
     </div>
-
     <div id="roomList">
         <div id="roomHeader">친구 목록</div>
-
+        <button id = "manage_friend" onclick="location.href='/deleteFriend'">친구관리</button>
         <div id="roomSelect">
             <% if(FFFF) { %>
              <% FFFF.forEach(e=>{ %>
@@ -29,19 +27,6 @@
                 <button class = 'button' id = <%=e.memberId%> onclick='location.href="/friendCalendar?friendId=" + id;'><%= e.memberName%>'s Calendar</button>
            <%});%> 
            <%}%>
-    </div>
-    <div id="calenderList">
-        <div id="calenderHeader">동료 캘랜더 목록</div>
-        <div id="calenderSelect">
-            <% FFFF.forEach(e=>{ %>
-                <button class="CalenderEI" onclick="">
-                    <%=e.memberName%> 's Calnender%>
-                </button>
-            <%});%> 
-            <!-- <div class="CalenderEI" data-id="2">friend2's Calnender</div>
-            <div class="CalenderEI" data-id="3">friend3's Calnender</div>
-            <div class="CalenderEI" data-id="4">friend4's Calnender</div> -->
-        </div>
     </div>
 </body>
 </html>

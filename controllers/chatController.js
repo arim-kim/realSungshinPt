@@ -23,6 +23,8 @@ const getAllChat =  async (myId, friendId) => {
         return data; 
     }catch(err) {
         console.log(err);
+        res.render("warning");
+
     }
 }
 
@@ -38,6 +40,24 @@ exports.getAllChat = async (req, res) => {
         });
     }
 };
+
+// exports.getRoomId= async(myId,yourId)=>{
+//     try{
+//         data = await Friend.findAll({
+//             where : {
+//               myId:myId,
+//               yourId: yourId
+//             }
+          
+//         });
+//         console.log("roomId: " + data);
+//         return data; 
+//     }catch(err){
+//         res.status(500).send({
+//             message: err.message
+//         });
+//     }
+// }
 
 
 // exports.addfriend=async(req,res)=>{

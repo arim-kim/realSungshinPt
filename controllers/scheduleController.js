@@ -3,8 +3,7 @@ const models = require("../models/index"),
       Parttime = models.parttime,
       schedule = models.schedule,
       daily = models.daily, 
-      monthly = models.monthly,
-      dayFunc = require('date-fns'); 
+      monthly = models.monthly;
 
 
 const getPtlist = async (id) => {
@@ -39,12 +38,16 @@ exports.getSchedule = async (req, res) => {
             attributes : ['parttimeName' , 'parttimeId', 'color']
         }
         ], 
+        attributes : [
+            [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'],
+            [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %h:%m'), 'endTime'],
+            'idSchedule',
+        ],
             where: {
                     scdlMemId : req.session.idx,
                     $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),req.query.date)
             }                
         });
-
 
         dailyPay = await  daily.findOne({
             attributes : [ 'dailyMemId' , [Sequelize.fn('sum', Sequelize.col('dailyTotal')), 'total']],
@@ -99,7 +102,6 @@ exports.addScheduleClear = async (req, res) => {
         });*/
     }
 }
-
 
 exports.deleteSchedule= async (req, res) => {
     try {

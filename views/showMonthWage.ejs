@@ -9,9 +9,7 @@
         <br><p><%= monthPay_byPt[i].parttime.parttimeName %> : <%=monthPay_byPt[i].monthlyTotal%></p>
     <% } %>
 
-    <!--여기서부터 수정-->
-    
-    <table>
+<table>
         <tr>
             <th colspan="2"><%= monthPayId %>님의 급여 명세표</th>
         </tr>
@@ -34,4 +32,6 @@
             </td>
         </tr>
     </table>
+
+    <button id = "homeButton" onclick="location.href='/'" >홈으로</button>
 </body>

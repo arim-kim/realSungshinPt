@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatting</title>
+    <link rel="stylesheet" href="./css/chat.css">
+</head>
+
+<body>
+    <div class = "wrapper">
+        <form name = "friendDelete" action = "/deleteFriend" method = "post">
+                <div class = "jobName">
+                        <div class = "jobNameBox">
+                                <label>친구 이름 목록</label>
+                                <select name="friendId">
+                                    <option value="" disabled selected>선택</option>
+                                    <% for (i = 0; i < data.length; i++) { %>
+                                        <option value="<%=data[i].memberId%>"><%= data[i].memberName %></option>
+                                    <% } %>
+                                </select>
+                        </div>
+                </div>
+                    <div class = "delete">
+                        <input type = "submit" id="editButton" onclick="alert('친구를 삭제하시겠습니까?')">
+                </div>
+        </form>
+</div>
+</body>
+</html>

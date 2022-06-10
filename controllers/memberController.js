@@ -1,5 +1,6 @@
 const models = require("../models/index"),
-member = models.member;
+Member = models.member;
+Op = models.Sequelize.Op;
 
 exports.signUp = async (res, req) => {
 
@@ -17,3 +18,23 @@ exports.signUp = async (res, req) => {
                 console.log("회원가입 실패");
         })
 };
+
+
+exports.UserDelete = async (req, res) => {  //윤영추가(회원탈퇴)
+        try{
+            console.log("UserDelete 중 삭제할 Id", req.session.idx)
+            await Member.destroy({
+                where:{
+                    memberId : req.session.idx
+                }
+                
+            });
+            console.log("delete완료")
+            res.render("deleteUser");
+    
+        }catch(err) {
+            res.status(500).send({
+                message: err.message
+            });
+        }
+    }

@@ -21,7 +21,9 @@ html,body{
 
 
 .display-container{
-    background:#e1b8b8;
+    margin: auto auto;
+    margin-top: 20px;
+    /* background:#e1b8b8; */
     flex: 12;
     overflow-y: scroll;
 }
@@ -67,17 +69,25 @@ html,body{
     
 }
 
+.display-container ul li .sendMessage {
+    text-align: left;
+}
+
+
 .sendMessage {
 background-color: #8a149f;
 width: 200px;
 height: auto;
-margin: 10px;}
+margin: 10px;
+/* float: left; */
+}
 
 .receiveMessage {
 background-color: #da8383;
 width: 200px;
 height: auto;
 margin: 10px;
+/* float: right; */
 }
 
 

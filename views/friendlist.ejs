@@ -4,31 +4,35 @@
     <link rel="stylesheet" href="./css/friendlist.css">
     <title>성신한알바</title>
 </head>
+
+<script src="/socket.io/socket.io.js"></script>
 <body>
     <div class="goAddFriend">
         <input type="button" id="btnChat" value="친구추가하기"  onclick="location.href='/friend';">
-
     </div>
-
     <div id="roomList">
         <div id="roomHeader">친구 목록</div>
-
+        <button id = "manage_friend" onclick="location.href='/deleteFriend'">친구관리</button>
         <div id="roomSelect">
             <% if(FFFF) { %>
              <% FFFF.forEach(e=>{ %>
                 <button class = 'button' id = <%=e.memberId%> onclick='location.href="/chat?friendId=" + id;'><%= e.memberName%>'s chatting</button>
             <%});%> 
             <%}%>
-        </div>
-        
+        </div>   
     </div>
-    <div id ="roomCalendarHeader">친구 캘린더 보기</div>
-    <div id = "calendarSelect">
-        <% if(FFFF) { %>
-            <% FFFF.forEach(e=>{ %>
-                <button class = 'button' id = <%=e.memberId%> onclick='location.href="/friendCalendar?friendId=" + id;'><%= e.memberName%>'s Calendar</button>
-           <%});%> 
-           <%}%>
+
+
+    <div id="calendarList">
+        <div id ="roomCalendarHeader">친구 캘린더 보기</div>
+        <div id = "calendarSelect">
+            <% if(FFFF) { %>
+                <% FFFF.forEach(e=>{ %>
+                    <button class = 'button' id = <%=e.memberId%> onclick='location.href="/friendCalendar?friendId=" + id;'><%= e.memberName%>'s Calendar</button>
+            <%});%> 
+            <%}%>
+        </div>
     </div>
 </body>
 </html>
+

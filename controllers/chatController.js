@@ -36,7 +36,7 @@ const getRoom =  async (myId, friendId) => {
             }
         });
         return data; 
-
+    
     }catch(err) {
         console.log(err);
     }
@@ -56,6 +56,3 @@ exports.getAllChat = async (req, res) => {
         });
     }
 };
-
-
-

@@ -11,9 +11,14 @@ exports.main = (req, res) => {
     res.render("index");
 };
 
+exports.clear = (req, res) => {
+    res.render("clear");
+};
+
 exports.join = (req, res) => {
     res.render("signUp");
 };
+
 exports.job = (req, res) => {
     res.render("jobinfo");
 };
@@ -22,13 +27,13 @@ exports.friend = (req, res) => {
     res.render("addFriend");
 };
 
-
 exports.login = async (req, res) => {
     res.render("login"); 
-}
+};
+
 exports.friendlist=async(req,res)=>{
     res.render("friendlist");
-}
+};
 
 const getPtlist = async (id) => {
     try {
@@ -46,12 +51,33 @@ const getPtlist = async (id) => {
 
 };
 
+const getScheduleCount = async (id) => {
+    try {
+        
+        
+        const scheduleList = await  schedule.findAll({
+            group : [[Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d'), 'startTime'] ],
+            attributes : [ [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d'), 'startTime'] , [Sequelize.fn('COUNT', 'startTime'), 'count']], 
+                where: {
+                        scdlMemId : id
+                }
+        })
+
+        return scheduleList; 
+
+    }catch (err) {
+        return err; 
+    }
+
+};
+
 const getAllSchedule = async (id) => {
     try {
         let today = new Date(); 
         let year = today.getFullYear(); 
         let month = today.getMonth() + 1;
         let day = today.getDate();
+
         if(month < 10) {
             month = "0"+month;
         }
@@ -59,7 +85,6 @@ const getAllSchedule = async (id) => {
             day = "0"+day;
         }
         let thisDay = year + "-" + month + "-" + day; 
-        // console.log(thisDay);
         const scheduleList = await  schedule.findAll({
             include : [{
                 model : Parttime, 
@@ -70,6 +95,8 @@ const getAllSchedule = async (id) => {
                         scdlMemId : id,
                         $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),thisDay)
                 },
+                attributes : [
+                    [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'] ],
                 order: [
                     ['startTime', 'ASC'],
                 ] 
@@ -98,8 +125,12 @@ exports.index = async (req, res) => {
                 scheduleList => {
                     getPtlist(req.session.idx).then (
                         ptlist => {     
-                            
-                                    res.render("index", {now_user :req.session.idx, data : ptlist, schedule : scheduleList});
+                            getScheduleCount(req.session.idx). then (
+                                scheduleCount => {
+                                    console.log(scheduleCount);
+                                    res.render("index", {now_user : req.session.idx, data : ptlist, schedule : scheduleList, scheduleC : getScheduleCount});
+                                }
+                            )
                                     
                                 }
                             )

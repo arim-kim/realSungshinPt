@@ -45,6 +45,7 @@ app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/deleteUser", memberController.UserDelete);
 
+
 app.get("/logout", loginFu.logout); // 로그아웃
 app.get("/friend", addFriendController.addfriend);
 app.get("/friend", addFriendController.addFriendEmail);
@@ -65,7 +66,9 @@ app.post("/jobDelete", parttimeController.jobDeleteClear);
 app.get("/friendCalendar", friendCalendarController.showFriendCalendar); 
 app.get("/friend-job-list", friendCalendarController.showFriendJobList);
 app.get("/showMonthWage", scheduleController.showMonthWage);
-
+app.get("/deleteFriend", friendlistController.deleteFriend);
+app.post("/deleteFriend", friendlistController.deleteFriendClear);
+app.get("/clear", homeController.clear );
 const { engine } = require("express/lib/application");
 const moment=require("moment");
 const member = require("./models/member");
@@ -75,12 +78,24 @@ http.listen(port,()=>{
         console.log(`Listeninig to port ${port}`)
 }) //윤영추가(이거지우면 chat X)
 
+    
 
-io.on('connection', (socket,req,res) =>{
+io.on('connection', (socket) =>{   //,req,res
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-        socket.on("new_message",(data, senderId, receiverId)=>{ //from client()
+
+        console.log(socket.rooms);
+        socket.on("room",(room) => {
+                socket.join(room);
+                console.log("회원이 입장")
+        })
+        console.log(socket.rooms);
+
+        socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
+
+                console.log("채팅방번호 : " + room)
+                
                 console.log("Client(채팅).html) says ",data);
-                io.emit('new_message',data) //to client 전달
+                io.to(room).emit('new_message',data) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
                 now.format("MM.DD T HH:mm "); 
                 models.chat.create({ //여기서 sql구동
@@ -88,11 +103,11 @@ io.on('connection', (socket,req,res) =>{
                         receiverId: receiverId,
                         chatTime:now,
                         chatContent:data
-                        });
-                
+                });
                 console.log(data,"를 언급");
+
          })    
-    }) //윤영추가
+})
 
 
 /* 로그인 */

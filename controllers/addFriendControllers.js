@@ -5,21 +5,6 @@ Member = models.member,
 Friends = models.friends;
 Op = models.Sequelize.Op;
 
-
-//우선 입력된 이메일이 회원인지 확인
-const isUser = async (email)=>{
-    try{
-        data=await Member.findOne({
-            where:{
-             memberMail: email   
-            }
-        })
-        return true;
-    }catch{
-        console.log(err);
-    }
-}
-
 exports.addfriend=async(req,res)=>{
     res.render("addFriend")
 }
@@ -55,13 +40,14 @@ exports.addFriendEmail =async (req, res)=>{
                     }], { returning: true })
                     res.render("newFriend");
                 }else{
-                    res.render("alreadyFriend");        
+                    console.log(err);
+                    res.render("warning"); //윤영추가 6/11
                 }
             }
         )
         
-    }catch{
-        res.render("alreadyFriend");        
+    }catch(err){
+       console.log(err);
     }
 }
 
@@ -82,3 +68,4 @@ const isalreadyFriend= async(myId,fid)=>{
         console.log("왜 자꾸 친구래....")
     }
 }
+

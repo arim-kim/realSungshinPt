@@ -1,3 +1,5 @@
+const member = require("../models/member");
+
 const db = require("../models/index"),
 Parttime = db.parttime,
 Op = db.Sequelize.Op;
@@ -89,6 +91,10 @@ exports.jobDelete = async (req, res) => {
             res.render("jobDelete", { pt : ptlist});}
     );
 }
+
+
+
+
 
 exports.jobDeleteClear = async (req, res) => {
     try {

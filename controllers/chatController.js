@@ -23,6 +23,8 @@ const getAllChat =  async (myId, friendId) => {
         return data; 
     }catch(err) {
         console.log(err);
+        res.render("warning");
+
     }
 }
 
@@ -55,4 +57,5 @@ exports.getAllChat = async (req, res) => {
             message: err.message
         });
     }
+
 };

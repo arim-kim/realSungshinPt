@@ -64,7 +64,9 @@ app.post("/jobDelete", parttimeController.jobDeleteClear);
 app.get("/friendCalendar", friendCalendarController.showFriendCalendar); 
 app.get("/friend-job-list", friendCalendarController.showFriendJobList);
 app.get("/showMonthWage", scheduleController.showMonthWage);
-
+app.get("/deleteFriend", friendlistController.deleteFriend);
+app.post("/deleteFriend", friendlistController.deleteFriendClear);
+app.get("/clear", homeController.clear );
 const { engine } = require("express/lib/application");
 const moment=require("moment");
 
@@ -75,6 +77,10 @@ http.listen(port,()=>{
 
     
 io.on('connection', (socket,req,res) =>{
+        socket.on("room",(room) => {
+                socket.join(room);
+                console.log("방 입장하였습니다.");
+        })
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
         socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
                 console.log("채팅방번호 : " + room)
@@ -92,7 +98,7 @@ io.on('connection', (socket,req,res) =>{
                 
                 console.log(data,"를 언급");
          })    
-
+})
 
 /* 로그인 */
 app.post("/login", async (req, res, next)=> {
@@ -108,6 +114,7 @@ app.post('/signUp', async (req, res, err) => {
 app.post("/job", async(req, res, err) => {
         parttimeController.addParttime(res, req, err);
 })
+
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

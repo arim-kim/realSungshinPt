@@ -3,6 +3,7 @@ const member = require("../models/member");
 const models = require("../models/index"),
       Sequelize = require('sequelize'),
       Parttime = models.parttime,
+      Member = models.member,
       schedule = models.schedule,
       daily = models.daily, 
       monthly = models.monthly;
@@ -167,10 +168,20 @@ exports.showMonthWage = async (req, res) => {
     try {
         const id = req.session.idx, 
               month =  req.query.month;
+        console.log(req.body.idSchedule);
+        
+        const getMonthInfo = await Member.findOne({
+            where: {
+                memberId : id
+            }
+        });
+
         getMonthPay(id, month).then (
             monthPay => 
             getMonthPay_byPt(id,month).then (
                 monthPay_byPt => {
+                    console.log(monthPay_byPt)
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthName : getMonthInfo.memberName, monthNum : month});
                     // console.log(monthPay_byPt);
                     console.log(monthPay);
                     res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, day : req.query.month})

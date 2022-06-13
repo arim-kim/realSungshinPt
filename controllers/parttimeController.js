@@ -4,6 +4,7 @@ const db = require("../models/index"),
 Parttime = db.parttime,
 Op = db.Sequelize.Op;
 
+// 아르바이트를 추가함 (post)
 exports.addParttime = async (res, req, err) => {
     db.parttime.create({
         // 여기 내가 수정해놨엉!!
@@ -16,11 +17,13 @@ exports.addParttime = async (res, req, err) => {
         console.log("아르바이트 추가 완료");
         res.render("clear");
     }).catch( err => {
-        console.log(err)
-        console.log("아르바이트 추가 실패");
+        // 아르바이트 추가 실패시 해당 페이지로 돌아감 
+        console.log("아르바이트 추가 실패 : " + err);
+        res.render("deleteError")
     })  
 }
 
+// 아르바이트 목록을 구하는 함수 
 const getPtlist = async (id) => {
     try {
         const ptlist = await Parttime.findAll({
@@ -38,18 +41,9 @@ const getPtlist = async (id) => {
 
 };
 
-exports.getAllParttimes = async (req, res) => {
-    try {
-        data = await Parttime.findAll();
-        console.log(data);
-        res.render("jobinfo");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-};
 
+
+// 아르바이트 편집 page로 이동(get)
 exports.editJob = async (req, res) => {
     getPtlist(req.session.idx).then (
         ptlist => {     
@@ -58,9 +52,8 @@ exports.editJob = async (req, res) => {
     );
 }
 
-
+// 아르바이트 편집 page (post)
 exports.jobEditClear = async (req, res) => {    
-    try {
         Parttime.update(
             {
             weekPay: req.body.weekPay,
@@ -73,17 +66,17 @@ exports.jobEditClear = async (req, res) => {
                 ptMemberId : req.session.idx
             }
         }
-        )
-        console.log("데이터 편집 완료");
-        res.render("clear");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
+        ).then ( result => {
+            console.log("데이터 편집 완료");
+            res.render("clear");
+        }).catch( err => {
+            // 아르바이트 추가 실패시 해당 페이지로 돌아감 
+            console.log("아르바이트 편집 실패 : " + err);
+            res.render("deleteError")
+        })  
 }
 
-
+// 아르바이트 삭제 page로 이동(get)
 exports.jobDelete = async (req, res) => {
     getPtlist(req.session.idx).then (
         ptlist => {     
@@ -95,7 +88,7 @@ exports.jobDelete = async (req, res) => {
 
 
 
-
+// 아르바이트(parttime) 삭제(post)
 exports.jobDeleteClear = async (req, res) => {
     try {
         await Parttime.destroy({
@@ -106,9 +99,8 @@ exports.jobDeleteClear = async (req, res) => {
         });
         res.render("clear");
     } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
+        // 입력에 문제가 있을 경우 삭제는 되지 않고, 해당 페이지로 넘어갑니다.
+        res.render("deleteError");
     }
 }
 

@@ -9,14 +9,19 @@
     <title>Document</title>
 </head>
 <body>
-
     <% for(var i = 0; i < data.length; i++) {%>
         <div class = "scdlBox">
             <button class ="btns" style = "border-bottom: 3px solid <%= data[i].parttime.color%>; 
                 border-top: 3px solid <%= data[i].parttime.color%>;" id = 'btn'+'<%=data[i].idSchedule%>'>
                 <%=data[i].parttime.parttimeName%>
-                <br> <%=data[i].startTime%> 
-                <br> <%=data[i].endTime%> 
+                <br> 시작시간 :  <%=data[i].startTime%> 
+                <br> 끝나는 시간 : <%=data[i].endTime%> 
+                <% if (data[i].isCovered == 0) { %>
+                    <br> 대타 : X 
+                <% } %>
+                <% if (data[i].isCovered == 1) { %> 
+                <br> 대타 : O 
+            <% } %>
             </button>
             <form class = "job-list" action="/job-list" method="post">
                 <input type = "hidden" name = "idSchedule" value= "<%=data[i].idSchedule%>">
@@ -24,7 +29,8 @@
             </form>
         </div>
             <% if (i == data.length -1)  { %>
-                <div id = "totalPay">오늘의 일급 : <%=dailyPay.total%></div>
+                <div id = "totalPay"> 
+                    오늘의 일급 : <%=dailyPay.total%> 원</div>
                 <% } %>
     <% } %>
 </body>

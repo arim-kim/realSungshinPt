@@ -8,84 +8,99 @@
     <link rel="stylesheet" href="./css/chat.css">
 </head>
 
+<script>
+    let chat = document.getElementById("display-container");
+    chat.scrollTop = chat.scrollHeight;
+</script>
+
 <body>
     <div class="chatwrapper">
-        <div class="user-container">
-          
+
+        <div class = "subwrapper">
+
+            <div id="display-container">
+                <div class = "chatRecord">
+                    <ul style="width: 100%; list-style: none;">
+                        <% AllChat.forEach(e=> { %>
+                            <% if(e.senderId == nowUser) { %>
+                                <li style=" width : 100%; float: right;"><div class = "sendMessage"> <%=e.chatContent%> </div></li> 
+                                <li style=" width : 100%; float: right;"><div class = "sendTime" style="font-size: 3px; margin-right: 5px;"> <%=e.chatTime%> </div></li>                             <% } %>
+                            <% if(e.senderId == friendId) { %>
+                                <li style=" width : 100%; float: left;"><div class = "receiveMessage"> <%=e.chatContent%> </div></li>
+                                <li style=" width : 100%; float: left;"><div class = "receiveTime" style="font-size: 3px; margin-left: 5px;"> <%=e.chatTime%> </div></li> 
+                            <% } %>
+                        <%});%> 
+                    </ul>
+                </div>
+                <div class = "newChat">
+                    <ul id="messages"></ul> 
+                </div>        
+            </div>
+        
+            <div class="input-container">        
+
+                <script src="/socket.io/socket.io.js"></script>
+
+                <form onsubmit="return sendMessage()" >
+                    <input name ='messageContent' id="message" placeholder="Enter message">
+                    <input type = "hidden" id ='receiver' value = "<%=friendId%>">
+                    <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
+                    <input type = "hidden" id = 'room' value = "<%=room%>">
+                    <input type="submit" id = "send" value="send">
+                </form>            
+
+                <script>
+                    window.onload = function() {
+                        sendRoomid(); 
+                    }
+                    
+                    const socket= io('http://localhost:80');
+                    console.log(socket);
+                    window.onload = function() {
+                        let room = document.querySelector("#room"); 
+                        console.log("방번호" + room.value);
+                        socket.emit('room', room.value);
+
+                        let chat = document.querySelector('#display-container');
+                        chat.scrollTop = chat.scrollHeight;
+                    }
+
+                    function sendMessage(){
+                        let message = document.querySelector("#message");
+                        let senderId = document.querySelector("#sender");
+                        let receiverId = document.querySelector("#receiver");
+                        let room = document.querySelector("#room"); 
+                        console.log(message.value+'가 도착');
+                        console.log("방번호" + room.value);
+                        socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value, socket.id);
+                        document.querySelector("#message").value = "";
+                        return false;
+                    }
+
+
+                    socket.on('new_message', (message, socketId) => {
+
+                        if(socket.id === socketId) {
+                            const messageSend=document.querySelector("#messages");
+                            messageSend.appendChild(makeMessage(message, true))
+                        }
+                        else if(socket.id !== socketId) {
+                            const messageSend=document.querySelector("#messages");
+                            messageSend.appendChild(makeMessage(message, false))
+                        }
+                    })
+
+                    const makeMessage = (message, isOthers) => {
+                        const msgBox = document.createElement('div');
+                        const classname = isOthers ? "my-message-wrapper" : "others-message-wrapper";
+                        msgBox.className = classname;
+                        msgBox.innerText = message;
+                        return msgBox;
+                    }
+                    
+                </script>   
+            </div>
         </div>
-
-        <div class="display-container">
-            <ul>
-                <% AllChat.forEach(e=> { %>
-                    <% if(e.senderId == nowUser) { %>
-                        <li><div class = "sendMessage"> <%=e.chatContent%> </div></li> 
-                    <% } %>
-                    <% if(e.senderId == friendId) { %>
-                        <li><div class = "receiveMessage"> <%=e.chatContent%> </div></li>
-                    <% } %>
-                <%});%> 
-            </ul>
-            <ul id="messages"> <div class="time" id="chatTime">06/06 13:01</div></ul>
-           
-        </div>
-       
-        <div class="input-container">        
-                
-            <div id="chat-list"></div> 
-            <script src="/socket.io/socket.io.js"></script>
-
-            <form onsubmit="return sendMessage()" >
-                <input name ='messageContent' id="message" placeholder="Enter message">
-                <input type = "hidden" id ='receiver' value = "<%=friendId%>">
-                <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
-                <input type = "hidden" id = 'room' value = "<%=room%>">
-                <input type="submit" value="send">
-            </form>            
-
-            <script>
-            window.onload = function() {
-                    sendRoomid(); 
-                }
-                
-                const socket= io('http://localhost:80');
-
-                console.log(socket);
-
-
-                window.onload = function() {
-                    let room = document.querySelector("#room"); 
-                    console.log("방번호" + room.value);
-                    socket.emit('room', room.value);
-                }
-
-                function sendMessage(){
-                    let message = document.querySelector("#message");
-                    let senderId = document.querySelector("#sender");
-                    let receiverId = document.querySelector("#receiver");
-                    let room = document.querySelector("#room"); 
-
-                    console.log(message.value+'가 도착');
-
-                    console.log("방번호" + room.value);
-                    socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value);
-                    document.querySelector("#message").value = "";
-                    return false;
-                }
-
-
-
-
-                socket.on('new_message',data=>{
-                    console.log('Server.js says',data)
-                    let li=document.createElement("li");
-                    li.innerHTML=data;
-                    const messages=document.querySelector("#messages");
-                    messages.appendChild(li)
-                });
-            
-            </script>   
-        </div>
-
     </div>
 </body>
 </html>

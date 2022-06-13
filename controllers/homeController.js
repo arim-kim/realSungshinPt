@@ -11,12 +11,18 @@ exports.main = (req, res) => {
     res.render("index");
 };
 
-exports.clear = (req, res) => {
-    res.render("clear");
+/*로그인 실패 혹은 로그아웃 시 로그인 페이지로 이동*/
+exports.login = async (req, res) => {
+    res.render("login"); 
 };
 
+/*회원가입*/
 exports.join = (req, res) => {
     res.render("signUp");
+};
+
+exports.clear = (req, res) => {
+    res.render("clear");
 };
 
 exports.job = (req, res) => {
@@ -25,10 +31,6 @@ exports.job = (req, res) => {
 
 exports.friend = (req, res) => {
     res.render("addFriend");
-};
-
-exports.login = async (req, res) => {
-    res.render("login"); 
 };
 
 exports.friendlist=async(req,res)=>{
@@ -51,10 +53,25 @@ const getPtlist = async (id) => {
 
 };
 
+const findName = async (id) => {
+    try{
+        data = member.findOne(
+            {
+                where : {
+                    memberId : id
+                }
+            }
+        )
+
+        return data; 
+
+    }catch(err) {
+        return err; 
+    }
+}
+
 const getScheduleCount = async (id) => {
     try {
-        
-        
         const scheduleList = await  schedule.findAll({
             group : [[Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d'), 'startTime'] ],
             attributes : [ [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d'), 'startTime'] , [Sequelize.fn('COUNT', 'startTime'), 'count']], 
@@ -64,11 +81,9 @@ const getScheduleCount = async (id) => {
         })
 
         return scheduleList; 
-
     }catch (err) {
         return err; 
     }
-
 };
 
 const getAllSchedule = async (id) => {
@@ -125,10 +140,9 @@ exports.index = async (req, res) => {
                 scheduleList => {
                     getPtlist(req.session.idx).then (
                         ptlist => {     
-                            getScheduleCount(req.session.idx). then (
-                                scheduleCount => {
-                                    console.log(scheduleCount);
-                                    res.render("index", {now_user : req.session.idx, data : ptlist, schedule : scheduleList, scheduleC : getScheduleCount});
+                            findName(req.session.idx). then (
+                                name => {
+                                    res.render("index", {now_user : name.memberName, data : ptlist, schedule : scheduleList});
                                 }
                             )
                                     
@@ -148,16 +162,5 @@ exports.index = async (req, res) => {
 
 
 
-exports.getAllParttimes = async (req, res) => {
-    try {
-        data = await Parttime.findAll();
-        console.log(data);
-        res.render("jobinfo");
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-};
 
 

@@ -9,10 +9,15 @@ table {
     width: 30%;
     border-collapse: collapse;
     text-align: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+
 }
 
 tr {
     color: black;
+    height: 30px;
+    
 }
 
 tr:nth-child(2n+3) {
@@ -21,8 +26,8 @@ tr:nth-child(2n+3) {
 
 td {
     border-style: solid;
-    /*color: #9dc39c;*/
     color: black;
+    padding-top: 6px;
 }
 
 #title {
@@ -39,5 +44,10 @@ td {
 }
 
 #homeButton {
+    margin-top : 15%;
     margin-left: 48%;
+    border: 0;
+    line-height: 1.5;
+    font-size: 1rem;
+    border-radius: 10px;
 }

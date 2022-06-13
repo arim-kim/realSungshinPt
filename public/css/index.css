@@ -13,6 +13,15 @@
   font-weight: bolder;
 }
 
+.title {
+  background-color: #9DC39C;
+  border-radius: 40px 80px;
+  width: 30%;
+  height: 100px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom : 20px;
+}
 
 /*로그아웃*/
 /* header > logOutBar > logOutBarBox > btnBox > logOutBtn */
@@ -93,7 +102,7 @@ side {
   width: 350px;
   height: 650px;
   float: left;
-  margin-left: 6%;
+  margin-left: 10%;
   margin-right: 5%;
 }
 
@@ -141,7 +150,7 @@ side .alarmNameBox {
 #calendar {
   float: right;
   margin-top: 30px;
-  margin-right: 7%;
+  margin-right: 10%;
   /* background-color: bisque; */
   border: 3px solid #9dc39c;
 }

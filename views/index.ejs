@@ -35,7 +35,6 @@
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
 		var year = today.getFullYear(); 
 		var month = today.getMonth() + 1;
-		var ScheduleClist =  document.querySelector("#count").value;
 		if(month < 10) {
 			month = "0" + month;
 		}
@@ -146,10 +145,10 @@
 				}
 			}
 			
-			//오늘날짜배경색
+			//오늘날짜색깔
 			if( today.getFullYear() == date.getFullYear() && today.getMonth() == date.getMonth() && i==date.getDate() )
 			{
-				cell.style.backgroundColor = "#ffca7a"; //오늘날짜배경색
+				cell.style.backgroundColor = "#ffffbf"; //오늘날짜배경색
 			}
 			
 			//마지막 날짜가 지나면 일요일까지 칸 그리기
@@ -198,13 +197,13 @@
 
     <div class="logOutBar">
         <div class="logOutBarBox">
-			<input type="button" class = "logOutBtn" value="Log out" onclick= "alert('로그아웃 하시겠습니까?'); location.href='/logout'">
+        <div class = "now_user"> <%=now_user%> 님, <br> 오늘도 열심히 일해요! </div>
+			  <input type="button" class = "logOutBtn" value="Log out" onclick= "alert('로그아웃 하시겠습니까?'); location.href='/logout'">
 			<br>
 			<input type="submit" class = "deleteUser" value="회원 탈퇴" onclick="alert('회원탈퇴 하시겠습니까?'); location.href='/deleteUser'">	
         </div>
     </div>
 
-	<input type="hidden" id = 'count' value = "<%=scheduleC%>">
     <nav>
 		<div class = "navBox">
 			<div class="goChat">
@@ -222,11 +221,10 @@
 			<div class="goDeletePt">
 				<input type="button" id="btnDeletePt" value="아르바이트 삭제" onclick="location.href='/jobDelete';">
 			</div>
-
+		</div>
 	</nav>
 
 		<div class = "pattimeList">
-
 		 <% for (var i = 0;i < data.length;i++){ %>
 			<p style ="color : <%= data[i].color%>; font-family: 'Nanum Gothic', sans-serif;"><%= data[i].parttimeName %></p>
 		<% } %>
@@ -250,24 +248,24 @@
 	<table align="center" id="calendar">
 		<tr>
 			<td>
-			<a id="before" href="javascript:beforem()"></a>
+			<a class = "monthChangeBtn"  align="center" id="before" href="javascript:beforem()"></a>
 			</td>
 
-			<td colspan="5" align="center">
+			<td colspan="4" align="center">
 			<div id="yearmonth"></div>
 			</td>
 			
 			<td>
-			<a id="next" href="javascript:nextm()"></a>
+			<a class = "monthChangeBtn"  align="center" id="next" href="javascript:nextm()"></a>
 			</td>
 
-			<!-- <td>
-			<a href="javascript:thisMonth()">오늘</a>
-			</td> -->
+			<td>
+			<a id = "goToday" href="javascript:thisMonth()">오늘</a>
+			</td>
       
 		</tr>
 		
-		<tr>
+		<tr id = "weekName" style="background-color: #dce4f0;">
 			<td width="14.5%"> 월 </td>
 			<td width="14.5%"> 화 </td>
 			<td width="14.5%"> 수 </td>
@@ -277,7 +275,8 @@
 			<td width="14.5%"><font color="#ed5353">일</font></td>
 		</tr>
 	</table>
-
+			<!-- 윤영추가 회원탈퇴 6/1-->
+			<input type="submit" class = "deleteUser" value="회원탈퇴하기" onclick="location.href='/deleteUser'">	
 </body>
 </html>
 

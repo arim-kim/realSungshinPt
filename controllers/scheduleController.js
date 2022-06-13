@@ -120,11 +120,12 @@ exports.deleteSchedule= async (req, res) => {
     }
 }
 
+//월급구하기 
 const getMonthPay = async (id, month) => {
 
     try {
         const monthPay = await monthly.findOne({
-            attributes : [ 'monthlyMemId' ,'month', [Sequelize.fn('sum', Sequelize.col('monthlyTotal')), 'total', 'member']],
+            attributes : [ 'monthlyMemId' ,'month', [Sequelize.fn('sum', Sequelize.col('monthlyTotal')), 'total']],
             group : ['month'], 
             raw : true, 
             where : {
@@ -139,7 +140,7 @@ const getMonthPay = async (id, month) => {
     }
 }
 
-// 
+// 월급 상세 정보 보내기 
 const getMonthPay_byPt = async (id,month ) => {
 
     try {
@@ -181,17 +182,12 @@ exports.showMonthWage = async (req, res) => {
             getMonthPay_byPt(id,month).then (
                 monthPay_byPt => {
                     console.log(monthPay_byPt)
-                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthName : getMonthInfo.memberName, monthNum : month});
-                    // console.log(monthPay_byPt);
-                    console.log(monthPay);
-                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, day : req.query.month})
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthName : getMonthInfo.memberName, monthNum : month})
                 }
               )
             )
         
     } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
+        
     }
 }

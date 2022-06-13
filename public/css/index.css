@@ -16,25 +16,15 @@
 
 /*로그아웃*/
 /* header > logOutBar > logOutBarBox > btnBox > logOutBtn */
-header {
-  height: 30px;
-  width: 100%;
-}
-
-header .logOutBar { 
-  position: absolute;
-  top : 5%;
-  left : 85%;
-  height: 30px;
-  color: green;
-  line-height: 150%;
-}
-
 .logOutBarBox {
-  margin-top: 40px;
+  color : green;
+  position : absolute;
+  left : 85%;
+  top : 5%;
   float: right;
   margin-right: 10px;
   height: 100%;
+  line-height: 120%;
 }
 
 .logOutBtn {
@@ -154,6 +144,16 @@ side .alarmNameBox {
   margin-right: 7%;
   /* background-color: bisque; */
   border: 3px solid #9dc39c;
+}
+
+#friendTable {
+  float: right;
+  margin-top: 30px;
+  /* margin-right: 7%; */
+  margin-left : auto;
+  margin-right: auto;
+  /* background-color: bisque; */
+  border: 3px solid #e1b8b8;
 }
 
 #weekName {

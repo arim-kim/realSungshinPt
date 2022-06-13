@@ -40,7 +40,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 app.get("/", homeController.index);
-// app.get("/", memberController.UserDelete);  //유저 딜리트
 app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
 app.get("/deleteUser", memberController.UserDelete);

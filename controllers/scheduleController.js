@@ -1,3 +1,5 @@
+const member = require("../models/member");
+
 const models = require("../models/index"),
       Sequelize = require('sequelize'),
       Parttime = models.parttime,
@@ -24,7 +26,7 @@ const getPtlist = async (id) => {
 };
 
 
-
+// 일정 가져오기 
 exports.getSchedule = async (req, res) => {
     
       var thisDay = new Date(req.query.date);
@@ -34,6 +36,7 @@ exports.getSchedule = async (req, res) => {
         
         data = await schedule.findAll( {
 
+            // join 
         include : [{
             model : Parttime, 
             attributes : ['parttimeName' , 'parttimeId', 'color']
@@ -42,7 +45,7 @@ exports.getSchedule = async (req, res) => {
         attributes : [
             [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'],
             [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %h:%m'), 'endTime'],
-            'idSchedule',
+            'idSchedule', 'isCovered'
         ],
             where: {
                     scdlMemId : req.session.idx,
@@ -69,7 +72,7 @@ exports.getSchedule = async (req, res) => {
         });
     }
 }
-
+//일정 추가하기 
 exports.addSchedule = async (req, res) => {
     getPtlist(req.session.idx).then (
         ptlist => {     
@@ -78,6 +81,7 @@ exports.addSchedule = async (req, res) => {
     );    
 }
 
+// 일정 추가하기 - post 
 exports.addScheduleClear = async (req, res) => {
     try {
         await schedule.create({
@@ -98,12 +102,10 @@ exports.addScheduleClear = async (req, res) => {
 
     } catch (err) {
         res.render("scheduleError");
-        /*res.status(500).send({
-            message: err.message
-        });*/
     }
 }
 
+// 일정 삭제하기 
 exports.deleteSchedule= async (req, res) => {
     try {
         console.log(req.body.idSchedule);
@@ -122,7 +124,7 @@ const getMonthPay = async (id, month) => {
 
     try {
         const monthPay = await monthly.findOne({
-            attributes : [ 'monthlyMemId' ,'month', [Sequelize.fn('sum', Sequelize.col('monthlyTotal')), 'total']],
+            attributes : [ 'monthlyMemId' ,'month', [Sequelize.fn('sum', Sequelize.col('monthlyTotal')), 'total', 'member']],
             group : ['month'], 
             raw : true, 
             where : {
@@ -137,6 +139,7 @@ const getMonthPay = async (id, month) => {
     }
 }
 
+// 
 const getMonthPay_byPt = async (id,month ) => {
 
     try {
@@ -160,6 +163,7 @@ const getMonthPay_byPt = async (id,month ) => {
     }
 }
 
+// 월급보기 
 exports.showMonthWage = async (req, res) => {
     try {
         const id = req.session.idx, 
@@ -177,7 +181,10 @@ exports.showMonthWage = async (req, res) => {
             getMonthPay_byPt(id,month).then (
                 monthPay_byPt => {
                     console.log(monthPay_byPt)
-                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthName : getMonthInfo.memberName, monthNum : month})
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, monthName : getMonthInfo.memberName, monthNum : month});
+                    // console.log(monthPay_byPt);
+                    console.log(monthPay);
+                    res.render("showMonthWage", {monthWage : monthPay, monthPay_byPt : monthPay_byPt, day : req.query.month})
                 }
               )
             )

@@ -28,7 +28,12 @@ header {
 }
 
 header .logOutBar { 
+  position: absolute;
+  top : 5%;
+  left : 85%;
   height: 30px;
+  color: green;
+  line-height: 150%;
 }
 
 header .logOutBarBox {
@@ -138,6 +143,7 @@ side .alarmNameBox {
   font-family: 'Nanum Gothic', sans-serif;
 }
 
+
 /*캘린더*/
 #calendar {
   margin-top: 30px;
@@ -146,6 +152,14 @@ side .alarmNameBox {
   border: 3px solid #9dc39c;
 }
 
+#weekName {
+  height: 30px;
+  font-size : 30px;
+  font-style: italic;
+  font-family: 'Nanum Gothic', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
 #yearmonth {
   height: 30px;
   /* background-color: #9dc39c;  */
@@ -173,3 +187,46 @@ side .alarmNameBox {
 .button:hover {
   background-color: #9dc39c;
 }
+
+.deleteUser {
+  width: 100px;
+  height: 40px;
+  margin-top : 30px;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #9dc39c;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+/* 달 이동하는 버튼들 설정 */
+.monthChangeBtn {
+  color :  #9dc39c;
+  width: 70px;
+  height: 100px;
+  margin-left : 30px;
+  margin-right: 30px;
+  margin-top : 15px;
+  border-radius: 15px;
+}
+
+.monthChangeBtn:link { text-decoration: none; text-shadow: 0 0 24px; }
+.monthChangeBtn:visited { text-decoration: none; text-shadow: 0 0 24px; }
+
+/* 달력 위 날짜 보여주는  */
+#yearmonth {
+  font-size: 30px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-style: italic;
+  color : green;
+}
+
+#goToday {
+  text-decoration: none; text-shadow: 0 0 24px;
+  color :  #9dc39c;
+  right : 0;
+  width: 50px;
+}
+

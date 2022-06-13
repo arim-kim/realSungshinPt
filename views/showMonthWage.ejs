@@ -4,12 +4,6 @@
     <link rel="stylesheet" href="./css/showMonthWage.css">
 </head>
 <body>
-    <!--
-    <div id ="totalWage"> 총 월급 : <%=monthWage.total%></div>
-    <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
-        <br><p><%= monthPay_byPt[i].parttime.parttimeName %> : <%=monthPay_byPt[i].monthlyTotal%></p>
-    <% } %>-->
-
     <table>
         <tr>
             <th colspan="3">
@@ -32,6 +26,7 @@
                 급여
             </td>
         </tr>
+        <% if(monthPay_byPt) { %>
         <% for (var i=0;i < monthPay_byPt.length;i++){ %>
             <tr>
                 <td>
@@ -53,6 +48,7 @@
                         <%=monthWage.total%>
                     </td>
                 </tr>
+                <% } %>
     </table>
     <br>
     <button id="homeButton" onclick="location.href='/'">홈으로</button>

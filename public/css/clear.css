@@ -1,3 +1,7 @@
+body{
+    overflow-y: scroll;
+}
+
 .wrapper {
     width: 40%;
     margin: 0 auto;

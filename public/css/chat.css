@@ -3,7 +3,11 @@
     padding: 0;
 }
 
-상단 성신한 알바
+body {
+    overflow-y: scroll;
+}
+
+/* 상단 성신한 알바 */
 .title {
     background-color: #e1b8b8;
     border-radius: 40px 80px;
@@ -11,9 +15,9 @@
     height: 100px;
     margin: auto;
     margin-top: 20px;
-}
-
-.title > p {
+  }
+  
+  .title > p {
     padding-top: 35px;
     width: 100%;
     margin: auto;
@@ -22,7 +26,7 @@
     font-size: 40px;
     font-family: 'Do Hyeon', sans-serif;
     letter-spacing: 8px;
-}
+  }
 
 .chatwrapper{
     width: 100%;

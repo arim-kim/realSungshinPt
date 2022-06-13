@@ -1,3 +1,7 @@
+body{
+    overflow-y: scroll;
+}
+
 label {
     padding-right: 10px;
 }

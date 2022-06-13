@@ -1,8 +1,6 @@
-/* body{
-    width: 100%;
-    display: inline-block;
-    position: center;
-} */
+body{
+    overflow-y: scroll;
+}
 
 .title {
     background-color: #e1b8b8;

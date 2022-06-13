@@ -1,3 +1,7 @@
+body{
+    overflow-y: scroll;
+}
+
 .scdlBox {
     width: 200px;
     height: 300px;

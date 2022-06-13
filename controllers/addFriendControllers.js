@@ -7,7 +7,8 @@ Op = models.Sequelize.Op;
 
 exports.addfriend=async(req,res)=>{
     res.render("addFriend")
-}
+}//친구추가화면 연결
+
 
 exports.addFriendEmail =async (req, res)=>{
     try{
@@ -15,20 +16,25 @@ exports.addFriendEmail =async (req, res)=>{
         femail=req.body.friendEmail;
 
 
-        data= await Member.findOne({
+        data= await Member.findOne({ // 입력한 email의 memberId 호출
             attribute : ['memberId'],
             where :{
                 memberMail: femail
             }
         });
+        if(data==null){ //member가 아닐시, warning뷰로 이동
+            res.render("warning");
+            
+        }  
+            
 
         fid= data.memberId;
         console.log("친구아이디", fid);
-        console.log("내 현재값", req.session.idx)
+        console.log("내 현재값", req.session.idx); 
         
-        isalreadyFriend(req.session.idx, fid).then(
+        isalreadyFriend(req.session.idx, fid).then( //
             e=> {
-                if(e==null){
+                if(e==null){ //친구가 안되어있을때 null값임으로 bulkCreate으로 친구 생성
                     Friends.bulkCreate([{
                         myId: req.session.idx,
                         yourId: fid,
@@ -38,16 +44,18 @@ exports.addFriendEmail =async (req, res)=>{
                         yourId:  req.session.idx,
                         room: req.session.idx + "+" + fid
                     }], { returning: true })
-                    res.render("newFriend");
-                }else{
-                    console.log(err);
-                    res.render("warning"); //윤영추가 6/11
+
+                    res.render("newFriend"); //친구추가완료 view
+
+                }else{ //이미 친구일시 e값은 구조체가 들어있기때문에
+                    res.render("alreadyFriend"); //already freind뷰로 보내줍니다
                 }
             }
         )
         
     }catch(err){
        console.log(err);
+    
     }
 }
 
@@ -55,7 +63,7 @@ exports.addFriendEmail =async (req, res)=>{
 
 const isalreadyFriend= async(myId,fid)=>{
     try{
-        data= await Friends.findOne({ //친구가 
+        data= await Friends.findOne({ //친구테이블에 존재하는지.
         where:{
             myId: myId,
             yourId: fid
@@ -63,9 +71,10 @@ const isalreadyFriend= async(myId,fid)=>{
        
     })
     console.log("이즈올레디프랜드의 DATa:", data);
-     return data; 
-    }catch{
-        console.log("왜 자꾸 친구래....")
+     return data; //data가 null이면 친구가 아니고, 구조체 들어있으면 친구가 이미 돼있다.
+
+    }catch(err){
+        console.log(err)
     }
 }
 

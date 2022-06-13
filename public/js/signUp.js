@@ -44,13 +44,13 @@ document.getElementById('signUp-form').onsubmit = function() {
         document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
         check = false
     } else{
-        //document.getElementById("passwordError").innerHTML=""
+        document.getElementById("passwordError").innerHTML=""
     }
     if(passwordCheck===""){
         document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
         check = false
     } else{
-        //document.getElementById("passwordCheckError").innerHTML=""
+        document.getElementById("passwordCheckError").innerHTML=""
     }
 
     return check;

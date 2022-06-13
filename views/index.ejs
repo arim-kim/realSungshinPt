@@ -197,21 +197,15 @@
 </head>
 
 <body onload="autoReload();">
-    <header>
-        <div class="logOutBar">
-            <div class="logOutBarBox">
-                <!-- <div>
-					<p> <%=now_user%> </p>
-                </div> -->
-                <div class ="btnBox">
-					<input type="button" class = "logOutBtn" value="Log out" onclick="location.href='/logout'">
-				</div>
-				<!-- 윤영추가 회원탈퇴 6/1-->
-				<input type="submit" class = "deleteUser" value="회원탈퇴하기" onclick="location.href='/deleteUser'">	
 
-            </div>
+    <div class="logOutBar">
+        <div class="logOutBarBox">
+			<input type="button" class = "logOutBtn" value="Log out" onclick= "alert('로그아웃 하시겠습니까?'); location.href='/logout'">
+			<br>
+			<input type="submit" class = "deleteUser" value="회원 탈퇴" onclick="alert('회원탈퇴 하시겠습니까?'); location.href='/deleteUser'">	
         </div>
-    </header>
+    </div>
+
 	<input type="hidden" id = 'count' value = "<%=scheduleC%>">
     <nav>
 		<div class = "navBox">

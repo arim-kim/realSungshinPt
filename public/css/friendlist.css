@@ -1,7 +1,27 @@
-body{
+/* body{
     width: 100%;
     display: inline-block;
     position: center;
+} */
+
+.title {
+    background-color: #e1b8b8;
+    border-radius: 40px 80px;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.title > p {
+    padding-top: 35px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 8px;
 }
 
 .goAddFriend {
@@ -15,28 +35,40 @@ body{
 }
 
 #btnChat {
-    width: 30%;
+    width: 15%;
     height: 40px;
     border-radius: 15px;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 3px solid #9dc39c;
+    border-bottom: 3px solid #e1b8b8;
     font-family: 'Nanum Gothic', sans-serif;
+}
+
+#manage_friend {
+    width: 15%;
+    height: 40px;
+    margin: auto auto;
+    border-radius: 15px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #e1b8b8;
+    font-family: 'Nanum Gothic', sans-serif; 
 }
 
 
 #roomList{
     margin: auto auto;
     width: 30%;
-    border: 1px solid #9dc39c;
+    border: 1px solid #e1b8b8;
     border-radius: 5px;
     flex:3;
     margin-bottom: 30px;
 }
 
 #roomHeader{
-    background-color: #9dc39c;
+    background-color: #e1b8b8;
     color: #fff;
     height: 40px;
     font-size: 18px;
@@ -61,14 +93,14 @@ body{
     margin: auto auto;
     width: 30%;
     /* border: 1px solid #8a149f;*/
-    border: 1px solid #9dc39c; 
+    border: 1px solid #e1b8b8; 
     border-radius: 5px;
     flex:3
 }
 
 #roomCalendarHeader{
     /* background-color: #9f3bdd; */
-    background-color: #9dc39c;
+    background-color: #e1b8b8;
     color: #fff;
     height: 40px;
     font-size: 18px;
@@ -86,12 +118,20 @@ body{
 
 #calendarSelect > button {
     padding-top: 5px;
-
+    width: 150px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #da8383;
 }
 
 #roomSelect > button {
     padding-top: 5px;
-
+    width: 150px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #da8383;
 }
 
 

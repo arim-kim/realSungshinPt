@@ -33,16 +33,15 @@ exports.getSchedule = async (req, res) => {
         
         data = await schedule.findAll( {
 
-        include : [{
-            model : Parttime, 
-            attributes : ['parttimeName' , 'parttimeId', 'color']
-        }
-        ], 
-        attributes : [
-            [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'],
-            [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %h:%m'), 'endTime'],
-            'idSchedule',
-        ],
+            include : [{
+                model : Parttime, 
+                attributes : ['parttimeName' , 'parttimeId', 'color']
+            }], 
+            attributes : [
+                [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'],
+                [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %h:%m'), 'endTime'],
+                'idSchedule',
+            ],
             where: {
                     scdlMemId : req.session.idx,
                     $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),req.query.date)

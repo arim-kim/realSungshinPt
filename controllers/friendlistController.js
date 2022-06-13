@@ -18,7 +18,9 @@ const getOne = async(id) => {
         return data; 
     }catch(err) {
         console.log(err);
+
         res.render("deleteError");
+
     }
 }
 
@@ -105,6 +107,7 @@ exports.deleteFriend = async (req, res) => {
     }catch(err){
         console.log(err);
         res.render("deleteError");
+
 
 
     }

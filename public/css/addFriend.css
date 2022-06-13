@@ -1,3 +1,23 @@
+.title {
+    background-color: #e1b8b8;
+    border-radius: 40px 80px;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.title > p {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 8px;
+}
+
 .wrapper {
     /* background-color: palegreen; */
     width: 40%;
@@ -13,13 +33,14 @@
     text-align: center;
     margin: auto auto;
 }
+
 #friendEmail {
     width: 350px;
     height: 30px;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 3px solid #9dc39c;
+    border-bottom: 3px solid #e1b8b8;
     border-radius: 5px;
 }
 
@@ -38,7 +59,7 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 3px solid #9dc39c;
+    border-bottom: 3px solid #e1b8b8;
 }
 
 .error {

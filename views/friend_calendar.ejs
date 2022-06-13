@@ -6,6 +6,9 @@
             height: 600px;
             border: 1px solid #444444;
             border-collapse: collapse;
+			margin-left: auto;
+			 margin-right: auto;
+			
             }
     </style>
 
@@ -38,7 +41,7 @@
 		var days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16', '17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
 		var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
 		var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
-		var tbcal = document.getElementById("calendar"); // 테이블 달력을 만들 테이블
+		var tbcal = document.getElementById("frinedSchedule"); // 테이블 달력을 만들 테이블
 		var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
 		var year = today.getFullYear(); 
 		var month = today.getMonth() + 1;
@@ -126,7 +129,7 @@
 				var id = year + "-" + month + "-" + day
 				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+"</button>";
 				cell.innerHTML = str;
-				row = calendar.insertRow();// 줄 추가
+				row = frinedSchedule.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
 				cell.style.backgroundColor = "#f7f7f7";
 			}
@@ -149,7 +152,7 @@
 			//오늘날짜배경색
 			if( today.getFullYear() == date.getFullYear() && today.getMonth() == date.getMonth() && i==date.getDate() )
 			{
-				cell.style.backgroundColor = "#e2f3da"; //오늘날짜배경색
+				cell.style.backgroundColor = "#e1b8b8"; //오늘날짜배경색
 			}
 			
 			//마지막 날짜가 지나면 일요일까지 칸 그리기
@@ -177,6 +180,7 @@
 
 </script>
 
+
 <head>
     <!-- 문자 인코딩 설정 -->
     <meta charset="UTF-8">
@@ -199,19 +203,61 @@
 
 </head>
 
-<body onload="autoReload();">
-    <header>
-        <div class="loginBar">
-            <div class="loginBarBox">
-                <div style="margin-top: 20px ; text-align: center; text-decoration-line: underline; font-size : 20px; color : green;" id = "friend_name_header">
-					<p>  <%=friendName%> 의 캘린더 </p>
-                </div>
-            </div>
-        </div>
-       
-    </header>
+<style>
+	.title {
+    background-color: #e1b8b8;
+    border-radius: 40px 80px;
+    width: 30%;
+    height: 100px;
+    
+}
 
-	<table  style=" margin-top : 0; margin-left: auto; margin-right: auto;" align="center" id="calendar">
+.title > p {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 8px;
+}
+
+.button:hover {
+  background-color: #e1b8b8;
+}
+
+#yearmonth {
+  font-size: 30px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-style: italic;
+  color : #e1b8b8;
+}
+
+#goToday {
+  text-decoration: none; text-shadow: 0 0 24px;
+  color :  #e1b8b8;
+  right : 0;
+  width: 50px;
+}
+
+.monthChangeBtn {
+  color :  #e1b8b8;
+  width: 70px;
+  height: 100px;
+  margin-left : 30px;
+  margin-right: 30px;
+  margin-top : 15px;
+  border-radius: 15px;
+}
+</style>
+
+<body onload="autoReload();">
+
+
+        <div style="margin-top: 15px ; text-align: center; text-decoration-line: underline; font-size : 15px; color : #e1b8b8;" id = "friend_name_header">
+				<%=friendName%> 의 캘린더 
+        </div>
+           
+	<table  style=" margin-left: auto; margin-right: auto;" id="frinedSchedule">
 		<tr>
 			<td>
 			<a class = "monthChangeBtn" id="before" href="javascript:beforem()"></a>
@@ -225,7 +271,7 @@
 			<td>
 			<a class = "monthChangeBtn" href="javascript:thisMonth()">오늘</a>
 			</td>
-		
+	
 		</tr>
 		
 			<tr id = "weekName" style="background-color: #dce4f0;">

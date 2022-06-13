@@ -18,6 +18,9 @@ const getOne = async(id) => {
         return data; 
     }catch(err) {
         console.log(err);
+
+        res.render("deleteError");
+
     }
 }
 
@@ -52,6 +55,7 @@ exports.getAllfriends = async (req, res, next) => {
 
     }catch(err){
         console.log(err);
+        res.render("deleteError");
     }
 
 }
@@ -69,7 +73,7 @@ exports.deleteFriendClear = async (req, res) => { //친구를 삭제합니다
                 {yourid : req.session.idx,  myid :req.body.friendId }, //쌍으로 연결되었으니 쌍으로 삭제합니다.
             ]
         }});
-        res.send("오류 안남");
+        res.render("deleteFclear");
     } catch (err) {
         res.status(500).send({
             message: err.message
@@ -79,7 +83,6 @@ exports.deleteFriendClear = async (req, res) => { //친구를 삭제합니다
 
 exports.deleteFriend = async (req, res) => {
     try{
-        // 후보1
         data = await Friend.findAll({
             where: {
                 myId: req.session.idx
@@ -103,7 +106,8 @@ exports.deleteFriend = async (req, res) => {
 
     }catch(err){
         console.log(err);
-        res.render("warning");
+        res.render("deleteError");
+
 
 
     }

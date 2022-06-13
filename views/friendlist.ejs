@@ -3,6 +3,9 @@
 <head></head>
     <link rel="stylesheet" href="./css/friendlist.css">
     <title>성신한알바</title>
+    <!-- <meta http-equiv="refresh" content="5"> -->
+
+
 </head>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -15,7 +18,7 @@
         <button id = "manage_friend" onclick="location.href='/deleteFriend'">친구관리</button>
         <div id="roomSelect">
             <% if(FFFF) { %>
-             <% FFFF.forEach(e=>{ %>
+             <% FFFF.forEach(e=>{ %> 
                 <button class = 'button' id = <%=e.memberId%> onclick='location.href="/chat?friendId=" + id;'><%= e.memberName%>'s chatting</button>
             <%});%> 
             <%}%>

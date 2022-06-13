@@ -11,12 +11,18 @@ exports.main = (req, res) => {
     res.render("index");
 };
 
-exports.clear = (req, res) => {
-    res.render("clear");
+/*로그인 실패 혹은 로그아웃 시 로그인 페이지로 이동*/
+exports.login = async (req, res) => {
+    res.render("login"); 
 };
 
+/*회원가입*/
 exports.join = (req, res) => {
     res.render("signUp");
+};
+
+exports.clear = (req, res) => {
+    res.render("clear");
 };
 
 exports.job = (req, res) => {
@@ -25,10 +31,6 @@ exports.job = (req, res) => {
 
 exports.friend = (req, res) => {
     res.render("addFriend");
-};
-
-exports.login = async (req, res) => {
-    res.render("login"); 
 };
 
 exports.friendlist=async(req,res)=>{

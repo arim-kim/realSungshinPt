@@ -1,25 +1,15 @@
-.mailBox {
+.login-form {
+    width: 70%;
+    height: 150px;
     padding-top: 100px;
-    height: 25px;
+    margin: 0 auto;
+}
+.mailBox {
+    height: 35px;
     width: 100%;
     text-align: center;
     margin: auto auto;
 }
-.pwBox {
-    padding-top: 45px;
-    height: 25px;
-    width: 100%;
-    text-align: center;
-    margin: auto auto;
-}
-.submitBox {
-    padding-top: 45px;
-    height: 25px;
-    width: 100%;
-    text-align: center;
-    margin: auto auto;
-}
-
 #mail {
     width: 350px;
     height: 30px;
@@ -29,7 +19,13 @@
     border-bottom: 3px solid #9dc39c;
     border-radius: 5px;
 }
-
+.pwBox {
+    padding-top: 30px;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    margin: auto auto;
+}
 #pw {
     width: 350px;
     height: 30px;
@@ -39,7 +35,13 @@
     border-bottom: 3px solid #9dc39c;
     border-radius: 5px;
 }
-
+.loginBtnBox {
+    padding-top: 40px;
+    height: 60px;
+    width: 350px;
+    text-align: center;
+    margin: auto auto;
+}
 .loginBtn {
     width: 100px;
     height: 30px;
@@ -47,6 +49,11 @@
     border-left: none;
     border-right: none;
     border-bottom: 3px solid #9dc39c;
+}
+
+.signUpBox {
+    width: 70%;
+    margin: auto auto;
 }
 
 .signUpBox {
@@ -64,4 +71,4 @@
     border-left: none;
     border-right: none;
     border-bottom: 3px solid #9dc39c;
-}
+} 

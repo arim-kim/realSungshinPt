@@ -2,6 +2,8 @@ const models = require("../models/index"),
 Member = models.member;
 Op = models.Sequelize.Op;
 
+
+/* 회원 가입 */
 exports.signUp = async (res, req) => {
 
         models.member.create({
@@ -9,32 +11,33 @@ exports.signUp = async (res, req) => {
                 memberName: req.body.memberName,
                 password: req.body.password
         })
-        .then( result => {
+        .then( res => {
                 console.log("회원가입 완료");
                 res.render("clear");
         })
         .catch( err => {
                 console.log(err)
                 console.log("회원가입 실패");
+                res.send("<script>alert('이미 사용중인 이메일입니다.');location.href='/signUp';</script>");
         })
 };
 
-
-exports.UserDelete = async (req, res) => {  //윤영추가(회원탈퇴)
-        try{
-            console.log("UserDelete 중 삭제할 Id", req.session.idx)
-            await Member.destroy({
-                where:{
-                    memberId : req.session.idx
-                }
-                
-            });
-            console.log("delete완료")
-            res.render("deleteUser");
+/* 회원 탈퇴 */
+exports.userDelete = async (req, res) => {  
+    try {
+        console.log("UserDelete 중 삭제할 Id", req.session.idx)
+        await Member.destroy({
+            where:{
+                memberId : req.session.idx
+            }
+        });
+        
+        console.log("회원 삭제 완료")
+        res.render("deleteUser");
     
-        }catch(err) {
-            res.status(500).send({
-                message: err.message
-            });
-        }
+    } catch(err) {
+        res.status(500).send({
+            message: err.message
+        });
     }
+}

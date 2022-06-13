@@ -3,187 +3,144 @@
     padding: 0;
 }
 
-html,body{
-    height: 100%;
-    width: 100%;
-    
+/* 상단 성신한 알바 */
+.title {
+    background-color: #e1b8b8;
+    border-radius: 40px 80px;
+    width: 30%;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
 }
 
+.title > p {
+    padding-top: 35px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 8px;
+}
 
 .chatwrapper{
-    height: 100%;
-    flex:5;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-
-
-.display-container{
-    margin: auto auto;
-    margin-top: 20px;
-    /* background:#e1b8b8; */
-    flex: 12;
-    overflow-y: scroll;
-}
-
-.input-container{
-    flex: 1;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-
-}
-
-.input-container span{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0.3rem;
     width: 100%;
-}
-
-.chatting-input{
-    font-size: 12px;
     height: 100%;
-    flex:8;
-
+    position: fixed;
+    order: 0;
 }
 
-.send-button{
-    flex:2;
-    background: #e1b8b8;
-    border: none;
+.subwrapper {
+    width: 80%;
     height: 100%;
-    border-radius: 3px;
+    margin: auto auto;
+    margin-top: 30px;
 }
 
-.chatting-list li{
-    width: 90%;
-    padding: 0.3rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-top: 0.1rem;
-    
+#display-container{
+    width: 100%;
+    height: 70%;
+    margin: auto auto;
+    background:#e1b8b8;
+    overflow-y: scroll;
+    padding-bottom: 10px; 
+    display: flex; 
+    flex-direction: column-reverse; 
 }
 
-.display-container ul li .sendMessage {
-    text-align: left;
+/* 채팅 기록 */
+.chatRecord {
+    display: inline;
+    margin-top: 0;
+    order: 1;
 }
-
 
 .sendMessage {
-background-color: #8a149f;
-width: 200px;
-height: auto;
-margin: 10px;
-/* float: left; */
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    float: right;
+    max-width: 70%;
+    align-items: flex-end;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin: 5px 5px 5px auto;
 }
 
 .receiveMessage {
-background-color: #da8383;
-width: 200px;
-height: auto;
-margin: 10px;
-/* float: right; */
-}
-
-
-.messsage{
+    background-color: #da8383;
     border-radius: 5px;
-    padding: 0.5rem;
-    font-size: 12px;
-    margin: 0 5px;
-    flex: 7;
-}
-
-.time{
-    font-size: 10px;
-    margin: 0 5px;
-}
-.sent{
-    flex-direction: row-reverse;
-    float:right;
-}
-
-.sent  .message{
-    background:rgb(99, 30, 30);
-    color: white;
-
-}
-
-.receive .message{
-    background: #da8383;
-
-}
-
-#roomList{
-    
-    width: 10%;
-    border: 1px solid #8a149f;
+    margin: 10px;
+    float: left;
+    max-width: 70%;
+    align-items: flex-end;
     border-radius: 5px;
-    flex:3;
-    
+    padding: 3px 5px;
+    margin: 5px auto 5px 5px;
 }
 
-#roomHeader{
-    background-color: #9f3bdd;
-    color: #fff;
-    height: 40px;
-    font-size: 18px;
-    line-height: 40px;
+.sendTime {
+    float: right;
+}
+
+.receiveTime {
+    float: left;
+}
+
+.newChat {
+    display: inline;
+}
+
+/* 새로운 채팅 */
+#messages { 
+    display: flex;
+    flex-direction: column;
+    margin: 0; 
+    padding: 0; 
+}
+  
+.others-message-wrapper {
+    max-width: 70%;
+    align-items: flex-start;
+    background-color: #da8383;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin: 5px auto 5px 5px;
+  }
+  
+.my-message-wrapper {
+    max-width: 70%;
+    align-items: flex-end;
+    background-color: white; 
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin: 5px 5px 5px auto;
+}
+
+
+/* 채팅 입력 */
+.input-container{
+    background-color: #da8383;
+    height: 30px;
+    min-width: 80%;
     text-align: center;
-    border-radius: 5px;
+    position: absolute;
+    display: inline-block;
 }
 
-.roomEI{
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 10px 10px;
-    cursor: pointer;
+.input-container > form{
+    padding-top: 5px;
 }
 
-.roomEI:hover{
-    background: #f0f0f0;
-}
-.roomEI.active{
-    background: #f0f0f0;
+#message {
+    width: 50%;
 }
 
-
-#calenderList{
-    width: 250px;
-    border: 1px solid #8a149f;
-    border-radius: 5px;
-}
-
-#calenderHeader{
-    background-color: #9471f4;
-    color: #fff;
-    height: 40px;
-    width: 10%;
-    font-size: 18px;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.CalenderEI{
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 10px 10px;
-    cursor: pointer;
-}
-
-.CalenderEI:hover{
-    background: #f0f0f0;
-}
-
-.CalenderEI.active{
-    background: #f0f0f0;
-}
-
-
-
+#send {
+    width: 50px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #da8383;
+}   

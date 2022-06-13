@@ -18,7 +18,7 @@ const express = require("express"),
         MysqlStore = require('connect-mysql')(session),
         mysql = require('mysql2'),
         http=require('http').createServer(app), 
-        loginFu = require("./controllers/loginManager");
+        loginController = require("./controllers/loginController");
         const {Socket}= require('engine.io');
         const io=require("socket.io")(http); 
 
@@ -40,22 +40,34 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 app.get("/", homeController.index);
-app.get("/signUp", homeController.join);
 app.get("/job", homeController.job);
-app.get("/deleteUser", memberController.UserDelete);
+
+/* 회원가입 및 탈퇴*/
+app.get("/signUp", homeController.join);
+app.post('/signUp', async (req, res, err) => {
+        memberController.signUp(res, req);
+})
+app.get("/deleteUser", memberController.userDelete);
+
+/* 로그인 및 로그아웃 */
+app.get("/login", homeController.login); 
+app.post("/login", async (req, res)=> {
+        loginController.login(res,req);    
+}); 
+app.get("/logout", loginController.logout);
+
+/* 채팅 */
+app.get("/chat",chatController.getAllChat);
 
 
-app.get("/logout", loginFu.logout); // 로그아웃
 app.get("/friend", addFriendController.addfriend);
 app.get("/friend", addFriendController.addFriendEmail);
 app.post("/friend", addFriendController.addFriendEmail);
 
 
 app.get("/friendlist", friendlistController.getAllfriends); //뷰 분리시 사용(운영추가)
-app.get("/chat",chatController.getAllChat);
 app.get("/job-list", scheduleController.getSchedule); 
 app.get("/jobEdit", parttimeController.editJob);
-app.get("/login", homeController.login); 
 app.get("/addSchedule", scheduleController.addSchedule);
 app.post("/addScheduleClear", scheduleController.addScheduleClear);
 app.post("/jobEdit",parttimeController.jobEditClear);
@@ -89,12 +101,12 @@ io.on('connection', (socket) =>{   //,req,res
         })
         console.log(socket.rooms);
 
-        socket.on("new_message",(data, senderId, receiverId , room)=>{ //from client()
+        socket.on("new_message",(data, senderId, receiverId , room, socketId)=>{ //from client()
 
                 console.log("채팅방번호 : " + room)
                 
                 console.log("Client(채팅).html) says ",data);
-                io.to(room).emit('new_message',data) //to client 전달
+                io.to(room).emit('new_message',data, socketId) //to client 전달
                 var now=moment(); //현재 날짜 시간 얻어오기 moment()
                 now.format("MM.DD T HH:mm "); 
                 models.chat.create({ //여기서 sql구동
@@ -106,17 +118,6 @@ io.on('connection', (socket) =>{   //,req,res
                 console.log(data,"를 언급");
 
          })    
-})
-
-
-/* 로그인 */
-app.post("/login", async (req, res, next)=> {
-        loginFu.login_f(req.body.mail,req.body.pw,res,req);    
-}); 
-
-/* 회원가입 */
-app.post('/signUp', async (req, res, err) => {
-        memberController.signUp(res, req);
 })
 
 /* 아르바이트 */

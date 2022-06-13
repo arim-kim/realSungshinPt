@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&family=Jua&family=Nanum+Gothic&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +6,24 @@
   box-sizing: border-box;
 }
 
-body {
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
+.title {
+  background-color: #9DC39C;
+  border-radius: 40px 80px;
+  width: 30%;
+  height: 100px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.title > p {
+  padding-top: 35px;
+  width: 100%;
+  margin: auto;
+  display: block;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Do Hyeon', sans-serif;
+  letter-spacing: 8px;
 }
 
 /* font-weight 추가함(굵게) */
@@ -19,6 +32,7 @@ body {
   font-size: 35px;
   font-weight: bolder;
 }
+
 
 /*로그아웃*/
 /* header > logOutBar > logOutBarBox > btnBox > logOutBtn */
@@ -36,9 +50,10 @@ header .logOutBar {
   line-height: 150%;
 }
 
-header .logOutBarBox {
-  /* border: 1px solid gainsboro; */
+.logOutBarBox {
+  margin-top: 40px;
   float: right;
+  margin-right: 10px;
   height: 100%;
 }
 
@@ -46,6 +61,14 @@ header .logOutBarBox {
   border: 0;
   line-height: 1.5;
   font-size: 1rem;
+  border-radius: 10px;
+}
+
+.deleteUser{
+  border: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-top: 5px;
   border-radius: 10px;
 }
 
@@ -97,10 +120,10 @@ side {
   margin-top: 30px;
   /* background-color: #9dc39c; */
   border: 3px solid #9dc39c;
-  width: 300px;
+  width: 350px;
   height: 650px;
   float: left;
-  margin-left: 10%;
+  margin-left: 6%;
   margin-right: 5%;
 }
 
@@ -146,8 +169,9 @@ side .alarmNameBox {
 
 /*캘린더*/
 #calendar {
+  float: right;
   margin-top: 30px;
-  margin-right: 5%;
+  margin-right: 7%;
   /* background-color: bisque; */
   border: 3px solid #9dc39c;
 }

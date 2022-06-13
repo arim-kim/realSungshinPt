@@ -196,17 +196,16 @@
 </head>
 
 <body onload="autoReload();">
-    <header>
-        <div class="logOutBar">
-            <div class="logOutBarBox">
-				<div class = "now_user"> <%=now_user%> 님, <br> 오늘도 열심히 일해요! </div>
-                <div class ="btnBox">
-					<input type="button" class = "logOutBtn" value="Log out" onclick="location.href='/logout'">
-				</div>
 
-            </div>
+    <div class="logOutBar">
+        <div class="logOutBarBox">
+        <div class = "now_user"> <%=now_user%> 님, <br> 오늘도 열심히 일해요! </div>
+			  <input type="button" class = "logOutBtn" value="Log out" onclick= "alert('로그아웃 하시겠습니까?'); location.href='/logout'">
+			<br>
+			<input type="submit" class = "deleteUser" value="회원 탈퇴" onclick="alert('회원탈퇴 하시겠습니까?'); location.href='/deleteUser'">	
         </div>
-    </header>
+    </div>
+
     <nav>
 		<div class = "navBox">
 			<div class="goChat">

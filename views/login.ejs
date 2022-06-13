@@ -10,21 +10,22 @@
 </head>
 
 <body>
-<div>
-    <form class = "login-form" action="/login" method="post">
-        <div class = "mailBox">
-            <input type = "text" id = "mail" name = "mail" placeholder="mail">
+    <div>
+        <form class = "login-form" action="/login" method="post">
+            <div class = "mailBox">
+                <input type = "text" id = "mail" name = "mail" placeholder="mail">
+            </div>
+            <div class = "pwBox">
+                <input type = "text" id = "pw" name = "pw" placeholder="password">
+            </div>
+            <div class = "loginBtnBox">
+                <input type = "submit" class = "loginBtn" value = "login">
+            </div>
+        </form>
+
+        <div class = "signUpBox">
+            <a href="signUp"><input type="button" class = "signUpBtn" value="signUp"></a> 
         </div>
-        <div class = "pwBox">
-            <input type = "text" id = "pw" name = "pw" placeholder="password">
-        </div>
-        <div class = "submitBox">
-            <input type = "submit" class = "loginBtn" value = "login">
-        </div>
-    </form>
-    <div class = "signUpBox">
-        <a href="signUp"><input type="button" class = "signUpBtn" value="signUp"></a> 
     </div>
-</div>
 </body>
 </html>

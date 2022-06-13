@@ -15,15 +15,13 @@ module.exports = (sequelize, Sequelize) => {
         },
         receiverId: {
             type: Sequelize.INTEGER,
-            foreignKey: '',
+            foreignKey: 'memberId',
             allowNull: false,
             primaryKey: false
         },
         chatTime: {
             type: Sequelize.DATE,
-            defaultValue: 'X',
-            allowNull: false,
-            
+            allowNull: false,    
         },
         chatContent: {
             type: Sequelize.STRING,

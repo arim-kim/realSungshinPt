@@ -1,3 +1,7 @@
+body{
+    overflow-y: scroll;
+}
+
 .login-form {
     width: 70%;
     height: 150px;

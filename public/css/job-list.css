@@ -18,12 +18,8 @@ body{
     border-left: none;
     border-right: none;
     background-color: white;
-    /* margin-top : 100px;
-    margin-left: 100px; */
-}
-
-.btns button:hover {
-    color: skyblue;
+    margin-top : 100px;
+    margin-left: 100px;
 }
 
 .job-list{
@@ -42,11 +38,11 @@ body{
     border-bottom: none;
     background-color: white;
     position: relative;
+    margin-left : 100px;
 }
 
 
 #totalPay {
-
     font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
     width: auto;

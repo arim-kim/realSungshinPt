@@ -14,17 +14,19 @@
     <div class = "wrapper" 
     style=" display:flex; 
     height: 300px;
+    width: 500px;
+    margin : 0 auto;
     justify-content: center; 
     flex-direction: column; 
     align-items: center; 
     background-color: white; 
-    border: #9DC39C solid;
+    border: #e1b8b8 solid;
      border-radius: 3ch;"
     >
         <form name = "friendDelete" action = "/deleteFriend" method = "post">
                 <div class = "jobName">
                         <div class = "jobNameBox">
-                                <label style="font-size: 17px; width:300px; border-bottom: 3px solid #9dc39c;">친구 이름 목록</label>
+                                <label style="font-size: 17px; width:200px; border-bottom: 3px solid #e1b8b8;">친구 이름 목록</label>
                                 <select name="friendId" >
                                     <option value="" disabled selected>선택</option>
                                     <% for (i = 0; i < data.length; i++) { %>
@@ -49,7 +51,7 @@
                         border-top: none;
                         border-left: none;
                         border-right: none;
-                        border-bottom: 3px solid #9dc39c;">
+                        border-bottom: 3px solid #e1b8b8;">
                 </div>
         </form>
 </div>

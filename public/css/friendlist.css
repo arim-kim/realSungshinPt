@@ -9,14 +9,11 @@
     border-radius: 40px 80px;
     width: 30%;
     height: 100px;
-    margin: auto;
-    margin-top: 20px;
+    
 }
 
 .title > p {
-    padding-top: 35px;
     width: 100%;
-    margin: auto;
     display: block;
     text-align: center;
     font-size: 40px;

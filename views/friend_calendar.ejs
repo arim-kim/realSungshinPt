@@ -100,7 +100,7 @@
 			str += "<div id='"+day+"'></div>"; //나중에 원하는 날에 일정을 넣기위해 id값을 날자로 설정
 			
 			var id = year + "-" + month + "-" + day;
-			str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+ month+"</button>";
+			str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+"</button>";
 			cell.innerHTML = str;
 			
 			cnt = cnt + 1;
@@ -111,7 +111,7 @@
 				str += "<div id='"+day+"'>";
 				str += "</div>";
 				var id = year + "-" + month + "-" + day
-				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+ month+"</button>";
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+"</button>";
 				cell.innerHTML = str;
 				cell.style.color = "#009de0";
 				cell.style.backgroundColor = "#f7f7f7";                    
@@ -124,7 +124,7 @@
 				str += "<div id='"+day+"'>";
 				str += "</div>";
 				var id = year + "-" + month + "-" + day
-				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+ month+"</button>";
+				str += "<button class = 'button' id = " + id + " onclick='location.href=\"/friend-job-list?date=" + id + "\";'>"+"</button>";
 				cell.innerHTML = str;
 				row = calendar.insertRow();// 줄 추가
 				cell.style.color = "#ed5353";
@@ -186,7 +186,7 @@
 
     <title>SungshinHanPT</title>
 
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/index.css">
 
     <!-- 브라우저 기본 스타일을 reset합니다 -->
 
@@ -203,45 +203,41 @@
     <header>
         <div class="loginBar">
             <div class="loginBarBox">
-                <div>
-					<p> 친구 아이디 </p>
-                </div>
-                <div class ="btnBox">
-
-					<input type="button" class = "signUpBtn" value="Logout">
+                <div style="margin-top: 20px ; text-align: center; text-decoration-line: underline; font-size : 20px; color : green;" id = "friend_name_header">
+					<p>  <%=friendName%> 의 캘린더 </p>
                 </div>
             </div>
         </div>
-        <!-- <div class="nameBar">
-            <p>성신한 알바</p>
-        </div> -->
+       
     </header>
 
-	<table align="center" id="calendar">
+	<table  style=" margin-top : 0; margin-left: auto; margin-right: auto;" align="center" id="calendar">
 		<tr>
 			<td>
-			<a id="before" href="javascript:beforem()"></a>
+			<a class = "monthChangeBtn" id="before" href="javascript:beforem()"></a>
 			</td>
 			<td colspan="4" align="center">
 			<div id="yearmonth"></div>
 			</td>
 			<td>
-			<a id="next" href="javascript:nextm()"></a>
+			<a class = "monthChangeBtn" id="next" href="javascript:nextm()"></a>
 			</td>
 			<td>
-			<a href="javascript:thisMonth()">오늘</a>
+			<a class = "monthChangeBtn" href="javascript:thisMonth()">오늘</a>
 			</td>
 		
 		</tr>
-		<tr>
-			<td width="14%"> 월 </td>
-			<td width="14%"> 화 </td>
-			<td width="14%"> 수 </td>
-			<td width="14%"> 목 </td>
-			<td width="14%"> 금 </td>
-			<td width="14%"><font color="#009de0">토</font></td>
-			<td width="14%"><font color="#ed5353">일</font></td>
-		</tr>
+		
+			<tr id = "weekName" style="background-color: #dce4f0;">
+				<td width="14.5%"> 월 </td>
+				<td width="14.5%"> 화 </td>
+				<td width="14.5%"> 수 </td>
+				<td width="14.5%"> 목 </td>
+				<td width="14.5%"> 금 </td>
+				<td width="14.5%"><font color="#009de0">토</font></td>
+				<td width="14.5%"><font color="#ed5353">일</font></td>
+			</tr>
+		
 	</table>
 	
 </body>

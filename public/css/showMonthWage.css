@@ -1,13 +1,35 @@
 table {
-    margin-left: 42%;
+    margin-left: 35%;
+    margin-top: 5%;
     border-style: solid;
+    width: 30%;
+    border-collapse: collapse;
+    text-align: center;
 }
 
 tr {
     color: black;
 }
 
+tr:nth-child(2n+3) {
+    background-color: #d9e8d9;
+}
+
 td {
-    border-style: dashed;
-    color: #9dc39c;
+    border-style: solid;
+    /*color: #9dc39c;*/
+    color: black;
+}
+
+#title {
+    background-color: #9dc39c;
+}
+
+#period {
+    font-size: 8pt;
+    border-style: none;
+}
+
+#total {
+    background-color: #f1f7f1;
 }

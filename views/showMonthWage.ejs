@@ -4,17 +4,39 @@
     <link rel="stylesheet" href="./css/showMonthWage.css">
 </head>
 <body>
+    <!--
     <div id ="totalWage"> 총 월급 : <%=monthWage.total%></div>
     <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
         <br><p><%= monthPay_byPt[i].parttime.parttimeName %> : <%=monthPay_byPt[i].monthlyTotal%></p>
-    <% } %>
+    <% } %>-->
 
-<table>
+    <table>
         <tr>
-            <th colspan="2"><%= monthPayId %>님의 급여 명세표</th>
+            <th colspan="3">
+                <%= monthName %> 님의 급여 명세표
+            </th>
         </tr>
-        <% for (var i = 0;i < monthPay_byPt.length;i++){ %>
+        <tr>
+            <td id="period">
+                기간 : <%= monthNum %>
+            </td>
+        </tr>
+        <tr id="title">
+            <td>
+                번호
+            </td>
+            <td>
+                아르바이트
+            </td>
+            <td>
+                급여
+            </td>
+        </tr>
+        <% for (var i=0;i < monthPay_byPt.length;i++){ %>
             <tr>
+                <td>
+                    <%= i + 1 %>
+                </td>
                 <td>
                     <%= monthPay_byPt[i].parttime.parttimeName %>
                 </td>
@@ -22,16 +44,16 @@
                     <%=monthPay_byPt[i].monthlyTotal%>
                 </td>
             </tr>
-        <% } %>
-        <tr>
-            <td>
-                총 월급
-            </td>
-            <td>
-                <%=monthWage.total%>
-            </td>
-        </tr>
+            <% } %>
+                <tr id="total">
+                    <th colspan="2">
+                        총 월급
+                    </th>
+                    <td>
+                        <%=monthWage.total%>
+                    </td>
+                </tr>
     </table>
 
-    <button id = "homeButton" onclick="location.href='/'" >홈으로</button>
+    <button id="homeButton" onclick="location.href='/'">홈으로</button>
 </body>

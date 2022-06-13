@@ -202,7 +202,6 @@
         <div class = "now_user"> <%=now_user%> 님, <br> 오늘도 열심히 일해요! </div>
 			  <input type="button" class = "logOutBtn" value="Log out" onclick= "alert('로그아웃 하시겠습니까?'); location.href='/logout'">
 			<br>
-			<input type="submit" class = "deleteUser" value="회원 탈퇴" onclick="alert('회원탈퇴 하시겠습니까?'); location.href='/deleteUser'">	
         </div>
     </div>
 
@@ -277,8 +276,7 @@
 			<td width="14.5%"><font color="#ed5353">일</font></td>
 		</tr>
 	</table>
-			<!-- 윤영추가 회원탈퇴 6/1-->
-			<input type="submit" class = "deleteUser" value="회원탈퇴하기" onclick="location.href='/deleteUser'">	
+			<input type="submit" class = "deleteUser" onclick= "alert('회원탈퇴 하시겠습니까?');" value= "회원탈퇴하기" onclick="location.href='/deleteUser'">	
 </body>
 </html>
 

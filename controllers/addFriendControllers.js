@@ -23,8 +23,7 @@ exports.addFriendEmail =async (req, res)=>{
             }
         });
         if(data==null){ //member가 아닐시, warning뷰로 이동
-            res.render("warning");
-            
+            res.render("deleteError");
         }  
             
 
@@ -54,11 +53,9 @@ exports.addFriendEmail =async (req, res)=>{
         )
         
     }catch(err){
-
         console.log(err);
        res.render("deleteError");
 
-    
     }
 }
 

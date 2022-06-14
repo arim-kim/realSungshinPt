@@ -111,7 +111,7 @@ const getAllSchedule = async (id) => {
                         $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),thisDay)
                 },
                 attributes : [
-                    [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'] ],
+                    [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %H:%m'), 'startTime'] ],
                 order: [
                     ['startTime', 'ASC'],
                 ] 

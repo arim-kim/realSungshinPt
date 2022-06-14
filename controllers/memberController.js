@@ -11,7 +11,7 @@ exports.signUp = async (res, req) => {
                 memberName: req.body.memberName,
                 password: req.body.password
         })
-        .then( res => {
+        .then( result => {
                 console.log("회원가입 완료");
                 res.render("clear");
         })

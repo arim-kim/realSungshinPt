@@ -1,8 +1,12 @@
 ### realSungshinPt
+성신여자대학교 서버시스템구축실습 4팀 김아림 김채은 신연정 양윤영
+성신한 알바 웹 구축
+
 
 ### Description
-realSungshinPt는 아르바이트 스케줄을 관리하고, 주휴수당과 야간수당을 포함한 월급을 계산하며 아르바이트 관련 여러기능을 효과적으로 관리할수있는 아르바이트에 관련된 종합 서비스를 제공하는 git이다.  
-구현된 기능으로는 채팅, 급여계산, 아르바이트일정관리를 들수 있다.  
+
+realSungshinPt는 아르바이트 스케줄을 관리하고, 주휴수당과 야간수당을 포함한 월급을 계산하며 아르바이트 관련 여러기능을 효과적으로 관리할수있는 아르바이트에 관련된 종합 서비스를 제공하는 git입니다.
+구현된 기능으로는 채팅, 급여계산, 아르바이트일정관리를 들수 있습니다.
 
 ***
 
@@ -101,10 +105,12 @@ MVC 뷰를 사용했습니다.
 
 ***
 
-## MYSQL 프로시져 함수( 급여 계산 관련)
+## MYSQL 프로시져 함수( 급여 계산 관련)  
+
 일급, 주급, 월급 table 생성  
 
 일급 table 생성  
+
 ```sh
 CREATE TABLE daily (
 dailyMemId int NOT NULL,
@@ -120,7 +126,9 @@ CONSTRAINT dailyPtId FOREIGN KEY (dailyPtId) REFERENCES parttime (parttimeId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
  
+ 
 주급 table 생성  
+
 ```sh
 CREATE TABLE weekly (
 weeklyMemId int NOT NULL,
@@ -190,8 +198,9 @@ dayCoveredTime = dayCoveredTime + dayCovered,
 dailyWorkTime = dailyWorkTime + TIMESTAMPDIFF(minute, new.starttime, new.endtime)/60;
 end //
 delimiter ;
-
 ```
+
+***
 
 # 2. 주급
 
@@ -233,10 +242,9 @@ coveredTime = coveredTime + new.dayCoveredTime - old.dayCoveredTime,
 weekPlusPay = weekFunc(weekWorkTime, coveredTime, weeklyTotal, weekPlusPay);
 end //
 delimiter ;
-
 ```
 
-## ※주휴수당 계산 함수
+## ※주휴수당 계산 함수  
 
 ```sh
 set global log_bin_trust_function_creators = 1;
@@ -252,7 +260,10 @@ end if;
 end $$
 delimiter ;
 ```
-## 3. 월급 (주급 추가 → 월급 추가)
+
+***
+
+## 3. 월급 (주급 추가 → 월급 추가)  
 
 ```sh
 drop trigger if exists weekMonthInsert;
@@ -346,7 +357,7 @@ end //
 delimiter ;
 ```
 
-### 2. 일정 삭제 → 업데이트된 대타시간 구하기
+### 2. 일정 삭제 → 업데이트된 대타시간 구하기  
 
 ```sh
 set global log_bin_trust_function_creators = 1;
@@ -388,6 +399,7 @@ delete from monthly where monthlyTotal = 0;
 end //
 delimiter ;
 ```
+
 ***  
 
 

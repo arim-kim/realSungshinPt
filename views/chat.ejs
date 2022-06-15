@@ -56,7 +56,7 @@
 
                 <script>
 
-                    const socket= io('http://localhost:80');
+                    const socket= io.connect();
                     console.log(socket);
 
                     window.onload = function() {

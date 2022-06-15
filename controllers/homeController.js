@@ -131,7 +131,7 @@ const getAllSchedule = async (id) => { //해당 id의 모든 스케줄을 불러
 
 };
 
-exports.index = async (req, res) => { //로그인 세션
+exports.index = async (req, res) => { //로그인 세션 + home 화면 업로드 
     if(!req.session.login) {
         req.session.login = false
         req.session.idx = -1

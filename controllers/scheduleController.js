@@ -43,8 +43,8 @@ exports.getSchedule = async (req, res) => {
         }
         ], 
         attributes : [
-            [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %H:%m'), 'startTime'],
-            [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %H:%m'), 'endTime'],
+            [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %H:%i'), 'startTime'],
+            [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %H:%i'), 'endTime'],
             'idSchedule', 'isCovered'
         ],
             where: {

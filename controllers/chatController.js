@@ -26,7 +26,7 @@ const getAllChat =  async (myId, friendId) => {
     try {
          data = await Chat.findAll({
             attributes : [
-                [Sequelize.fn('date_format', Sequelize.col('chatTime'), '%Y-%m-%d %h:%m'), 'chatTime'],
+                [Sequelize.fn('date_format', Sequelize.col('chatTime'), '%Y-%m-%d %h:%i'), 'chatTime'],
                 'senderId',
                 'receiverId',
                 'chatContent',

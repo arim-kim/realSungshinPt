@@ -1,10 +1,11 @@
+//사용자들 model
 module.exports = (sequelize, Sequelize) => {
     const member = sequelize.define("member", {
         memberMail: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        memberId: {
+        memberId: { //기본키.
             type: Sequelize.INTEGER,
             autoIncrement: true,
             allowNull: false,

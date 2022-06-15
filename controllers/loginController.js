@@ -13,11 +13,11 @@ exports.login = async (res,req) => {
         where : {memberMail : req.body.mail, password : req.body.pw}
         
     }).then(function(user) {
-        if(user == null) {
+        if(user == null) { //user가 member객체가 아님.
             console.log("로그인 실패"); 
             res.send("<script>alert('사용자 정보가 일치하지 않습니다.');location.href='/login';</script>");
         }
-        else {
+        else { 
 
             if(req.session.num == undefined) {
                 req.session.num = 1; 
@@ -27,9 +27,9 @@ exports.login = async (res,req) => {
                 req.session.num ++; 
             }
             
-            console.log(req.session.num);
-            req.session.login = true
-            req.session.idx = user.dataValues.memberId
+            console.log("@@@@@@@@@req.session.num",req.session.num);
+            req.session.login = true //로그인 ture
+            req.session.idx = user.dataValues.memberId //memberID가 유지될 수 있도록 idx를 설정해준다,
             responseData = {'result' : 'ok', 'session' : req.session.login}; 
             getPtlist(req.session.idx).then (
                 ptlist => {     

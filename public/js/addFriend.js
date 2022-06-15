@@ -2,7 +2,7 @@ document.getElementById('friend-form').onsubmit = function() {
   let fEmail = this.friendEmail.value
   let check = true;
 
-  if(fEmail.includes('@')){
+  if(fEmail.includes('@')){ //이메일
     let emailId = fEmail.split('@')[0]
     let emailServer = fEmail.split('@')[1]
     if(emailId === "" || emailServer === ""){

@@ -1,8 +1,8 @@
+<!-- 아르바이트 삭제 view  -->
 <!DOCTYPE html>  
 <html lang="ko"> 
 <head> 
     <title>아르바이트 정보</title> 
-    <!-- 브라우저 기본 스타일 초기화 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
     <link rel="stylesheet" href="./css/jobInfo.css">
     <script src="./js/jobInfo.js"></script>
@@ -16,6 +16,7 @@
                                         <label>아르바이트 이름</label>
                                         <select name="parttimeId">
                                             <option value="" disabled selected>선택</option>
+                                            <!-- render로 받아온 pt로 for을 돌려 동적 뷰로 출력한다. -->
                                             <% for (i = 0; i < pt.length; i++) { %>
                                                 <option value="<%=pt[i].parttimeId%>"><%= pt[i].parttimeName %></option>
                                             <% } %>

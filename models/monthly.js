@@ -1,17 +1,18 @@
+//월급 관련 model
 module.exports = (sequelize, Sequelize) => {
     const monthly = sequelize.define("member", {
-        monthlyMemId: {
+        monthlyMemId: { //기본키
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        month: {
+        month: { //1,2,3, ...., 12월 (기본키)
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        monthlyTotal : {
+        monthlyTotal : { //월급 총합.
             type: Sequelize.INTEGER,
         },
-        monthlyPtId : {
+        monthlyPtId : { //해당 알바 월급 총합.
             type: Sequelize.INTEGER,
             primaryKey: true
         }

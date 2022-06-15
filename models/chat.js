@@ -1,13 +1,13 @@
-
+//채팅 model
 module.exports = (sequelize, Sequelize) => {
     const chat = sequelize.define("chat", {
-        chatNumber: {
+        chatNumber: { //기본키
             type: Sequelize.INTEGER,
-            autoIncrement: true,
+            autoIncrement: true, //자동으로 증가하게 하였습니다
             allowNull: false,
             primaryKey: true
         },
-        senderId: {
+        senderId: { //sender, receiverId는 모두 member의 memberId외래키이다. member에서 삭제 시ㅡ> 자동 삭제
             type: Sequelize.INTEGER,
             foreignKey: 'memberId',
             allowNull: false,

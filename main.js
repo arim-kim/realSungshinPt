@@ -1,9 +1,10 @@
+//윤영주석 12:01
 const express = require("express"),
         app = express(),
-        homeController = require("./controllers/homeController"),
-        errorController = require("./controllers/errorController"),
         layouts = require("express-ejs-layouts"),
         bodyParser = require("body-parser"),
+        homeController = require("./controllers/homeController"), //controllers 불러오기.
+        errorController = require("./controllers/errorController"),
         memberController = require("./controllers/memberController"),
         parttimeController = require("./controllers/parttimeController"),
         scheduleController = require("./controllers/scheduleController"),
@@ -11,24 +12,26 @@ const express = require("express"),
         friendlistController = require("./controllers/friendlistController"),
         addFriendController = require("./controllers/addFriendControllers"),
         friendCalendarController = require("./controllers/friendCalendarController"),
-        db = require("./models/index"),
-        cors=require('cors'), 
-        models = require("./models"),
+        loginController = require("./controllers/loginController"),
+        db = require("./models/index"), //home models 불러오기
+        cors=require('cors'),  //채팅관련 
+        models = require("./models"), //대문 열기
         session = require('express-session'),
         MysqlStore = require('connect-mysql')(session),
         mysql = require('mysql2'),
-        http=require('http').createServer(app), 
-        loginController = require("./controllers/loginController");
-        const {Socket}= require('engine.io');
+        http=require('http').createServer(app);
+        const {Socket}= require('engine.io'); //채팅관련
         const io=require("socket.io")(http); 
 
 
 db.sequelize.sync();
+
 app.use(session({
 	secret:'keyboard cat',
 	resave:false,
 	saveUninitialize:true
 }));
+
 app.use(bodyParser.json());
 
 app.set("port", process.env.PORT || 80);
@@ -59,46 +62,54 @@ app.get("/logout", loginController.logout);
 /* 채팅 */
 app.get("/chat",chatController.getAllChat);
 
-
+/* 친구추가 */
 app.get("/friend", addFriendController.addfriend);
 app.get("/friend", addFriendController.addFriendEmail);
 app.post("/friend", addFriendController.addFriendEmail);
 
 
-app.get("/friendlist", friendlistController.getAllfriends); //뷰 분리시 사용(운영추가)
-app.get("/job-list", scheduleController.getSchedule); 
-app.get("/jobEdit", parttimeController.editJob);
-app.get("/addSchedule", scheduleController.addSchedule);
-app.post("/addScheduleClear", scheduleController.addScheduleClear);
-app.post("/jobEdit",parttimeController.jobEditClear);
-app.post("/job-list",scheduleController.deleteSchedule);
-app.get("/jobDelete", parttimeController.jobDelete);
-app.post("/jobDelete", parttimeController.jobDeleteClear);
-app.get("/friendCalendar", friendCalendarController.showFriendCalendar); 
-app.get("/friend-job-list", friendCalendarController.showFriendJobList);
-app.get("/showMonthWage", scheduleController.showMonthWage);
-app.get("/deleteFriend", friendlistController.deleteFriend);
-app.post("/deleteFriend", friendlistController.deleteFriendClear);
-app.get("/clear", homeController.clear );
+app.get("/friendlist", friendlistController.getAllfriends);             //친구 목록 
+
+app.get("/job-list", scheduleController.getSchedule);                   //아르바이트 목록
+app.post("/job-list",scheduleController.deleteSchedule);  
+
+
+app.get("/jobEdit", parttimeController.editJob);                        // 아르바이트 편집
+app.post("/jobEdit",parttimeController.jobEditClear);   
+
+app.get("/addSchedule", scheduleController.addSchedule);                //일정 추가
+app.post("/addScheduleClear", scheduleController.addScheduleClear);    
+
+app.get("/jobDelete", parttimeController.jobDelete);                    //아르바이트 삭제 
+app.post("/jobDelete", parttimeController.jobDeleteClear); 
+
+app.get("/friendCalendar", friendCalendarController.showFriendCalendar);//친구 캘랜더 show
+app.get("/friend-job-list", friendCalendarController.showFriendJobList);//친구 일정 show
+
+app.get("/showMonthWage", scheduleController.showMonthWage);            //총 월급 보기
+app.get("/deleteFriend", friendlistController.deleteFriend);            //친구 삭제
+app.post("/deleteFriend", friendlistController.deleteFriendClear);      
+app.get("/clear", homeController.clear );                               //완료 뷰
+
 const { engine } = require("express/lib/application");
-const moment=require("moment");
+const moment=require("moment"); //채팅 시간을 위해
 const member = require("./models/member");
 
-const port=80; //윤영 임시추가.. 근데 port없이 어떻게 http.
+const port=80;  //임의로 port지정
 http.listen(port,()=>{
         console.log(`Listeninig to port ${port}`)
-}) //윤영추가(이거지우면 chat X)
-
+}) 
     
 
-io.on('connection', (socket) =>{   //,req,res
+io.on('connection', (socket) =>{  
         console.log('User connected',socket.id); //매번 요청시마다 socket.id는 다르게 찍힘
-
         console.log(socket.rooms);
+
         socket.on("room",(room) => {
-                socket.join(room);
+                socket.join(room); //join으로 room연결
                 console.log("회원이 입장")
         })
+
         console.log(socket.rooms);
 
         socket.on("new_message",(data, senderId, receiverId , room, socketId)=>{ //from client()

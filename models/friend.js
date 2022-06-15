@@ -1,6 +1,7 @@
-module.exports = (sequelize, Sequelize) => {
+//friend model
+module.exports= (sequelize, Sequelize) => {
     const friends = sequelize.define("friends", {
-        myId: {
+        myId: { //friend model의 기본키는 myId와 yourId입니다.
             type: Sequelize.INTEGER,
             allowNull: false,
             primaryKey: true
@@ -11,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        room: {
+        room: { //내 아이디와 yourId와의 조합으로 생성된다.
             type: Sequelize.STRING,
             allowNull: false
         }

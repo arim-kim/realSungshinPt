@@ -1,9 +1,9 @@
+<!-- c친구목록 view  -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <link rel="stylesheet" href="./css/friendlist.css">
     <title>성신한알바</title>
-    <!-- <meta http-equiv="refresh" content="5"> -->
 
 
 </head>
@@ -18,7 +18,6 @@
         <div id="roomHeader">친구 목록</div>
         <div id="roomSelect">
             <% if(FFFF) { %>
-
              <% FFFF.forEach(e=>{ %>
                 <button class = 'button' id = <%=e.memberId%> onclick='location.href="/chat?friendId=" + id;'><%= e.memberName%>'s Chatting</button>
             <%});%> 

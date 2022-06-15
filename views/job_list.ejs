@@ -1,3 +1,4 @@
+<!-- 아르바이트 list뷰  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
     <title>성신한 알바</title>
 </head>
-<body>
+<body> 
+    <!-- render해서 보내준 data로 for문을 돌린다.  -->
     <% for(var i = 0; i < data.length; i++) {%>
         <div class = "scdlBox">
             <button class ="btns" style = "border-bottom: 3px solid <%= data[i].parttime.color%>; 
@@ -17,6 +19,7 @@
                 <%=data[i].parttime.parttimeName%>
                 <br> 시작시간 :  <%=data[i].startTime%> 
                 <br> 끝나는 시간 : <%=data[i].endTime%> 
+                <!-- 대타유무 표시 -->
                 <% if (data[i].isCovered == 0) { %>
                     <br> 대타 : X 
                 <% } %>

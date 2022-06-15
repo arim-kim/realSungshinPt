@@ -1,6 +1,8 @@
+<!-- 윤영추가 12:06 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- 채팅view -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +24,9 @@
             <div id="display-container">
                 <div class = "chatRecord">
                     <ul style="width: 100%; list-style: none;">
+                        <!-- 내가 보낸거면 오른쪽, 상대방이 보낸거면 왼쪽 float -->
                         <% AllChat.forEach(e=> { %>
-                            <% if(e.senderId == nowUser) { %>
+                            <% if(e.senderId == nowUser) { %>  
                                 <li style=" width : 100%; float: right;"><div class = "sendMessage"> <%=e.chatContent%> </div></li> 
                                 <li style=" width : 100%; float: right;"><div class = "sendTime" style="font-size: 3px; margin-right: 5px;"> <%=e.chatTime%> </div></li>                             <% } %>
                             <% if(e.senderId == friendId) { %>
@@ -42,7 +45,8 @@
 
                 <script src="/socket.io/socket.io.js"></script>
 
-                <form onsubmit="return sendMessage()" >
+                <!-- 데이터 post해줄 form  -->
+                <form onsubmit="return sendMessage()" > 
                     <input name ='messageContent' id="message" placeholder="Enter message">
                     <input type = "hidden" id ='receiver' value = "<%=friendId%>">
                     <input type = "hidden" id = 'sender' value = "<%=nowUser%>">
@@ -51,12 +55,10 @@
                 </form>            
 
                 <script>
-                    window.onload = function() {
-                        sendRoomid(); 
-                    }
-                    
+                   
                     const socket= io('http://localhost:80');
                     console.log(socket);
+
                     window.onload = function() {
                         let room = document.querySelector("#room"); 
                         console.log("방번호" + room.value);
@@ -70,18 +72,21 @@
                         let message = document.querySelector("#message");
                         let senderId = document.querySelector("#sender");
                         let receiverId = document.querySelector("#receiver");
-                        let room = document.querySelector("#room"); 
+                        let room = document.querySelector("#room");
+
                         console.log(message.value+'가 도착');
                         console.log("방번호" + room.value);
-                        socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value, socket.id);
-                        document.querySelector("#message").value = "";
+
+                        socket.emit('new_message',message.value, senderId.value, receiverId.value, room.value, socket.id);// emit으로 server에게 전송
+                        
+                        document.querySelector("#message").value = ""; //전송후 대화창 비워주기.
                         return false;
                     }
 
 
                     socket.on('new_message', (message, socketId) => {
-
-                        if(socket.id === socketId) {
+                        // 연속으로 메세지 보낼 때 일정하게 보내짐 
+                        if(socket.id === socketId) { 
                             const messageSend=document.querySelector("#messages");
                             messageSend.appendChild(makeMessage(message, true))
                         }

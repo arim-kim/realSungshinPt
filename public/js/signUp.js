@@ -1,5 +1,6 @@
+//회원가입 관련 js
 document.getElementById('signUp-form').onsubmit = function() {
-
+    //form에서 post한 data받아오기
     let email = this.email.value
     let name = this.name.value
     let password = this.password.value
@@ -7,17 +8,17 @@ document.getElementById('signUp-form').onsubmit = function() {
     let check = true;
     
     //이메일 확인
-    if(email.includes('@')){
+    if(email.includes('@')){ 
         let emailId = email.split('@')[0]
         let emailServer = email.split('@')[1]
-        if(emailId === "" || emailServer === ""){
+        if(emailId === "" || emailServer === ""){ //email란이 공백일시
           document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
           check = false
         }
         else{
           document.getElementById("emailError").innerHTML=""
         }
-    } else{
+    } else{ //email에 @가 없을 시.
         document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
         check = false
     }

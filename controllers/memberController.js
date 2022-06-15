@@ -3,10 +3,9 @@ Member = models.member;
 Op = models.Sequelize.Op;
 
 
-/* 회원 가입 */
-exports.signUp = async (res, req) => {
+exports.signUp = async (res, req) => { //회원가입 함수
 
-        models.member.create({
+        models.member.create({  //create해줍니다.
                 memberMail: req.body.memberMail,
                 memberName: req.body.memberName,
                 password: req.body.password
@@ -26,18 +25,17 @@ exports.signUp = async (res, req) => {
 exports.userDelete = async (req, res) => {  
     try {
         console.log("UserDelete 중 삭제할 Id", req.session.idx)
-        await Member.destroy({
+        await Member.destroy({ //세션에 저장된 id로 memberId를 찾아 destroy 해준다.
             where:{
                 memberId : req.session.idx
             }
         });
         
         console.log("회원 삭제 완료")
-        res.render("deleteUser");
+        res.render("deleteUser"); //탈퇴 완료 view로 랜더.
     
     } catch(err) {
-        res.status(500).send({
-            message: err.message
-        });
+       res.render("deleteError"); //오류 view로  보내준다.(for user)
+        console.log(err); //for developer
     }
 }

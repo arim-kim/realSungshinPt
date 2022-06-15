@@ -1,3 +1,5 @@
+//일정추가 시 js
+//윤영주석
 var infoOption = document.querySelector("#minWage");
 
 infoOption.addEventListener("click", function () { //checkbox에 이벤트 리스너 등록

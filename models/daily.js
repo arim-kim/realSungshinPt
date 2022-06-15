@@ -1,10 +1,11 @@
+//일급 데이터 베이스
 module.exports = (sequelize, Sequelize) => {
     const daily = sequelize.define("daily", {
-        dailyMemId: {
+        dailyMemId: { //기본키
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        dailyPtId: {
+        dailyPtId: { //
             type: Sequelize.INTEGER,
             primaryKey: true
         },
@@ -13,10 +14,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
         },
         
-        dailyTotal : {
+        dailyTotal : { //일급 총합
             type: Sequelize.INTEGER,
         }, 
-        dayCoveredTime : {
+        dayCoveredTime : {  //대타 시간.
             type: Sequelize.INTEGER,
 
         },

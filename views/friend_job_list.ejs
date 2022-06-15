@@ -33,7 +33,7 @@
     <% for(var i = 0; i < data.length; i++) {%>
         <button class ="btns" style = "border-bottom: 3px solid <%= data[i].parttime.color%>; 
             border-top: 3px solid <%= data[i].parttime.color%>;" id = 'btn'+'<%=data[i].idSchedule%>'>
-                <%=data[i].parttime.parttimeName%>
+            <font color = " <%= data[i].parttime.color%>"><%=data[i].parttime.parttimeName%></font>
                 <br> <%=data[i].startTime%> 
                 <br> <%=data[i].endTime%> 
             </button>

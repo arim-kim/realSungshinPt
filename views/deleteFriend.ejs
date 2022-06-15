@@ -27,7 +27,7 @@
         <form name = "friendDelete" action = "/deleteFriend" method = "post">
                 <div class = "jobName">
                         <div class = "jobNameBox">
-                                <label style="font-size: 17px; width:200px; border-bottom: 3px solid #e1b8b8;">친구 이름 목록</label>
+                                <label style="font-size: 17px; width:200px; border-bottom: 3px solid #e1b8b8 ;">친구 목록</label>
                                 <select name="friendId" >
                                     <option value="" disabled selected>선택</option>
                                     <% for (i = 0; i < data.length; i++) { %>
@@ -42,7 +42,7 @@
                     justify-content: center;
                     margin-top: 20px;">
 
-                        <input type = "submit" id="editButton" onclick="alert('친구를 삭제하시겠습니까?')"
+                        <input type = "submit" id="editButton" value="친구 삭제" onclick="alert('친구를 삭제하시겠습니까?')"
                         style="  
                         display: flex;
                         align-items: center;

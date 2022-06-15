@@ -204,7 +204,7 @@
     <nav>
 		<div class = "navBox">
 			<div class="goChat">
-				<input type="button" id="btnChat" value="채팅" onclick="location.href='/friendlist';">
+				<input type="button" id="btnChat" value="친구" onclick="location.href='/friendlist';">
 			</div>
 			<div class="goAddSchedule">
 				<input type="button" id="btnSchedule" value="일정추가" onclick="location.href='/addSchedule';">
@@ -272,7 +272,7 @@
 			<td width="14.5%"><font color="#ed5353">일</font></td>
 		</tr>
 	</table>
-			<input type="submit" class = "deleteUser" onclick= "alert('회원탈퇴 하시겠습니까?');" value= "회원탈퇴하기" onclick="location.href='/deleteUser'">	
+			<input type="submit" class = "deleteUser" onclick= "alert('회원탈퇴 하시겠습니까?'); location.href='/deleteUser'" value= "회원탈퇴하기">	
 </body>
 </html>
 

@@ -7,6 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
 </head>
+
+<style>
+
+body{
+    overflow-y: scroll;
+}
+
+.title {
+  background-color: #e1b8b8;
+  border-radius: 40px 80px;
+  width: 30%;
+  height: 100px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+</style>
+
 <body>
     <div class="empty" style="height: 100px;"></div>
     <div id="text"style="display:flex;justify-content: center; flex-direction: column; align-items: center;">
@@ -15,15 +33,16 @@
     <div id="homeBtn"
     style="display: flex;
            align-items: center;
-           justify-content: center;">
-    <button id = "homeButton" onclick="location.href='/'" 
+           justify-content: center;
+           margin-top: 20px;">
+    <button id = "homeButton" onclick="location.href='/friendlist'" 
     style="display:flex;justify-content: center; flex-direction: column; align-items: center;
       width: 100px;
     height: 30px;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 3px solid #9dc39c;"  >홈으로</button>
+    border-bottom: 3px solid #e1b8b8;">친구 목록으로</button>
     </div>
 </body>
 </html>

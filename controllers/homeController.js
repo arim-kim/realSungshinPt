@@ -116,7 +116,7 @@ const getAllSchedule = async (id) => { //해당 id의 모든 스케줄을 불러
                         $custom: Sequelize.where(Sequelize.fn('date_format', Sequelize.col('startTime'),'%Y-%m-%d'),thisDay)
                 },
                 attributes : [
-                    [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'] ],
+                    [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %H:%i'), 'startTime'] ],
                 order: [
                     ['startTime', 'ASC'],
                 ] 

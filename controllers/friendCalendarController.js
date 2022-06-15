@@ -40,9 +40,10 @@ exports.showFriendJobList = async (req, res) => {
           model : Parttime, 
           attributes : ['parttimeName' , 'parttimeId', 'color']
       }
-      ], attributes : [ //시작날짜와 끝난 날짜를 가져옵니다.
-        [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %h:%m'), 'startTime'],
-        [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %h:%m'), 'endTime'],
+
+      ], attributes : [//시작시간과 끝난시간을 가져옵니다.
+        [Sequelize.fn('date_format', Sequelize.col('startTime'), '%Y-%m-%d %H:%i'), 'startTime'],
+        [Sequelize.fn('date_format', Sequelize.col('endTime'), '%Y-%m-%d %H:%i'), 'endTime'],
         'idSchedule',
     ],
           where: {

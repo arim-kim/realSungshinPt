@@ -16,7 +16,7 @@
         <div class = "scdlBox">
             <button class ="btns" style = "border-bottom: 3px solid <%= data[i].parttime.color%>; 
                 border-top: 3px solid <%= data[i].parttime.color%>;" id = 'btn'+'<%=data[i].idSchedule%>'>
-                <%=data[i].parttime.parttimeName%>
+                <font color = " <%= data[i].parttime.color%>"><%=data[i].parttime.parttimeName%></font>
                 <br> 시작시간 :  <%=data[i].startTime%> 
                 <br> 끝나는 시간 : <%=data[i].endTime%> 
                 <!-- 대타유무 표시 -->
